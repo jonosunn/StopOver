@@ -1,4 +1,6 @@
-#!/Users/Jtan/Study/RMIT/2019Sem1/Capstone/StopOver/env/bin/python3.7
+#!/bin/sh
+'''exec' "/home/khoa/Desktop/2019_SEM1/Programming Project 1/StopOver/env/bin/python3" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys

@@ -1,4 +1,4 @@
-#!/Users/Jtan/Study/RMIT/2019Sem1/Capstone/StopOver/env/bin/python
+#!/home/khoa/Desktop/2019_SEM1/Programming Project 1/StopOver/env/bin/python
 
 import sys
 import getopt
