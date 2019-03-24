@@ -2,9 +2,9 @@ import os
 import psycopg2
 
 # PostgreSQL database with python
-DATABASE_URL = os.environ['postgres://blwdfizxidfgsr:fca09f51620fcdcf1a74fd8e7e32f6cac1de9c495c705505451c669be7b5e46c@ec2-54-221-243-211.compute-1.amazonaws.com:5432/d8mpuegruaai9f']
+#DATABASE_URL = os.environ['postgres://blwdfizxidfgsr:fca09f51620fcdcf1a74fd8e7e32f6cac1de9c495c705505451c669be7b5e46c@ec2-54-221-243-211.compute-1.amazonaws.com:5432/d8mpuegruaai9f']
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+#conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -61,12 +61,12 @@ WSGI_APPLICATION = 'stopover_project.wsgi.application'
 
 # Database
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 # Password validation
 
