@@ -102,6 +102,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'https://powerful-wildwood-66626.herokuapp.com/'
 
 # Parse values of DATABASE_URL and convert for django readability
 import dj_database_url
