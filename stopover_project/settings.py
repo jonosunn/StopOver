@@ -20,6 +20,7 @@ ALLOWED_HOSTS = ['*'] # May need to be changed
 # Application definition
 
 INSTALLED_APPS = [
+    'map.apps.MapConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
