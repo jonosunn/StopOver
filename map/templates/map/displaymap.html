@@ -12,6 +12,13 @@ function geoFindMe() {
   mapLink.href = '';
   mapLink.textContent = '';
 
+  function setCookie(name, value) {
+    var today = new Date();
+    today.setTime() + 30 * 24 * 3600 * 1000;
+    var expiry = "expires=" + today.toGMTString();
+    document.cookie=name + "=" + value + ";" + expiry + ";path=/";
+  }
+
   function success(position) {
     const latitude  = position.coords.latitude;
     const longitude = position.coords.longitude;
@@ -19,6 +26,8 @@ function geoFindMe() {
     status.textContent = '';
     mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
     mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+    setCookie("longitude",position.coords.longitude);
+    setCookie("latitude",position.coords.latitude);
   }
 
   function error() {
@@ -31,14 +40,9 @@ function geoFindMe() {
     status.textContent = 'Locating…';
     navigator.geolocation.getCurrentPosition(success, error);
   }
-  setCookie(longitude,position.coords.longitude);
 }
 
-function setCookie(name, value) {
-  var today = new Date();
-  var expiry = new Date(today.getTime() + 30 * 24 * 3600 * 1000);
-  document.cookie=name + "=" + longitude + ";" + expiry.toGMTString() + ";path=/";
-}
+
 
 // Mapbox script to display map, also uses to edit the center and zoom etc
 document.querySelector('#find-me').addEventListener('click', geoFindMe);
