@@ -31,6 +31,14 @@ function geoFindMe() {
     status.textContent = 'Locating…';
     navigator.geolocation.getCurrentPosition(success, error);
   }
+  setCookie(latitude,longitude);
+}
+
+var today = new Date();
+var expiry = new Date(today.getTime() + 30 * 24 * 3600 * 1000);
+
+function setCookie(latitude, longitude) {
+  document.cookie=latitude + "," + longitude + "; path=/; expires=" + expiry.toGMTString();
 }
 
 // Mapbox script to display map, also uses to edit the center and zoom etc
