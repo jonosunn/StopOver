@@ -32,6 +32,15 @@ function geoFindMe() {
     navigator.geolocation.getCurrentPosition(success, error);
   }
 
+$.ajax({
+    type: "POST",
+    url: "http://127.0.0.1:8000/",
+    dataType: "json",
+    data: {
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+        map-link: $('#map-link').val()
+    }
+})
 }
 
 // Mapbox script to display map, also uses to edit the center and zoom etc
