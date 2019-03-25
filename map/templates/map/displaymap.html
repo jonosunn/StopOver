@@ -12,6 +12,7 @@ function geoFindMe() {
   mapLink.href = '';
   mapLink.textContent = '';
 
+// creating a fucntion to set a value into cookie expires in 30s
   function setCookie(name, value) {
     var today = new Date();
     var expiry = new Date(today.getTime() + 30 * 1000);
@@ -25,6 +26,7 @@ function geoFindMe() {
     status.textContent = '';
     mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
     mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+// setting the longitute and latitude into cookies to be accessed in views.py
     setCookie("longitude",position.coords.longitude);
     setCookie("latitude",position.coords.latitude);
   }
