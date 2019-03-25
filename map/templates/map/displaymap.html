@@ -14,7 +14,7 @@ function geoFindMe() {
 
   function setCookie(name, value) {
     var today = new Date();
-    var expiry = new Date(today.setTime() + 30 * 1000);
+    var expiry = new Date(today.getTime() + 30 * 1000);
     document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
   }
 
