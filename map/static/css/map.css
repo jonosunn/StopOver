@@ -1,0 +1,14 @@
+h1 
+{
+    color: #C25100;
+}
+
+#map
+{
+	margin-left:auto; 
+	margin-right:80px;
+	margin-bottom: 20px;
+	width: 500px;
+	height: 350px;
+
+}
