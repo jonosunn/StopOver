@@ -3,9 +3,9 @@ import psycopg2
 import django_heroku
 
 # PostgreSQL database with python
-#DATABASE_URL = os.environ['postgres://blwdfizxidfgsr:fca09f51620fcdcf1a74fd8e7e32f6cac1de9c495c705505451c669be7b5e46c@ec2-54-221-243-211.compute-1.amazonaws.com:5432/d8mpuegruaai9f']
+DATABASE_URL = os.environ['postgres://blwdfizxidfgsr:fca09f51620fcdcf1a74fd8e7e32f6cac1de9c495c705505451c669be7b5e46c@ec2-54-221-243-211.compute-1.amazonaws.com:5432/d8mpuegruaai9f']
 
-#conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -103,8 +103,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATIC_ROOT = 'https://powerful-wildwood-66626.herokuapp.com/'
+
+# Extra places for collectstatic to find static files
+STATICFILES_DIR = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # Activate Django-Heroku
 django_heroku.settings(locals())
