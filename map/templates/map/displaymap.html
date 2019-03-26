@@ -12,6 +12,16 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
 </style>
 
 <p id = "status"></p>
@@ -67,7 +77,7 @@ document.querySelector('#find-me').addEventListener('click', geoFindMe);
         zoom: 12,
         bearing: 0
     });
-    
+
 // loading the geojson
 var geojson = {
   type: 'FeatureCollection',
@@ -75,7 +85,7 @@ var geojson = {
     type: 'Feature',
     geometry: {
       type: 'Point',
-      coordinates: [-77.032, 38.913]
+      coordinates: [-37.032, 144.913]
     },
     properties: {
       title: 'Mapbox',
@@ -86,7 +96,7 @@ var geojson = {
     type: 'Feature',
     geometry: {
       type: 'Point',
-      coordinates: [-122.414, 37.776]
+      coordinates: [-38.414, 145.776]
     },
     properties: {
       title: 'Mapbox',
@@ -105,5 +115,11 @@ geojson.features.forEach(function(marker) {
     .setLngLat(marker.geometry.coordinates)
     .addTo(map);
 });
+
+new mapboxgl.Marker(el)
+  .setLngLat(marker.geometry.coordinates)
+  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+  .addTo(map);
 
 </script>
