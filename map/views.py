@@ -9,4 +9,4 @@ def get_mylocation(request):
         longitude = request.COOKIES.get('longitude', '')
         print(longitude)
         print("test")
-    return longitude
+    return render(request, 'map.homepage.html')
