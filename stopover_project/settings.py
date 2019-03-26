@@ -63,10 +63,21 @@ WSGI_APPLICATION = 'stopover_project.wsgi.application'
 
 # Database
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd8mpuegruaai9f',
+        'USER': 'blwdfizxidfgsr',
+        'PASSWORD': 'fca09f51620fcdcf1a74fd8e7e32f6cac1de9c495c705505451c669be7b5e46c',
+        'HOST': 'ec2-54-221-243-211.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
