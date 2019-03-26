@@ -1,29 +1,7 @@
-<div id='map' style='width: 400px; height: 300px;'></div>
+<div id='map' style='width: 800px; height: 600px;'></div>
 <form action="#" method="get">
  <input type="button" value="Use My Current Location" id="find-me">
 </form>
-
-<style>
-.marker {
-  background-image: url('mapbox-icon.png');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.mapboxgl-popup {
-  max-width: 200px;
-}
-
-.mapboxgl-popup-content {
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
-}
-
-</style>
-
 <p id = "status"></p>
 <a id = "map-link" target="_blank"></a>
 <script>
@@ -67,16 +45,17 @@ function geoFindMe() {
   }
 }
 
-// Mapbox script to display map, also uses to edit the center and zoom etc
 document.querySelector('#find-me').addEventListener('click', geoFindMe);
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [144.97, -37.81],
-        zoom: 12,
-        bearing: 0
-    });
+
+// Mapbox script to display map, also uses to edit the center and zoom etc
+mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [-96, 37.8],
+    zoom: 3,
+    bearing: 0
+});
 
 // loading the geojson
 var geojson = {
@@ -85,7 +64,7 @@ var geojson = {
     type: 'Feature',
     geometry: {
       type: 'Point',
-      coordinates: [-37.032, 144.913]
+      coordinates: [-77.032, 38.913]
     },
     properties: {
       title: 'Mapbox',
@@ -115,11 +94,5 @@ geojson.features.forEach(function(marker) {
     .setLngLat(marker.geometry.coordinates)
     .addTo(map);
 });
-
-new mapboxgl.Marker(el)
-  .setLngLat(marker.geometry.coordinates)
-  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
-  .addTo(map);
 
 </script>
