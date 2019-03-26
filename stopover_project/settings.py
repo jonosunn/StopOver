@@ -1,5 +1,6 @@
 import os
 import psycopg2
+import django_heroku
 
 # PostgreSQL database with python
 #DATABASE_URL = os.environ['postgres://blwdfizxidfgsr:fca09f51620fcdcf1a74fd8e7e32f6cac1de9c495c705505451c669be7b5e46c@ec2-54-221-243-211.compute-1.amazonaws.com:5432/d8mpuegruaai9f']
@@ -104,6 +105,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'https://powerful-wildwood-66626.herokuapp.com/'
+
+# Activate Django-Heroku
+django_heroku.settings(locals())
 
 # Parse values of DATABASE_URL and convert for django readability
 import dj_database_url
