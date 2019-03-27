@@ -7,6 +7,7 @@ def home(request):
 def get_mylocation(request):
     if request.GET.get('find-me'):
         longitude = request.COOKIES.get('longitude', '')
-        print(longitude)
-        print("test")
-    return render(request, 'map/homepage.html')
+        latitude = request.COOKIES.get('latitude', '')
+    return render(request, 'map/homepage.html',
+                {'longitude':longitude,
+                 'latitude' :latitude})
