@@ -57,7 +57,7 @@ var map = new mapboxgl.Map({
     bearing: 0
 });
 
-// loading the geojson
+// loading marker for the users Location
 var geojson = {
   type: 'FeatureCollection',
   features: [{
@@ -68,18 +68,7 @@ var geojson = {
     },
     properties: {
       title: 'Mapbox',
-      description: 'Washington, D.C.'
-    }
-  },
-  {
-    type: 'Feature',
-    geometry: {
-      type: 'Point',
-      coordinates: [-38.414, 145.776]
-    },
-    properties: {
-      title: 'Mapbox',
-      description: 'San Francisco, California'
+      description: 'Current Users Location'
     }
   }]
 };
@@ -94,5 +83,11 @@ geojson.features.forEach(function(marker) {
     .setLngLat(marker.geometry.coordinates)
     .addTo(map);
 });
+
+new mapboxgl.Marker(el)
+  .setLngLat(marker.geometry.coordinates)
+  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+  .addTo(map);
 
 </script>
