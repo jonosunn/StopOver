@@ -27,7 +27,7 @@ function geoFindMe() {
 
     status.textContent = '';
     mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-    mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+    mapLink.textContent = `Longitude: ${longitude}°, Latitude: ${latitude}°`;
 // setting the longitute and latitude into cookies to be accessed in views.py
     setCookie("longitude",position.coords.longitude);
     setCookie("latitude",position.coords.latitude);
@@ -52,8 +52,8 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10N
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [-96, 37.8],
-    zoom: 3,
+    center: [144.97, -37.81],
+    zoom: 12,
     bearing: 0
 });
 
@@ -64,7 +64,7 @@ var geojson = {
     type: 'Feature',
     geometry: {
       type: 'Point',
-      coordinates: [-77.032, 38.913]
+      coordinates: [144.97, -37.813]
     },
     properties: {
       title: 'Mapbox',
