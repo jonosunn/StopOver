@@ -8,10 +8,8 @@ h1
 
 #map
 {
-	margin-left:auto; 
-	margin-right:80px;
 	width: 500px;
-	height: 575px;
+	height: 475px;
 
 }
 
@@ -28,6 +26,13 @@ a
     font-size: 25px;
 }
 
+.nav-link a:active
+{
+  border-radius: 25px;
+  padding: 2px;  
+  border: 2px solid;
+}
+
 .nav-item
 {
 	font-size: 12px;
@@ -38,16 +43,25 @@ a
 
 .d-inline-block
 {
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin: 20px;
 	
 }
 
 #leftBox
 {
-	margin-left: 50px;
+	width: 650px;
+	vertical-align: top;
 }
 
+#rightBox
+{
+	
+}
+
+.list-group-item
+{
+	margin: 20px;
+}
 
 
 

@@ -20,13 +20,12 @@
     </head>
     <body>
     {% include "map/navbar.html" %}
-    <div class="d-inline-block col-5" id="leftBox">
-    left box
+    <div class="d-inline-block col-7" id="leftBox">
+    	{% include "map/carlist.html" %}
     </div>
-    <div class="d-inline-block col-6" id="rightBox">
-    
-       	{% include "map/displaymap.html" %}
- 	        	
+    <div class="d-inline-block col-5" id="rightBox">
+    	{% include "map/displaymap.html" %}
+      	
     </div>
     	
     	
