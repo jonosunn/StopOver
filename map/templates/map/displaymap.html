@@ -76,14 +76,19 @@ document.querySelector('#find-me').addEventListener('click', geoFindMe);
 
 // Mapbox script to display map, also uses to edit the center and zoom etc
 mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
-var map = new mapboxgl.Map({
+//set bounds of melbourne
+//format: [south, west], [north, east]
+//follow mapbox's coordinates system
+var bounds = [
+ 	 [144.70345,-37.91802],
+ 	 [145.22873,-37.64668]
+];
+  var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [144.97, -37.81],
     zoom: 12,
-    bearing: 0
+    bearing: 0, 
+    maxBounds: bounds
 });
-
-
-
 </script>
