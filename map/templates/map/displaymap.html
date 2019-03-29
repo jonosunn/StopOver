@@ -31,6 +31,33 @@ function geoFindMe() {
 // setting the longitute and latitude into cookies to be accessed in views.py
     setCookie("longitude",position.coords.longitude);
     setCookie("latitude",position.coords.latitude);
+
+    // loading marker for the users Location
+    var geojson = {
+      type: 'FeatureCollection',
+      features: [{
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [longitude, latitude]
+        },
+        properties: {
+          title: 'Mapbox',
+          description: 'Current Users Location'
+        }
+      }]
+    };
+
+    // add markers to map
+    geojson.features.forEach(function(marker) {
+      // create a HTML element for each feature
+      var el = document.createElement('div');
+      el.className = 'marker';
+      // make a marker for each feature and add to the map
+      new mapboxgl.Marker(el)
+        .setLngLat(marker.geometry.coordinates)
+        .addTo(map);
+    });
   }
 
   function error() {
@@ -57,38 +84,6 @@ var map = new mapboxgl.Map({
     bearing: 0
 });
 
-// loading marker for the users Location
-var geojson = {
-  type: 'FeatureCollection',
-  features: [{
-    type: 'Feature',
-    geometry: {
-      type: 'Point',
-      coordinates: [144.97, -37.813]
-    },
-    properties: {
-      title: 'Mapbox',
-      description: 'Current Users Location'
-    }
-  }]
-};
 
-// add markers to map
-geojson.features.forEach(function(marker) {
-  // create a HTML element for each feature
-  var el = document.createElement('div');
-  el.className = 'marker';
-  // make a marker for each feature and add to the map
-  new mapboxgl.Marker(el)
-    .setLngLat(marker.geometry.coordinates)
-    .addTo(map);
-});
-
-// Adds infomation popup for each marker
-// new mapboxgl.Marker(el)
-//   .setLngLat(marker.geometry.coordinates)
-//   .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-//     .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
-//   .addTo(map);
 
 </script>
