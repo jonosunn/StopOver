@@ -1,0 +1,68 @@
+@import url(//fonts.googleapis.com/css?family=Roboto+Mono:400,700i);
+
+h1 
+{
+    color: #C25100;
+    font-family: 'Roboto Mono', monospace;
+}
+
+#map
+{
+	width: 500px;
+	height: 475px;
+
+}
+
+a
+{
+    font-family: 'Roboto Mono', monospace;
+	
+}
+
+#mainLogo
+{
+    font-family: 'Roboto Mono', monospace;
+    color: #C25100;
+    font-size: 25px;
+}
+
+.nav-link a:active
+{
+  border-radius: 25px;
+  padding: 2px;  
+  border: 2px solid;
+}
+
+.nav-item
+{
+	font-size: 12px;
+	padding-right: 7px;
+	
+	
+}
+
+.d-inline-block
+{
+	margin: 20px;
+	
+}
+
+#leftBox
+{
+	width: 650px;
+	vertical-align: top;
+}
+
+#rightBox
+{
+	
+}
+
+.list-group-item
+{
+	margin: 20px;
+}
+
+
+
+
