@@ -9,6 +9,3 @@ class Car(models.Model):
 	longitude = models.FloatField()
 	latitude = models.FloatField()
 	available = models.BooleanField(default=True)
-
-	def __str__(self):
-		return self.number_plate
