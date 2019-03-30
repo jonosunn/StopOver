@@ -8,7 +8,7 @@ class Car(models.Model):
 	price = models.IntegerField()
 	longitude = models.FloatField()
 	latitude = models.FloatField()
-	availble = models.BooleanField(default=True)
+	available = models.BooleanField(default=True)
 
-	def __init__(self):
+	def __str__(self):
 		return self.number_plate
