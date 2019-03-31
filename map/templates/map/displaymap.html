@@ -1,7 +1,4 @@
 <div id='map' style='width: 800px; height: 600px;'></div>
-<form action="#" method="get">
- <input type="button" value="Use My Current Location" id="find-me">
-</form>
 <p id = "status"></p>
 <a id = "map-link" target="_blank"></a>
 <script>
@@ -72,7 +69,7 @@ function geoFindMe() {
   }
 }
 
-document.querySelector('#find-me').addEventListener('click', geoFindMe);
+//document.querySelector('#find-me').addEventListener('click', geoFindMe);
 
 // Mapbox script to display map, also uses to edit the center and zoom etc
 mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
