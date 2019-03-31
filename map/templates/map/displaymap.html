@@ -6,7 +6,7 @@
 <a id = "map-link" target="_blank"></a>
 <a id ="test" target="_blank"></a>
 <script>
-  // Fucntion to find current location (geolocation)
+  // onLoad function 
   function geoFindMe() {
 
     // document.querySelector('#find-me').addEventListener('click', geoFindMe);
@@ -70,19 +70,19 @@
         }]
       };
 
-      // add markers to map
+      // add users marker to map
       geojson_user.features.forEach(function(marker) {
         // create a HTML element for each feature
         var el = document.createElement('div');
         el.className = 'marker';
-        // make a marker for each feature and add to the map
+        // user marker
         new mapboxgl.Marker(el)
           .setLngLat(marker.geometry.coordinates)
           .addTo(map);
       });
 
-      // planned
-      var geojson_planned = {
+      // Cars location marker
+      var geojson_cars = {
         type: 'FeatureCollection',
         features: [
         {% for car in cars %}
@@ -101,11 +101,11 @@
       ]
       };
       // add markers to map
-      geojson_planned.features.forEach(function(marker) {
+      geojson_cars.features.forEach(function(marker) {
       // create a HTML element for each feature
       var el = document.createElement('div');
       el.className = 'marker';
-      // visited
+      // car markers
       new mapboxgl.Marker(el)
       .setLngLat(marker.geometry.coordinates)
       .addTo(map);
