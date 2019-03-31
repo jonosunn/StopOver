@@ -4,3 +4,34 @@
 </form> -->
 <p id = "status"></p>
 <a id = "map-link" target="_blank"></a>
+<script>
+// planned
+var geojson_planned = {
+  type: 'FeatureCollection',
+  features: [
+  {% for car in cars %}
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [{{ car.longitude }}, {{ car.latitude }}]
+      },
+      properties: {
+        title: 'Mapbox',
+        description: 'Car Locations'
+      }
+    },
+  {% endfor %}
+]
+};
+// add markers to map
+geojson_planned.features.forEach(function(marker) {
+// create a HTML element for each feature
+var el = document.createElement('div');
+el.className = 'marker';
+// visited
+new mapboxgl.Marker(el)
+.setLngLat(marker.geometry.coordinates)
+.addTo(map);
+});
+</script>

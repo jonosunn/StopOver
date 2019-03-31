@@ -72,37 +72,6 @@ function geoFindMe() {
         .setLngLat(marker.geometry.coordinates)
         .addTo(map);
     });
-
-    // car locations
-    var geojson_car = {
-      type: 'FeatureCollection',
-      features: [
-      {% for car in cars %}
-        {
-          type: 'Feature',
-          geometry: {
-            type: 'Point',
-            coordinates: [{{ car.longitude }}, {{ car.latitude }}]
-          },
-          properties: {
-            title: 'Mapbox',
-            description: 'Car Locations'
-          }
-        },
-      {% endfor %}
-    ]
-    };
-    // add car markers to map
-    geojson_car.features.forEach(function(marker) {
-    // create a HTML element for each feature
-    var el = document.createElement('div');
-    el.className = 'marker';
-    // car locations
-    new mapboxgl.Marker(el)
-    .setLngLat(marker.geometry.coordinates)
-    .addTo(map);
-    });
-
 }
 
   function error() {
