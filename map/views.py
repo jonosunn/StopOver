@@ -4,7 +4,7 @@ from map.models import Car
 
 def home(request):
 	# Get all car objects from db
-	cars = Car.objects.all()
+	cars = Car.objects.filter(available=True)
 
 	# Argument to contain list of our car model
 	args = {'cars': cars}
