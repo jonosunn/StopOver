@@ -1,8 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from map.models import Car
 
 def home(request):
-    return render(request, 'map/homepage.html')
+	# Get all car objects from db
+	cars = Car.objects.filter(available=True)
+
+	# Argument to contain list of our car model
+	args = {'cars': cars}
+	return render(request, 'map/homepage.html', args)
 
 def get_mylocation(request):
     if request.GET.get('find-me'):
