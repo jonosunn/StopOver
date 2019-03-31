@@ -13,6 +13,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*'] # May need to be changed
 
+MAPBOX_ACCESS_KEY = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A'
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+
 # Application definition
 
 INSTALLED_APPS = [
