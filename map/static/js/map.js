@@ -72,25 +72,6 @@ function geoFindMe() {
         .addTo(map);
     });
 
-// loading marker for the car Location
-    var geojson_carlist = {
-      type: 'FeatureCollection',
-      features: [
-        (% for car in cars %)
-        {
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [{{ car.longitude }}, {{ car.latitude }}]
-        },
-        properties: {
-          title: 'Mapbox',
-          description: 'Car Locations'
-        }
-      },
-    {% endfor %}
-    ]
-    };
 
     // add car markers to map
     geojson_carlist.features.forEach(function(marker) {
@@ -102,6 +83,27 @@ function geoFindMe() {
         .setLngLat(marker.geometry.coordinates)
         .addTo(map);
     });
+
+
+    // loading marker for the car Location
+        var geojson_carlist = {
+          type: 'FeatureCollection',
+          features: [
+            (% for car in cars %)
+            {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [{{ car.longitude }}, {{ car.latitude }}]
+            },
+            properties: {
+              title: 'Mapbox',
+              description: 'Car Locations'
+            }
+          },
+        {% endfor %}
+        ]
+        };
   }
 
   function error() {
