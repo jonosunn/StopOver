@@ -9,3 +9,11 @@ def home(request):
 	# Argument to contain list of our car model
 	args = {'cars': cars}
 	return render(request, 'map/homepage.html', args)
+
+def get_mylocation(request):
+    if request.GET.get('find-me'):
+        longitude = request.COOKIES.get('longitude', '')
+        latitude = request.COOKIES.get('latitude', '')
+    return render(request, 'map/homepage.html',
+                {'longitude' :longitude,
+                 'latitude' :latitude})

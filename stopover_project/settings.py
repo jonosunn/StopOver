@@ -2,11 +2,6 @@ import os
 import psycopg2
 import django_heroku
 
-# PostgreSQL database with python
-# DATABASE_URL = os.environ['postgres://blwdfizxidfgsr:fca09f51620fcdcf1a74fd8e7e32f6cac1de9c495c705505451c669be7b5e46c@ec2-54-221-243-211.compute-1.amazonaws.com:5432/d8mpuegruaai9f']
-
-# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -17,6 +12,10 @@ SECRET_KEY = 'exhlfdat&vfum(-34*c2uroi(($ww(yo$9pv98=e6p^gl(-eoj'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*'] # May need to be changed
+
+MAPBOX_ACCESS_KEY = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A'
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 # Application definition
 
@@ -98,7 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 
 LANGUAGE_CODE = 'en-us'
@@ -110,7 +108,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 
