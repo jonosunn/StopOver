@@ -58,7 +58,20 @@ function geoFindMe() {
           title: 'Mapbox',
           description: 'Current Users Location'
         }
-      }]
+      },
+      (% for car in cars %)
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [{{ car.longitude }}, {{ car.latitude }}]
+   },
+      properties: {
+      title: 'Mapbox',
+      description: 'Car List'
+   }
+ }
+{% end for%}]
     };
 
     // add markers to map
