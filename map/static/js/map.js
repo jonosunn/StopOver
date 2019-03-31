@@ -46,7 +46,7 @@ function geoFindMe() {
     setCookie("latitude",position.coords.latitude);
 
     // loading marker for the users Location
-    var geojson = {
+    var geojson_user = {
       type: 'FeatureCollection',
       features: [{
         type: 'Feature',
@@ -61,10 +61,22 @@ function geoFindMe() {
       }]
     };
 
-    var carlist = {
+    // add markers to map
+    geojson_user.features.forEach(function(marker) {
+      // create a HTML element for each feature
+      var el = document.createElement('div');
+      el.className = 'marker';
+      // make a marker for each feature and add to the map
+      new mapboxgl.Marker(el)
+        .setLngLat(marker.geometry.coordinates)
+        .addTo(map);
+    });
+
+// loading marker for the car Location
+    var geojson_carlist = {
       type: 'FeatureCollection',
       features: [
-        (% for car in cars%)
+        (% for car in cars %)
         {
         type: 'Feature',
         geometry: {
@@ -76,22 +88,12 @@ function geoFindMe() {
           description: 'Car Locations'
         }
       },
-    {% end for %}]
+    {% endfor %}
+    ]
     };
 
-    // add markers to map
-    geojson.features.forEach(function(marker) {
-      // create a HTML element for each feature
-      var el = document.createElement('div');
-      el.className = 'marker';
-      // make a marker for each feature and add to the map
-      new mapboxgl.Marker(el)
-        .setLngLat(marker.geometry.coordinates)
-        .addTo(map);
-    });
-
-    // add markers to map
-    carlist.features.forEach(function(marker) {
+    // add car markers to map
+    geojson_carlist.features.forEach(function(marker) {
       // create a HTML element for each feature
       var el = document.createElement('div');
       el.className = 'marker';
