@@ -1,6 +1,6 @@
 @import url(//fonts.googleapis.com/css?family=Roboto+Mono:400,700i);
 
-h1 
+h1
 {
     color: #C25100;
     font-family: 'Roboto Mono', monospace;
@@ -8,15 +8,15 @@ h1
 
 #map
 {
-	width: 500px;
-	height: 475px;
+	width: 650px !important;
+	height: 450px !important;
 
 }
 
 a
 {
     font-family: 'Roboto Mono', monospace;
-	
+
 }
 
 #mainLogo
@@ -29,7 +29,7 @@ a
 .nav-link a:active
 {
   border-radius: 25px;
-  padding: 2px;  
+  padding: 2px;
   border: 2px solid;
 }
 
@@ -37,32 +37,65 @@ a
 {
 	font-size: 12px;
 	padding-right: 7px;
-	
-	
+
+
 }
 
 .d-inline-block
 {
 	margin: 20px;
 	
-}
 
-#leftBox
-{
-	width: 650px;
-	vertical-align: top;
 }
 
 #rightBox
 {
+width: 500px;
+vertical-align: top;
+ height:450px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#leftBox
+{
+		width: 700px;
 	
+}
+
+#twoBoxes
+{
+	vertical-align: center;
+	position: absolute;
 }
 
 .list-group-item
 {
-	margin: 20px;
+	margin-bottom: 20px !important;
+	width: 350px;
+	
 }
 
+/* The following code is css for the marker */
+.marker {
+  background-image: url('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
 
+.mapboxgl-popup {
+  max-width: 200px;
+}
 
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
 
+.distanceNumber
+{
+	color: #C25100 !important;
+}
