@@ -49,9 +49,9 @@ window.addEventListener("load", myInit, true); function myInit(){ geoFindMe()};
             maxBounds: bounds
         });
 
-      status.textContent = '';
-      mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-      mapLink.textContent = `Longitude: ${longitude}°, Latitude: ${latitude}°`;
+      // status.textContent = '';
+      // mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+      // mapLink.textContent = `Longitude: ${longitude}°, Latitude: ${latitude}°`;
   // setting the longitute and latitude into cookies to be accessed in views.py
       setCookie("longitude",position.coords.longitude);
       setCookie("latitude",position.coords.latitude);
@@ -125,7 +125,7 @@ window.addEventListener("load", myInit, true); function myInit(){ geoFindMe()};
     if (!navigator.geolocation) {
       status.textContent = 'Geolocation is not supported by your browser';
     } else {
-      status.textContent = 'Locating…';
+      // status.textContent = 'Locating…';
       navigator.geolocation.getCurrentPosition(success, error);
     }
   }
