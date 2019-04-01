@@ -7,7 +7,7 @@
 <a id ="test" target="_blank"></a>
 <script>
 
-window.addEventListener("load", myInit, true); function myInit(){ geoFindMe()}; 
+window.addEventListener("load", myInit, true); function myInit(){ geoFindMe()};
   // onLoad function
   function geoFindMe() {
 
@@ -80,6 +80,8 @@ window.addEventListener("load", myInit, true); function myInit(){ geoFindMe()};
         // user marker
         new mapboxgl.Marker(el)
           .setLngLat(marker.geometry.coordinates)
+            .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+              .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
           .addTo(map);
       });
 
@@ -110,6 +112,8 @@ window.addEventListener("load", myInit, true); function myInit(){ geoFindMe()};
       // car markers
       new mapboxgl.Marker(el)
       .setLngLat(marker.geometry.coordinates)
+        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+          .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
       .addTo(map);
       });
   }
