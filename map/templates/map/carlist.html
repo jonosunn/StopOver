@@ -1,12 +1,28 @@
 <!--- Displays list of cars by looping through a car list obtain from the db-->
 <div class="list-group">
+<script>
+const longCookie = getSpecificCookie('longitude', true);
+const latCookie = getSpecificCookie('latitude', true) ;
+</script>
   {% for car in cars %}
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">{{ car.brand }} ${{ car.price }} per/hour</h5>
       <small>{{ car.number_plate}}</small>
     </div>
-    <p class="mb-1">{{ car.transmission }}</p>
+      <div class="d-flex w-100 justify-content-between">
+          <p class="mb-1">{{ car.transmission }}</p>
+            <p><small class="distanceNumber"></small><small> km from you</small></p>
+    </div>
   </a>
-  {% endfor %}
+ <script type="text/javascript">
+
+ 	document.getElementsByClassName('distanceNumber')[i].innerHTML = getDistanceFromLatLonInKm({{car.longitude}}, {{car.latitude}}, longCookie, latCookie);		
+	i++;
+	
+</script>
+
+ {% endfor %}
+ 
 </div>
+
