@@ -63,9 +63,19 @@ a
 	margin: 20px;
 }
 
-/* The following code is css for the marker */
-.marker {
-  background-image: url('/images/users-marker.png');
+
+/* user marker */
+.users-marker {
+  background-image: url(../images/users_marker.png);
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* car marker */
+.car-marker {
+  background-image: url(../images/car_marker.png);
   background-size: cover;
   width: 50px;
   height: 50px;
@@ -73,6 +83,7 @@ a
   cursor: pointer;
 }
 
+/* popup description on each marker */
 .mapboxgl-popup {
   max-width: 200px;
 }

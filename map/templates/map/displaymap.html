@@ -76,7 +76,7 @@ window.addEventListener("load", myInit, true); function myInit(){ geoFindMe()};
       geojson_user.features.forEach(function(marker) {
         // create a HTML element for each feature
         var el = document.createElement('div');
-        el.className = 'marker';
+        el.className = 'users-marker';
         // user marker
         new mapboxgl.Marker(el)
           .setLngLat(marker.geometry.coordinates)
@@ -108,7 +108,7 @@ window.addEventListener("load", myInit, true); function myInit(){ geoFindMe()};
       geojson_cars.features.forEach(function(marker) {
       // create a HTML element for each feature
       var el = document.createElement('div');
-      el.className = 'marker';
+      el.className = 'car-marker';
       // car markers
       new mapboxgl.Marker(el)
       .setLngLat(marker.geometry.coordinates)
