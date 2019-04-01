@@ -15,6 +15,7 @@ const latCookie = getSpecificCookie('latitude', true) ;
             <p><small class="distanceNumber"></small><small> km from you</small></p>
     </div>
   </a>
+
  <script type="text/javascript">
 
  	document.getElementsByClassName('distanceNumber')[i].innerHTML = getDistanceFromLatLonInKm({{car.longitude}}, {{car.latitude}}, longCookie, latCookie);		
@@ -25,4 +26,3 @@ const latCookie = getSpecificCookie('latitude', true) ;
  {% endfor %}
  
 </div>
-
