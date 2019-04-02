@@ -19,20 +19,18 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
     </head>
-    <body  onLoad="geoFindMe()">
+    <body onload="geoFindMe()">
     {% include "map/navbar.html" %}
-    <div class="d-inline-block col-7" id="leftBox">
-    	{% include "map/carlist.html" %}
+    <div id="twoBoxes">
+        <div class="d-inline-block col-6" id="leftBox">
+            	{% include "map/displaymap.html" %}
+        
+    	</div>
+	    <div class="d-inline-block col-6" id="rightBox">
+	        	{% include "map/carlist.html" %}
+	    
+	    </div>
     </div>
-    <div class="d-inline-block col-5" id="rightBox">
-    	{% include "map/displaymap.html" %}
-
-    </div>
-
-
-
-
-
 
     </body>
 </html>
