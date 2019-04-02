@@ -8,8 +8,8 @@ h1
 
 #map
 {
-	width: 500px;
-	height: 475px;
+	width: 650px !important;
+	height: 450px !important;
 
 }
 
@@ -44,23 +44,36 @@ a
 .d-inline-block
 {
 	margin: 20px;
+	
 
-}
-
-#leftBox
-{
-	width: 650px;
-	vertical-align: top;
 }
 
 #rightBox
 {
+width: 500px;
+vertical-align: top;
+ height:450px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 
+#leftBox
+{
+		width: 700px;
+	
+}
+
+#twoBoxes
+{
+	vertical-align: center;
+	position: absolute;
 }
 
 .list-group-item
 {
-	margin: 20px;
+	margin-bottom: 20px !important;
+	width: 350px;
+	
 }
 
 
@@ -91,4 +104,9 @@ a
 .mapboxgl-popup-content {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
+}
+
+.distanceNumber
+{
+	color: #C25100 !important;
 }
