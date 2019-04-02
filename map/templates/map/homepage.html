@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <title></title>
      	<link rel="stylesheet" href="{% static 'css/map.css' %}">
-        <script src="{% static 'js/map.js' %}"></script>
+        <!-- <script src="{% static 'js/map.js' %}"></script> -->
         <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
 
@@ -24,11 +24,11 @@
     <div id="twoBoxes">
         <div class="d-inline-block col-6" id="leftBox">
             	{% include "map/displaymap.html" %}
-        
+
     	</div>
 	    <div class="d-inline-block col-6" id="rightBox">
 	        	{% include "map/carlist.html" %}
-	    
+
 	    </div>
     </div>
 
