@@ -1,0 +1,14 @@
+  "environments":{
+    "test":{
+      "env": {
+        "IS_HEROKU_TEST":"1"
+      },
+      "addons": [
+          "heroku-postgresql:hobby-dev"
+      ],
+      "scripts":{
+        "test-setup": "python app/manage.py collectstatic --noinput",
+        "test": "python app/manage.py test --keepdb"
+      }
+    }
+  },

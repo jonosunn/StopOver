@@ -78,19 +78,10 @@ DATABASES = {
         'HOST': 'ec2-54-221-243-211.compute-1.amazonaws.com',
         'PORT': '5432',
         'TEST': {
-            'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'd551580ks5f1e1',
-            'USER': 'sornyxxhqzklyh',
-            'PASSWORD': 'ba8784b5daf0495a80b69f785561eedb4c9a8b1f3c4f489ff76f7cbf03358310',
-            'HOST': 'ec2-184-72-238-22.compute-1.amazonaws.com',
-            'PORT': '5432',
         },
     }
 }
-
-# TEST_DATABASES = {
-#     'default': dj_database_url.config(env='postgres://sornyxxhqzklyh:ba8784b5daf0495a80b69f785561eedb4c9a8b1f3c4f489ff76f7cbf03358310@ec2-184-72-238-22.compute-1.amazonaws.com:5432/d551580ks5f1e1')
-# }
 
 # TEST_DATABASES = {
 #     'default': {
@@ -103,7 +94,7 @@ DATABASES = {
 #     }
 # }
 
-# TEST_RUNNER = 'map.test_suite_runner.HerokuTestSuiteRunner'
+TEST_RUNNER = 'map.test_suite_runner.HerokuDiscoverRunner'
 
 # Password validation
 
@@ -151,3 +142,5 @@ django_heroku.settings(locals())
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
 DATABASES['default'].update(db_from_env)
+DATABASES['default']['TEST'].update(db_from_env)
+
