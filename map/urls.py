@@ -3,6 +3,7 @@ from . import views
 from .views import HomePageView
 
 urlpatterns = [
-    path('/', HomePageView.as_view(), name='home'),
+    path('', HomePageView.as_view(), name='home'),
+    path('', views.HomePageView.home),
     # path('', views.get_mylocation),
 ]
