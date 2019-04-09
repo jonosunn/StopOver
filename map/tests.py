@@ -55,10 +55,6 @@ class HomePageTest(TestCase):
         self.assertEquals(expected_object_latitude, 145.0548504)
         self.assertTrue(expected_object_available, True)
 
-    def setUp(self):
-        Car.objects.create(brand='test_brand', transmission='automatic', number_plate='TEST01',
-            price=100, longitude=-37.6799703, latitude=145.0548504, available=True)
-
     # Test data types of car object
     def test_data_type(self):
         car = Car.objects.get(id=1)
