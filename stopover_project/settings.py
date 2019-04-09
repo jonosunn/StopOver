@@ -94,7 +94,7 @@ DATABASES = {
 #     }
 # }
 
-# TEST_RUNNER = 'map.test_suite_runner.HerokuDiscoverRunner'
+TEST_RUNNER = 'map.test_suite_runner.HerokuDiscoverRunner'
 
 # Password validation
 
