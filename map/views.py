@@ -2,14 +2,23 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from map.models import Car
 from django.views.generic import TemplateView
+from django.views.generic.list import ListView
 
 class HomePageView(TemplateView):
     template_name = 'map/homepage.html'
 
-    def get_content_data(self, *args, **kwargs):
-        context = super(HomePageView, self).get_content_data(*args, **kwargs)
-        context['cars'] = Car.objects.filter(available=True)
-        return context
+    # def get_content_data(self, *args, **kwargs):
+    #     context = super(HomePageView, self).get_content_data(*args, **kwargs)
+    #     context['cars'] = Car.objects.filter(available=True)
+    #     return context
+
+class CarListView(ListView):
+    template_name = 'map/carlist.html'
+    queryset = Car.objects.filter(available=True)
+    context_object_name = 'cars'
+
+    def get_queryset(self):
+        return Car.objects.filter(created_by=self.request.user)
 
     # def home(request):
     #     # Get all car objects from db
