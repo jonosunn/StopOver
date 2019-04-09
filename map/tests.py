@@ -37,7 +37,7 @@ class HomePageTest(TestCase):
         Car.objects.create(brand='test_brand', transmission='automatic', number_plate='TEST01',
             price=100, longitude=-37.6799703, latitude=145.0548504, available=True)
 
-    Test data types of car object
+    # Test data types of car object
     def test_data_type(self):
         car = Car.objects.get(id=1)
         self.assertIsInstance(car.brand, str)
