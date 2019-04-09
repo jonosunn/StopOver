@@ -5,14 +5,19 @@ from django.views.generic import TemplateView
 
 class HomePageView(TemplateView):
     template_name = 'map/homepage.html'
-    
-    def home(request):
-        # Get all car objects from db
-        cars = Car.objects.filter(available=True)
 
-        # Argument to contain list of our car model
-        args = {'cars': cars}
-        return render(request, self.template_name, args)
+    def get_content_data(self, *args, **kwargs):
+        context = super(HomePageView, self).get_content_data(*args, **kwargs)
+        context['cars'] = Car.objects.filter(available=True)
+        return context
+
+    # def home(request):
+    #     # Get all car objects from db
+    #     cars = Car.objects.filter(available=True)
+    #
+    #     # Argument to contain list of our car model
+    #     args = {'cars': cars}
+    #     return render(request, self.template_name, args)
 
 # def get_mylocation(request):
 #     if request.GET.get('find-me'):

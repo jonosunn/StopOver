@@ -4,6 +4,6 @@ from .views import HomePageView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
-    path('', views.HomePageView.home),
+    # path('', views.HomePageView.home),
     # path('', views.get_mylocation),
 ]
