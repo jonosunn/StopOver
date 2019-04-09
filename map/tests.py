@@ -1,10 +1,10 @@
-from django.test import TestCase, SimpleTestCase
+from django.test import TestCase
 from django.http import HttpRequest
 from django.urls import reverse
 
 from . import views
 
-class HomePageTest(SimpleTestCase):
+class HomePageTest(TestCase):
 
     def test_home_page_status_code(self):
         response = self.client.get('')
