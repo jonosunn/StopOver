@@ -1,3 +1,4 @@
+{
 "environments":{
   "test":{
     "env": {
@@ -11,4 +12,4 @@
       "test": "python app/manage.py test --keepdb"
     }
   }
-},
+}
