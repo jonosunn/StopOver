@@ -11,8 +11,9 @@ def home(request):
 		set_car = Car.objects.get(number_plate=car_number_plate) # Set Car
 		set_car.available = False # Change available to False
 		set_car.save()
-	# Argument to contain list of our car model
-	args = {'cars': cars }
+	else:
+		# Argument to contain list of our car model
+		args = {'cars': cars }
 	return render(request, 'map/homepage.html', args)
 
 def get_mylocation(request):
