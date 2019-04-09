@@ -18,4 +18,3 @@ class HomePageTest(SimpleTestCase):
         response = self.client.get('')
         self.assertNotContains(
             response, 'Hi there! I should not be on the page.')
-
