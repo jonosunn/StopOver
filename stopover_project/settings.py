@@ -143,9 +143,8 @@ import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
 DATABASES['default'].update(db_from_env)
 # DATABASES['default']['TEST'].update(db_from_env)
-
-# Use sqlite3 database when performing unit tests
-import sys
-if 'test' in sys.argv or 'test_coverage' in sys.argv:
-    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
-
+#
+# # Use sqlite3 database when performing unit tests
+# import sys
+# if 'test' in sys.argv or 'test_coverage' in sys.argv:
+#     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
