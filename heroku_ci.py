@@ -21,12 +21,12 @@ DATABASES = {
         'HOST': 'ec2-54-221-243-211.compute-1.amazonaws.com',
         'PORT': '5432',
         'TEST': {
-            # 'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'd551580ks5f1e1',
-            # 'USER': 'sornyxxhqzklyh',
-            # 'PASSWORD': 'ba8784b5daf0495a80b69f785561eedb4c9a8b1f3c4f489ff76f7cbf03358310',
-            # 'HOST': 'ec2-184-72-238-22.compute-1.amazonaws.com',
-            # 'PORT': '5432',
+            'USER': 'sornyxxhqzklyh',
+            'PASSWORD': 'ba8784b5daf0495a80b69f785561eedb4c9a8b1f3c4f489ff76f7cbf03358310',
+            'HOST': 'ec2-184-72-238-22.compute-1.amazonaws.com',
+            'PORT': '5432',
         },
     }
 } # note this uses django-environ
