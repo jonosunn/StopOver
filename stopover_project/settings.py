@@ -88,18 +88,7 @@ DATABASES = {
     }
 }
 
-# TEST_DATABASES = {
-#     'default': {
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'd551580ks5f1e1',
-        # 'USER': 'sornyxxhqzklyh',
-        # 'PASSWORD': 'ba8784b5daf0495a80b69f785561eedb4c9a8b1f3c4f489ff76f7cbf03358310',
-        # 'HOST': 'ec2-184-72-238-22.compute-1.amazonaws.com',
-        # 'PORT': '5432'
-#     }
-# }
-
-TEST_RUNNER = 'map.test_suite_runner.HerokuDiscoverRunner'
+TEST_RUNNER = 'map.discover_runner.HerokuDiscoverRunner'
 
 # Password validation
 
@@ -153,4 +142,3 @@ DATABASES['default'].update(db_from_env)
 # import sys
 # if 'test' in sys.argv or 'test_coverage' in sys.argv:
 #     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
-#     del DATABASES['default']['OPTIONS']['sslmode']

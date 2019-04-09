@@ -4,4 +4,3 @@ gunicorn
 django
 django-heroku
 dj-database-url
-django-environ
