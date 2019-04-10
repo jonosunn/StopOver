@@ -10,15 +10,23 @@ class HomePageView(TemplateView):
 	template_name = 'map/homepage.html'
 
 	def get_context_data(self, *args, **kwargs):
+		print("get_context_data")
 		context = super(HomePageView, self).get_context_data(*args, **kwargs)
 		context['cars'] = Car.objects.filter(available=True)
 		return context
 
+	def form_e(self, request):
+		print("Called")
+		form = CarForm()
+		return render(request, self.template_name, {'form':form})
+
 	def car_post(self, request):
+		print("CALLED")
 		if request.method == "POST":
 			print("POST")
-
-		return render(request, self.template_name, args)
+		else:
+			print("GET method works")
+		return render(request, self.template_name)
 
 
 	# def car_detail_view(request, id):
