@@ -4,5 +4,4 @@ from .views import HomePageView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
-    # path('confirmation/<int:id>', views.car_detail_view, name='confirmation'),
 ]

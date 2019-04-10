@@ -14,16 +14,11 @@ const latCookie = getSpecificCookie('latitude', true) ;
           <p class="mb-1">{{ car.transmission }}</p>
             <p><small class="distanceNumber"></small><small> km from you</small></p>
     </div>
-    <form method="get">
-      {% csrf_token %}
-      {{ form.number_plate.as_hidden }}
-      <input type="submit" value="Book">
-    </form>
-    <!-- <form method="get">
-      {% csrf_token %}
+
+    <form method="GET">
       <input type="hidden" name="number_plate" value="{{ car.number_plate }}">
       <input type="submit" value="Book">
-    </form> -->
+    </form>
   </a>
 
  <script type="text/javascript">
