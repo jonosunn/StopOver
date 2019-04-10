@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Our Car Model
 class Car(models.Model):
@@ -9,3 +10,6 @@ class Car(models.Model):
 	longitude = models.FloatField()
 	latitude = models.FloatField()
 	available = models.BooleanField(default=True)
+
+	def get_absolute_url(self):
+		return f"/confirmation/{self.number_plate}"
