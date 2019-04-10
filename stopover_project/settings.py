@@ -44,7 +44,7 @@ ROOT_URLCONF = 'stopover_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/map')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,9 +76,19 @@ DATABASES = {
         'USER': 'blwdfizxidfgsr',
         'PASSWORD': 'fca09f51620fcdcf1a74fd8e7e32f6cac1de9c495c705505451c669be7b5e46c',
         'HOST': 'ec2-54-221-243-211.compute-1.amazonaws.com',
-        'PORT': '5432'
+        'PORT': '5432',
+        'TEST': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'd551580ks5f1e1',
+            'USER': 'sornyxxhqzklyh',
+            'PASSWORD': 'ba8784b5daf0495a80b69f785561eedb4c9a8b1f3c4f489ff76f7cbf03358310',
+            'HOST': 'ec2-184-72-238-22.compute-1.amazonaws.com',
+            'PORT': '5432',
+        },
     }
 }
+
+TEST_RUNNER = 'map.discover_runner.HerokuDiscoverRunner'
 
 # Password validation
 
@@ -126,3 +136,9 @@ django_heroku.settings(locals())
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
 DATABASES['default'].update(db_from_env)
+# DATABASES['default']['TEST'].update(db_from_env)
+
+# Use sqlite3 database when performing unit tests
+# import sys
+# if 'test' in sys.argv or 'test_coverage' in sys.argv:
+#     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
