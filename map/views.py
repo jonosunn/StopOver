@@ -26,20 +26,27 @@ def get_mylocation(request):
                 {'longitude' :longitude,
                  'latitude' :latitude})
 
-
 def car_detail_view(request, id):
 	if request.method == "POST":
 		form = CarForm(request.POST)
+		print(form.is_valid())
 		if form.is_valid():
-			print("POST")
 			car_save = form.instance
-			car_save.available = false
-			car_save.save()
+			get_car = Car.objects.get(number_plate=car_save.number_plate)
+			get_car.available = False
+			get_car.save()
+			return redirect('/')
+		else:
+			print(form.errors)
 	else:
 		car = Car.objects.get(id=id)
-		form = CarForm(initial={'brand':car.brand, 'number_plate':car.number_plate, 'transmission':car.transmission,
-									'price':car.price, 'available':car.available})
+		form = CarForm()
+		form.fields['brand'].initial = car.brand
+		form.fields['number_plate'].initial = car.number_plate
+		form.fields['price'].initial = car.price
+		form.fields['available'].initial = car.available
 		args = {
-			'car':car
+			'car':car,
+			'form':form
 		}
-		return render(request, 'map/confirmation.html', args)
+	return render(request, 'map/confirmation.html', args)
