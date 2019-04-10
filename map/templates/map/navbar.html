@@ -1,0 +1,36 @@
+<script>
+$(document).ready(function () {
+    $('ul.nav > li').click(function (e) {
+        e.preventDefault();
+        $('ul.nav > li').removeClass('active');
+        $(this).addClass('active');                
+    });            
+});
+</script>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+  <a class="navbar-brand col-8" href="#" id='mainLogo'>STOPOVER</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+   <div class="collapse navbar-collapse col-4" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">BOOK A CAR</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">HELP</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">AB0UT</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="#">LOG-IN</a>
+      </li>
+    </ul>
+  </div>
+  </div>
+</nav>
+
