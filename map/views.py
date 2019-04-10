@@ -23,7 +23,6 @@ def get_mylocation(request):
 def car_detail_view(request, id):
 	if request.method == "POST":
 		form = CarForm(request.POST)
-		print(form.is_valid())
 		if form.is_valid():
 			car_save = form.instance
 			get_car = Car.objects.get(number_plate=car_save.number_plate)
