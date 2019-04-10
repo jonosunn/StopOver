@@ -6,7 +6,10 @@
 <p> Are you sure you want to book? <p>
 <form class="" method="post">
   {% csrf_token %}
-  {{ form.as_p }}
+  {{ form.brand.as_hidden }}
+  {{ form.number_plate.as_hidden }}
+  {{ form.price.as_hidden }}
+  {{ form.available.as_hidden }}
   <input type="submit" value="Book {{ car.brand }}">
 </form>
 {% endblock %}
