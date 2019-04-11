@@ -19,3 +19,6 @@ class HomePageView(TemplateView):
 		context = super(HomePageView, self).get_context_data(*args, **kwargs)
 		context['cars'] = Car.objects.filter(available=True)
 		return context
+
+class ConfirmationPage(TemplateView):
+	template_name = 'confirmation/confirmation.html'
