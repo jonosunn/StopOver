@@ -110,7 +110,7 @@ vertical-align: top;
 	color: #C25100 !important;
 }
 
-/* Cofnirmation Page  */
+/* Cofnirmation Page  form layout*/
 .main-block {
   border-style: solid;
   border-width: 2px;
@@ -121,34 +121,22 @@ vertical-align: top;
   border-width: 2px;
 }
 
-.left-block {
-  border-style: solid;
-  border-width: 2px;
-  float: left;
-  width: 50%;
-  height: 100%;
+.row {
+  display: flex;
 }
-
-.right-block {
-  border-style: solid;
-  border-width: 2px;
-  float: right;
-  width: 50%;
-  height: 100%;
+div {
+  border: 1px solid #73AD21;
 }
-
-.top-block {
-  border-style: solid;
-  border-width: 2px;
-  float: left;
-  width: 50%;
-  height: 100%;
+.block {
+  height: 200px;
 }
-
-.bottom-block {
-  border-style: solid;
-  border-width: 2px;
-  float: left;
-  width: 50%;
-  height: 100%;
+.row > div {
+  flex: 1;
+}
+.col-wrap {
+  display: flex;
+  flex-direction: column;
+}
+.col-wrap > div {
+  flex: 1;
 }
