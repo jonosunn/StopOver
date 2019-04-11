@@ -132,6 +132,7 @@ vertical-align: top;
   margin: 0 !important;
   padding: 0 !important;
   height: 450px !important;
+  max-height: 100%;
 }
 
 .row {
