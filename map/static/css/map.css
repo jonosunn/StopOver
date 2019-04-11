@@ -44,7 +44,7 @@ a
 .d-inline-block
 {
 	margin: 20px;
-	
+
 
 }
 
@@ -60,7 +60,7 @@ vertical-align: top;
 #leftBox
 {
 		width: 700px;
-	
+
 }
 
 #twoBoxes
@@ -73,7 +73,7 @@ vertical-align: top;
 {
 	margin-bottom: 20px !important;
 	width: 350px;
-	
+
 }
 
 
@@ -106,7 +106,31 @@ vertical-align: top;
   font-family: 'Open Sans', sans-serif;
 }
 
-.distanceNumber
-{
+.distanceNumber {
 	color: #C25100 !important;
+}
+
+/* Cofnirmation Page  */
+.main-block {
+  border: black;
+}
+
+.session-block {
+  border: black;
+}
+
+.left-block {
+  border: black;
+}
+
+.right-block {
+  border: black;
+}
+
+.top-block {
+  border: black;
+}
+
+.bottom-block {
+  border: black;
 }
