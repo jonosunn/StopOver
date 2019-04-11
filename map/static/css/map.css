@@ -129,18 +129,21 @@ vertical-align: top;
 
 #car-map {
   width: 100% !important;
-  margin: 0;
-  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 450px !important;
 }
 
 .row {
   display: flex;
 }
-div {
-  /* border: 1px solid #73AD21; */
-}
+/* div {
+   border: 1px solid #73AD21;
+} */
 .block {
-  height: 50$;
+  height: 50%;
+  padding: 2%;
+
 }
 .row > div {
   flex: 1;
@@ -151,4 +154,8 @@ div {
 }
 .col-wrap > div {
   flex: 1;
+}
+
+.confirmation-button {
+
 }
