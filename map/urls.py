@@ -4,4 +4,6 @@ from .views import HomePageView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
+    path('confirmation/', ConfirmationPage.as_view()),
+]
 ]
