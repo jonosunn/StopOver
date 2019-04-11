@@ -131,7 +131,7 @@ vertical-align: top;
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
-  height: 500px !important;
+  height: 650px !important;
 }
 
 .row {
@@ -142,7 +142,7 @@ vertical-align: top;
 } */
 .block {
   height: 50%;
-  padding: 2%;
+  padding: 1%;
 
 }
 .row > div {
@@ -157,5 +157,5 @@ vertical-align: top;
 }
 
 .confirmation-button {
-
+  float:left;
 }
