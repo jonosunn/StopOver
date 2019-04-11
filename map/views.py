@@ -15,7 +15,6 @@ class HomePageView(TemplateView):
 		if numberplate != None:
 			set_car = Car.objects.get(number_plate=numberplate)
 			print(set_car.brand)
-
 		context = super(HomePageView, self).get_context_data(*args, **kwargs)
 		context['cars'] = Car.objects.filter(available=True)
 		return context

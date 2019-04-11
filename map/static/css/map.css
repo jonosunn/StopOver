@@ -112,25 +112,43 @@ vertical-align: top;
 
 /* Cofnirmation Page  */
 .main-block {
-  border: black;
+  border-style: solid;
+  border-width: 2px;
 }
 
 .session-block {
-  border: black;
+  border-style: solid;
+  border-width: 2px;
 }
 
 .left-block {
-  border: black;
+  border-style: solid;
+  border-width: 2px;
+  float: left;
+  width: 50%;
+  height: 100%;
 }
 
 .right-block {
-  border: black;
+  border-style: solid;
+  border-width: 2px;
+  float: right;
+  width: 50%;
+  height: 100%;
 }
 
 .top-block {
-  border: black;
+  border-style: solid;
+  border-width: 2px;
+  float: left;
+  width: 50%;
+  height: 100%;
 }
 
 .bottom-block {
-  border: black;
+  border-style: solid;
+  border-width: 2px;
+  float: left;
+  width: 50%;
+  height: 100%;
 }
