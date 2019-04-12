@@ -115,9 +115,11 @@ vertical-align: top;
   -moz-box-shadow:    3px 3px 45px 6px #ccc;
   -webkit-box-shadow: 3px 3px 45px 6px #ccc;
   box-shadow:         3px 3px 45px 6px #ccc;
+  background-color: white;
   /* border-style: solid;
   border-width: 2px; */
   margin: 2%;
+  margin-top: 100px;
   padding: 2%;
   height:: 100%
 }
@@ -158,4 +160,12 @@ vertical-align: top;
 
 .confirmation-button {
   float:left;
+}
+
+.steps-block {
+  border-style: solid;
+  border-color: #C25100;
+  /* border-width: 2px; */
+  background-color: #C25100;
+  height: 200px;
 }
