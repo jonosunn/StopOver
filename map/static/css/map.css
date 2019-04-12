@@ -110,20 +110,7 @@ vertical-align: top;
 	color: #C25100 !important;
 }
 
-/* Cofnirmation Page  form layout*/
-.main-block {
-  -moz-box-shadow:    3px 3px 45px 6px #ccc;
-  -webkit-box-shadow: 3px 3px 45px 6px #ccc;
-  box-shadow:         3px 3px 45px 6px #ccc;
-  background-color: white;
-  /* border-style: solid;
-  border-width: 2px; */
-  margin: 2%;
-  margin-top: 0px;
-  padding: 2%;
-  height:: 100%
-}
-
+/* Cofnirmation Page form layout*/
 .session-block {
   /* border-style: solid;
   border-width: 2px; */
@@ -174,22 +161,21 @@ vertical-align: top;
 /*form styles*/
 #msform {
 	width: 100%;
-	margin-top: 20px;
 	text-align: center;
+  font-family: 'Roboto Mono', monospace;
 	/* position: relative; */
 }
 #msform fieldset {
-	background: white;
-	border: 0 none;
-	border-radius: 3px;
-	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-	padding: 20px 30px;
-	box-sizing: border-box;
-	width: 100%;
-  margin-right: 2%;
-  margin-left: 2%;
-	/*stacking fieldsets above each other*/
-	position: relative;
+  -moz-box-shadow:    3px 3px 45px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 45px 6px #ccc;
+  box-shadow:         3px 3px 45px 6px #ccc;
+  background-color: white;
+  /* border-style: solid;
+  border-width: 2px; */
+  margin: 2%;
+  margin-top: 0px;
+  padding: 2%;
+  height:: 100%
 }
 /*Hide all except first fieldset*/
 #msform fieldset:not(:first-of-type) {
@@ -247,7 +233,7 @@ vertical-align: top;
 	color: white;
 	text-transform: uppercase;
 	font-size: 9px;
-	width: 33.33%;
+	width: 25%;
 	float: left;
 	position: relative;
 }
