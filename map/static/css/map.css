@@ -242,8 +242,8 @@ vertical-align: top;
 #progressbar li:before {
 	content: counter(step);
 	counter-increment: step;
-	width: 20px;
-	line-height: 20px;
+	width: 40px;
+	line-height: 40px;
 	display: block;
 	font-size: 10px;
 	color: #333;
