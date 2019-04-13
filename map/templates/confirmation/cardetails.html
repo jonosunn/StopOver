@@ -37,3 +37,20 @@
       </div>
     </div>
 </div>
+<script>
+    function carLocation() {
+      mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
+      var bounds = [
+         [144.70345,-37.91802],
+         [145.22873,-37.64668]
+      ];
+        var map = new mapboxgl.Map({
+          container: 'car-map',
+          style: 'mapbox://styles/mapbox/streets-v11',
+          center: [145.22873, -37.64668],
+          zoom: 12,
+          bearing: 0,
+          maxBounds: bounds
+      });
+    }
+</script>

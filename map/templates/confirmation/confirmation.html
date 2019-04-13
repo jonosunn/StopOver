@@ -4,23 +4,6 @@
     <head>
         <meta charset="utf-8">
         <title>Homepage</title>
-        <script>
-            function carLocation() {
-              mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
-              var bounds = [
-                 [144.70345,-37.91802],
-                 [145.22873,-37.64668]
-              ];
-                var map = new mapboxgl.Map({
-                  container: 'car-map',
-                  style: 'mapbox://styles/mapbox/streets-v11',
-                  center: [145.22873, -37.64668],
-                  zoom: 12,
-                  bearing: 0,
-                  maxBounds: bounds
-              });
-            }
-        </script>
      	  <link rel="stylesheet" href="{% static 'css/map.css' %}">
         <!-- <script src="{% static 'js/map.js' %}"></script> -->
         <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
