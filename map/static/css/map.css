@@ -227,6 +227,8 @@ vertical-align: top;
 	overflow: hidden;
 	/*CSS counters to number the steps*/
 	counter-reset: step;
+  margin-top: 25px;
+  text-align: center;
 }
 #progressbar li {
 	list-style-type: none;
@@ -269,9 +271,4 @@ vertical-align: top;
 #progressbar li.active:before,  #progressbar li.active:after{
 	background: #27AE60;
 	color: white;
-}
-
-.bar-block {
-  margin-top: 25px;
-  text-align: center;
 }
