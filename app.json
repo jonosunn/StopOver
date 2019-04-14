@@ -1,0 +1,15 @@
+{
+"environments":{
+  "test":{
+    "env": {
+      "IS_HEROKU_TEST":"1"
+    },
+    "addons": [
+        "heroku-postgresql:hobby-dev"
+    ],
+    "scripts":{
+      "test": "python manage.py test map"
+    }
+  }
+}
+}
