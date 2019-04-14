@@ -48,7 +48,6 @@ class AuthUser(models.Model):
     is_staff = models.BooleanField()
     is_active = models.BooleanField()
     date_joined = models.DateTimeField()
-    book_status = models.BooleanField(default=False)
 
     class Meta:
         managed = False
