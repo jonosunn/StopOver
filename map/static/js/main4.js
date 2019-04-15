@@ -72,7 +72,26 @@
 		}
 		isOpen = !isOpen;
 	}
+	
+	$("#open-button").click(function(){
+		  var dest = parseInt($("#image-menu").css("margin-left").replace("px", "")) + 275;
+		  var back = parseInt($("#image-menu").css("margin-left").replace("px", "")) - 275;
+		  if(!isOpen){
+		      $("#image-menu").animate({
+			        marginLeft: dest + "px"
+			      }, 500 );
+		  }
+		  else
+		  {
+			  $("#image-menu").animate({
+			        marginLeft: back + "px"
+			      }, 500 );
+		  }
+		
+		    
+		});
 
 	init();
 
 })();
+
