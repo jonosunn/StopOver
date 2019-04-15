@@ -25,10 +25,10 @@ class HomePageTest(TestCase):
     #     response = self.client.get('')
     #     self.assertContains(response, '<title>Homepage</title>')
 
-    def test_home_page_does_not_contain_incorrect_html(self):
-        response = self.client.get('')
-        self.assertNotContains(
-            response, 'Hi there! I should not be on the page.')
+    # def test_home_page_does_not_contain_incorrect_html(self):
+    #     response = self.client.get('')
+    #     self.assertNotContains(
+    #         response, 'Hi there! I should not be on the page.')
 
     # Test for database models
 
