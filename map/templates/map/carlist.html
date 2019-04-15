@@ -11,21 +11,24 @@ const latCookie = getSpecificCookie('latitude', true) ;
       <small class="list-font">{{ car.number_plate}}</small>
     </div>
       <div class="d-flex w-100 justify-content-between">
-          <p class="mb-1 list-font" id="car-price">${{ car.price }} per/hour</p>
-            <p><small class="distanceNumber list-font"></small></p>
-      </div>
-      <div class="d-flex w-100 justify-content-between">
-      <small id="km-distance">- km from you</small>
-      </div>
+
+          <p class="mb-1">{{ car.transmission }}</p>
+            <p><small class="distanceNumber"></small><small> km from you</small></p>
+    </div>
+
+    <form method="GET">
+      <input type="hidden" name="number_plate" value="{{ car.number_plate }}">
+      <input type="submit" value="Book">
+    </form>
   </a>
 
  <script type="text/javascript">
 
- 	document.getElementsByClassName('distanceNumber')[i].innerHTML = getDistanceFromLatLonInKm({{car.longitude}}, {{car.latitude}}, longCookie, latCookie);		
+ 	document.getElementsByClassName('distanceNumber')[i].innerHTML = getDistanceFromLatLonInKm({{car.longitude}}, {{car.latitude}}, longCookie, latCookie);
 	i++;
-	
+
 </script>
 
  {% endfor %}
- 
+
 </div>
