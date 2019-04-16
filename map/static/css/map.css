@@ -144,18 +144,18 @@ vertical-align: top;
 }
 .map-block {
   padding: 1%;
-  border-style: solid;
-  border-width: 2px;
+  /* border-style: solid;
+  border-width: 2px; */
 }
 .image-block {
   padding: 1%;
-  border-style: solid;
-  border-width: 2px;
+  /* border-style: solid;
+  border-width: 2px; */
 }
 .details-block {
   padding: 1%;
-  border-style: solid;
-  border-width: 2px;
+  /* border-style: solid;
+  border-width: 2px; */
 }
 .row > div {
   flex: 1;
@@ -190,18 +190,24 @@ vertical-align: top;
 }
 
 #stepper .fieldset {
-  -moz-box-shadow:    3px 3px 45px 6px #ccc;
+  /* -moz-box-shadow:    3px 3px 45px 6px #ccc;
   -webkit-box-shadow: 3px 3px 45px 6px #ccc;
   box-shadow:         3px 3px 45px 6px #ccc;
   background-color: white;
-  border-style: solid;
-  border-width: 2px;
   margin: 2%;
   margin-left: 4%;
   margin-right: 4%;
   padding-left: 2%;
   padding-right: 2%;
-  padding-top: 1%;
+  padding-top: 1%; */
+  background: white;
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 80%;
+  margin: 0 10%;
 }
 /*Hide all except first fieldset*/
 #stepper .fieldset:not(:first-of-type) {
