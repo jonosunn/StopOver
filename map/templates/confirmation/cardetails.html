@@ -7,21 +7,22 @@
   <tr>
     <td class ="map-block"><img src="../static/images/car-image1.png" width=50% height=75%></td>
     <td class ="details-block text-left">
-      <p> Number Plate:
+      <p> Number Plate: {{ car.number_plate }}
       <br>
-      Brand:
+      Brand: {{ car.brand }}
       <br>
       Type:
       <br>
-      Transmission:
+      Transmission: {{ car.transmission }}
       <br>
-      Year:
+      Year: Don't have yet
       <br>
       <br>
       Booking Date:
       <br>
       Booking Time: </p>
-      <p> Price: </p>
+      <br>
+      <p> Price: ${{ car.price }}p/h</p>
       <br></td>
   </tr>
 </table>
