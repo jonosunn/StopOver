@@ -1,3 +1,22 @@
+<form id="stepper">
+  <ul id="progressbar">
+    <li class="active">Car Details</li>
+    <li>Payment</li>
+    <li>Sucess</li>
+  </ul>
+
+  <fieldset>
+    {% include "confirmation/cardetails.html" %}
+  </fieldset>
+  <fieldset>
+
+
+  </fieldset>
+  <fieldset>
+
+
+  </fieldset>
+</form>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js">
   //jQuery time
   var current_fs, next_fs, previous_fs; //fieldsets
@@ -99,22 +118,3 @@
   });
 
 </script>
-<form id="stepper">
-    <ul id="progressbar">
-      <li class="active">Car Details</li>
-      <li>Payment</li>
-      <li>Sucess</li>
-    </ul>
-
-    <fieldset>
-      {% include "confirmation/cardetails.html" %}
-    </fieldset>
-    <fieldset>
-
-
-    </fieldset>
-    <fieldset>
-
-
-    </fieldset>
-  </form>
