@@ -133,9 +133,25 @@ vertical-align: top;
   margin-bottom: 1%;
 }
 
+.details-block  {
+  width: 50%;
+}
+
 #car-map {
-  width: 100% !important;
-  height: 550px !important;
+  width: 90% !important;
+  height: 200px !important;
+  margin: 5%;
+  margin-bottom: 1%;
+  margin-top: 0;
+}
+
+tr {
+  border-style: solid;
+  border-width: 2px;
+}
+td {
+  border-style: solid;
+  border-width: 2px;
 }
 
 .row {
