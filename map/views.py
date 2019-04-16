@@ -14,13 +14,11 @@ from map.forms import CarForm
 class HomePageView(TemplateView):
 	template_name = 'map/homepage.html'
 
-	def get_context_data(self, *args, **kwargs):
+	def get_context_data(self, request):
 		print("get_context_data")
 		numberplate = self.request.GET.get("number_plate")
 		if numberplate != None:
 			set_car = Car.objects.get(number_plate=numberplate)
-			print(set_car.brand)
-
 		context = super(HomePageView, self).get_context_data(*args, **kwargs)
 		context['cars'] = Car.objects.filter(available=True)
 		return context
@@ -72,3 +70,15 @@ class HomePageView(TemplateView):
 	@csrf_exempt
 	def payment_canceled(request):
 	    return render(request, '')
+	    return render(request, '')
+
+class ConfirmationPage(TemplateView):
+	template_name = 'confirmation/confirmation.html'
+
+	def get(self, request, number_plate):
+		print("GET METHOD")
+		set_car = Car.objects.get(number_plate=number_plate)
+		args = {
+        	"car": set_car
+    	}
+		return render(request, self.template_name, args)
