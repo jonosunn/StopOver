@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ecommerce_app',
     'paypal.standard.ipn', 
+    'jquery',
 ]
 
 MIDDLEWARE = [

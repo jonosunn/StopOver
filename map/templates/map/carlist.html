@@ -16,8 +16,8 @@ const latCookie = getSpecificCookie('latitude', true) ;
             <p><small class="distanceNumber"></small><small> km from you</small></p>
     </div>
 
-    <form method="GET">
-      <input type="hidden" name="number_plate" value="{{ car.number_plate }}">
+    <form method="GET" action="{{ car.get_absolute_url }}">
+      <!-- <input type="hidden" name="number_plate" > -->
       <input type="submit" value="Book">
     </form>
   </a>
