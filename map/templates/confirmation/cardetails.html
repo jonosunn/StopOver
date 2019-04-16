@@ -1,0 +1,54 @@
+<script>
+    function carLocation() {
+      mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
+      var bounds = [
+         [144.70345,-37.91802],
+         [145.22873,-37.64668]
+      ];
+        var map = new mapboxgl.Map({
+          container: 'car-map',
+          style: 'mapbox://styles/mapbox/streets-v11',
+          center: [145.22873, -37.64668],
+          zoom: 12,
+          bearing: 0,
+          maxBounds: bounds
+      });
+    }
+</script>
+
+  <div class='session-block text-center'>
+    Insert Session Timer Here
+  </div>
+  <div class="row">
+    <div class="col-4-md block">
+      <div id='car-map'></div>
+    </div>
+    <div class="col-wrap">
+      <div class="col-4-md text-center block2">
+        <img src="../static/images/car-image1.png" width=100% height=100%>
+      </div>
+      <div class="block3">
+        <p> Number Plate: {{ car.number_plate }}
+        <br>
+        Brand: {{ car.brand }}
+        <br>
+        Type:
+        <br>
+        Transmission: {{ car.transmission }}
+        <br>
+        Year: Don't have yet
+        <br>
+        <br>
+        Booking Date:
+        <br>
+        Booking Time: </p>
+        <br>
+        <p> Price: ${{ car.price }}p/h</p>
+        <br>
+        <div class="confirmation-button">
+        <input type="hidden" name="number_plate" value="TEST">
+        <input type="button" name="next" class="next action-button" value="Next" />
+        </div
+      </div>
+    </div>
+</div>
