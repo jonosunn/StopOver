@@ -112,27 +112,41 @@ vertical-align: top;
 
 /* Cofnirmation Page form layout*/
 .session-block {
-  /* border-style: solid;
-  border-width: 2px; */
+  border-style: solid;
+  border-width: 2px;
+  padding-bottom: 0.5%;
 }
 
 #car-map {
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
-  height: 650px !important;
+  height: 100% !important;
 }
 
 .row {
   display: flex;
 }
-/* div {
-   border: 1px solid #73AD21;
-} */
-.block {
-  height: 50%;
+.map-block {
+  height: 100vh;
   padding: 1%;
-
+  margin: 1%;
+  border-style: solid;
+  border-width: 2px;
+}
+.image-block {
+  height: 200px;
+  padding: 1%;
+  margin: 1%;
+  border-style: solid;
+  border-width: 2px;
+}
+.details-block {
+  height: 200px;
+  padding: 1%;
+  margin: 1%;
+  border-style: solid;
+  border-width: 2px;
 }
 .row > div {
   flex: 1;
@@ -146,7 +160,7 @@ vertical-align: top;
 }
 
 .confirmation-button {
-  float:left;
+  float:right;
 }
 
 /* progress bar Stepper */
