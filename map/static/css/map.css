@@ -143,25 +143,19 @@ vertical-align: top;
   display: flex;
 }
 .map-block {
-  height: 100vh;
   padding: 1%;
-  margin: 1%;
-  border-style: solid;
-  border-width: 2px;
+  /* border-style: solid;
+  border-width: 2px; */
 }
 .image-block {
-  height: 200px;
   padding: 1%;
-  margin: 1%;
-  border-style: solid;
-  border-width: 2px;
+  /* border-style: solid;
+  border-width: 2px; */
 }
 .details-block {
-  height: 200px;
   padding: 1%;
-  margin: 1%;
-  border-style: solid;
-  border-width: 2px;
+  /* border-style: solid;
+  border-width: 2px; */
 }
 .row > div {
   flex: 1;
@@ -202,9 +196,7 @@ vertical-align: top;
   /* border-style: solid;
   border-width: 2px; */
   margin: 2%;
-  margin-top: 0px;
   padding: 2%;
-  height:: 100%
 }
 /*Hide all except first fieldset*/
 #stepper fieldset:not(:first-of-type) {
@@ -237,20 +229,8 @@ vertical-align: top;
 #stepper .action-button:hover, #stepper .action-button:focus {
 	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
-/*headings*/
-.fs-title {
-	font-size: 15px;
-	text-transform: uppercase;
-	color: #2C3E50;
-	margin-bottom: 10px;
-}
-.fs-subtitle {
-	font-weight: normal;
-	font-size: 13px;
-	color: #666;
-	margin-bottom: 20px;
-}
-/*progressbar*/
+
+/* progressbar */
 #progressbar {
 	margin-bottom: 30px;
 	overflow: hidden;
