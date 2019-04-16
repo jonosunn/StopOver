@@ -7,16 +7,17 @@ const latCookie = getSpecificCookie('latitude', true) ;
   {% for car in cars %}
   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{ car.brand }} ${{ car.price }} per/hour</h5>
-      <small>{{ car.number_plate}}</small>
+      <h5 class="mb-1 list-font">{{ car.brand }}<small id="car-trans"> ({{ car.transmission }})</small></h5>
+      <small class="list-font">{{ car.number_plate}}</small>
     </div>
       <div class="d-flex w-100 justify-content-between">
+
           <p class="mb-1">{{ car.transmission }}</p>
             <p><small class="distanceNumber"></small><small> km from you</small></p>
     </div>
 
-    <form method="GET">
-      <input type="hidden" name="number_plate" value="{{ car.number_plate }}">
+    <form method="GET" action="{{ car.get_absolute_url }}">
+      <!-- <input type="hidden" name="number_plate" > -->
       <input type="submit" value="Book">
     </form>
   </a>
