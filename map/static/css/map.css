@@ -8,15 +8,30 @@ h1
 
 #map
 {
-	width: 650px !important;
-	height: 450px !important;
+	width:1500px;
+	max-width:100%;
+	height: 500px;
 
 }
 
+.list-font{
+	font-size: 15px;
+}
+
+#car-trans{
+	font-size: 10px;
+}
+#km-distance{
+	font-size: 10px;
+	padding-top: 5px;
+}
+
+#car-price{
+	padding-top: 5px;
+}
 a
 {
     font-family: 'Roboto Mono', monospace;
-
 }
 
 #mainLogo
@@ -71,7 +86,7 @@ vertical-align: top;
 
 .list-group-item
 {
-	margin-bottom: 20px !important;
+	-bottom: 20px !important;
 	width: 350px;
 
 }
