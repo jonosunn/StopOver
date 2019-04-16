@@ -38,7 +38,7 @@ class HomePageView(TemplateView):
 		        return redirect('process_payment')
 		else:
 			form = CheckoutForm()
-	    	return (render(request, 'ecommerce_app/checkout.html', locals()))
+	    	return (render(request, '', locals()))
         
 	#TODO: SET CORRECT URLS
 	def process_payment(self):
@@ -66,9 +66,9 @@ class HomePageView(TemplateView):
 	#TODO: SET CORRECT URLS
 	@csrf_exempt
 	def payment_done(request):
-	    return render(request, 'ecommerce_app/payment_done.html')
+	    return render(request, '')
 	 
 	#TODO: SET CORRECT URLS
 	@csrf_exempt
 	def payment_canceled(request):
-	    return render(request, 'ecommerce_app/payment_cancelled.html')
+	    return render(request, '')
