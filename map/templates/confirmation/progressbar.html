@@ -6,12 +6,13 @@
   </ul>
 
   <div class="fieldset">
-    <h2 class="fs-title">Car Details</h2>
-    <!-- {% include "confirmation/cardetails.html" %} -->
-    <input type="hidden" name="number_plate" value="TEST">
-    <input type="button" name="next" class="next action-button" value="Next" />
+    {% include "confirmation/cardetails.html" %}
+
   </div>
   <div class="fieldset">
+    <div class='session-block text-center'>
+      Insert Session Timer Here
+    </div>
     <h2 class="fs-title">Payment Info</h2>
     <h3 class="fs-subtitle">Please select your payment</h3>
 
@@ -19,6 +20,9 @@
     <input type="button" name="next" class="next action-button" value="Next" />
   </div>
   <div class="fieldset">
+    <div class='session-block text-center'>
+      Insert Session Timer Here
+    </div>
     <h2 class="fs-title">Sucess!</h2>
     <h3 class="fs-subtitle">Please select submit to confirm purchases</h3>
 
@@ -26,3 +30,22 @@
     <input type="submit" name="submit" class="submit action-button" value="Submit" />
   </div>
 </form>
+
+<script>
+  // This gets the location of the car that has been selected
+    function carLocation() {
+      mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
+      var bounds = [
+         [144.70345,-37.91802],
+         [145.22873,-37.64668]
+      ];
+        var map = new mapboxgl.Map({
+          container: 'car-map',
+          style: 'mapbox://styles/mapbox/streets-v11',
+          center: [145.22873, -37.64668],
+          zoom: 12,
+          bearing: 0,
+          maxBounds: bounds
+      });
+    }
+</script>
