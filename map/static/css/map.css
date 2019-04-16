@@ -145,48 +145,14 @@ vertical-align: top;
   margin-top: 0;
 }
 
-tr {
+/* tr {
   border-style: solid;
   border-width: 2px;
 }
 td {
   border-style: solid;
   border-width: 2px;
-}
-
-.row {
-  display: flex;
-}
-.map-block {
-  padding: 1%;
-  /* border-style: solid;
-  border-width: 2px; */
-}
-.image-block {
-  padding: 1%;
-  /* border-style: solid;
-  border-width: 2px; */
-}
-.details-block {
-  padding: 1%;
-  /* border-style: solid;
-  border-width: 2px; */
-}
-.row > div {
-  flex: 1;
-}
-.col-wrap {
-  display: flex;
-  flex-direction: column;
-}
-.col-wrap > div {
-  flex: 1;
-}
-
-.confirmation-button {
-  width: 100%;
-  margin: 2%;
-}
+} */
 
 /* progress bar Stepper */
 .steps-block {
