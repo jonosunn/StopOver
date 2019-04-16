@@ -130,11 +130,12 @@ vertical-align: top;
   border-style: solid;
   border-width: 2px;
   padding-bottom: 0.5%;
+  margin-bottom: 1%;
 }
 
 #car-map {
   width: 100% !important;
-  height: 650px !important;
+  height: 550px !important;
 }
 
 .row {
@@ -168,7 +169,7 @@ vertical-align: top;
 
 .confirmation-button {
   width: 100%;
-  margin 2%;
+  margin: 2%;
 }
 
 /* progress bar Stepper */
@@ -202,10 +203,13 @@ vertical-align: top;
   border: 0 none;
   border-radius: 3px;
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-  padding: 20px 30px;
+  padding: 1%;
   box-sizing: border-box;
-  width: 80%;
-  margin: 0 10%;
+  width: 90%;
+  /* margin: 0 10%; */
+  margin: 5%;
+  margin-top: 0;
+  margin-bottom: 1%;
 }
 /*Hide all except first fieldset*/
 #stepper .fieldset:not(:first-of-type) {
@@ -253,7 +257,7 @@ vertical-align: top;
 	color: white;
 	text-transform: uppercase;
 	font-size: 15px;
-	width: 33%;
+	width: 33.33%;
 	float: left;
 	position: relative;
 }
@@ -291,4 +295,18 @@ vertical-align: top;
 #progressbar li.active:before,  #progressbar li.active:after{
 	background: #27AE60;
 	color: white;
+}
+
+/*headings*/
+.fs-title {
+	font-size: 15px;
+	text-transform: uppercase;
+	color: #2C3E50;
+	margin-bottom: 10px;
+}
+.fs-subtitle {
+	font-weight: normal;
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 20px;
 }
