@@ -1,34 +1,45 @@
 <!--- Displays list of cars by looping through a car list obtain from the db-->
-<div class="list-group">
 <script>
-const longCookie = getSpecificCookie('longitude', true);
-const latCookie = getSpecificCookie('latitude', true) ;
-</script>
+  const longCookie = getSpecificCookie('longitude', true);
+  const latCookie = getSpecificCookie('latitude', true) ;
+  var car_distance = [];
   {% for car in cars %}
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1 list-font">{{ car.brand }}<small id="car-trans"> ({{ car.transmission }})</small></h5>
-      <small class="list-font">{{ car.number_plate}}</small>
-    </div>
-      <div class="d-flex w-100 justify-content-between">
+    car_distance.push(getDistanceFromLatLonInKm({{car.longitude}}, {{car.latitude}}, longCookie, latCookie));
+  {% endfor %}
 
-          <p class="mb-1">{{ car.transmission }}</p>
-            <p><small class="distanceNumber"></small><small> km from you</small></p>
-    </div>
 
-    <form method="GET" action="{{ car.get_absolute_url }}">
-      <!-- <input type="hidden" name="number_plate" > -->
-      <input type="submit" value="Book">
-    </form>
-  </a>
+  function sortDistance(a,b) { return a - b; }
 
- <script type="text/javascript">
-
- 	document.getElementsByClassName('distanceNumber')[i].innerHTML = getDistanceFromLatLonInKm({{car.longitude}}, {{car.latitude}}, longCookie, latCookie);
-	i++;
-
+  var sorted_car_distance = car_distance.sort(sortDistance);
 </script>
+<div class="list-group">
 
- {% endfor %}
+    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 id="car-brand" class="mb-1 list-font"> </h5><small id="car-trans"> </small></h5>
+        <small id="number-plate" class="list-font"></small>
+      </div>
+        <div class="d-flex w-100 justify-content-between">
 
+              <p><small id="distanceNumber" class="distanceNumber"></small><small> km from you</small></p>
+      </div>
+
+      <form method="GET" action="{{ car.get_absolute_url }}">
+        <input type="submit" value="Book">
+      </form>
+    </a>
+<script>
+var div = $('div.list-group');
+  for (var i = 0; i < sorted_car_distance.length; i++) {
+    {% for car in cars %}
+      if (getDistanceFromLatLonInKm({{car.longitude}}, {{car.latitude}}, longCookie, latCookie) == sorted_car_distance[i]) {
+        document.getElementById("car-brand").innerHTML = '{{ car.brand }}';
+        document.getElementById("car-trans").innerHTML = '{{ car.transmission }}';
+        document.getElementById("number-plate").innerHTML = '{{ car.number_plate }}';
+        document.getElementById("distanceNumber").innerHTML = sorted_car_distance[i];
+      }
+    {% endfor %}
+  }
+
+  </script>
 </div>
