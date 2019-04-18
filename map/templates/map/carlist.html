@@ -3,6 +3,7 @@
 <script>
   const longCookie = getSpecificCookie('longitude', true);
   const latCookie = getSpecificCookie('latitude', true) ;
+  var temp_numberplate = [];
   var car_distance = [];
   {% for car in cars %}
     var template = {"<>":"a","href":"#","class":"list-group-item list-group-item-action flex-column align-items-start","html":[
@@ -29,12 +30,17 @@
     for (var i = 0; i < sorted_car_distance.length; i++) {
       {% for car in cars %}
         if (getDistanceFromLatLonInKm({{car.longitude}}, {{car.latitude}}, longCookie, latCookie) == sorted_car_distance[i]) {
-          var x = sorted_car_distance[i]
-          var data = [
-            {'car-brand':'{{car.brand}}','car-trans': '{{car.transmission}}','number-plate': '{{car.number_plate}}','distanceNumber': sorted_car_distance[i]}
-          ]
-          var str = json2html.transform(data,template);
-          document.write(str);
+          if (!temp_numberplate.includes('{{car.number_plate}}'))
+          {
+            temp_numberplate.push('{{car.number_plate}}');
+            console.log(temp_numberplate);
+            var x = sorted_car_distance[i]
+            var data = [
+              {'car-brand':'{{car.brand}}','car-trans': '{{car.transmission}}','number-plate': '{{car.number_plate}}','distanceNumber': sorted_car_distance[i]}
+            ]
+            var str = json2html.transform(data,template);
+            document.write(str);
+          }
         }
       {% endfor %}
     }
