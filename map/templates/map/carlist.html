@@ -6,7 +6,6 @@
   // Created empty arrays to store distance + number plates
   var temp_numberplate = [];
   var car_distance = [];
-  {% for car in cars %}
   // Template for json2Html
     var template = {"<>":"a","href":"#","class":"list-group-item list-group-item-action flex-column align-items-start","html":[
       {"<>":"div","class":"d-flex w-100 justify-content-between","html":[
@@ -20,10 +19,11 @@
               {"<>":"small","html":" km from you"}
             ]}
         ]},
-      {"<>":"form","method":"GET","action":"{{ car.get_absolute_url }}","html":[
+      {"<>":"form","method":"GET","action":"${car-url}","html":[
           {"<>":"input","type":"submit","value":"Book","html":""}
         ]}
     ]}
+  {% for car in cars %}
     // store distance into the array
     car_distance.push(getDistanceFromLatLonInKm({{car.longitude}}, {{car.latitude}}, longCookie, latCookie));
   {% endfor %}
@@ -34,7 +34,7 @@
     for (var i = 0; i < sorted_car_distance.length; i++) {
       // sort through the car array
       {% for car in cars %}
-      // compare the distance of the car to the sorted distance to list from smallest to largest
+      // compare the distance of the car to the sort the distance to list from smallest to largest
         if (getDistanceFromLatLonInKm({{car.longitude}}, {{car.latitude}}, longCookie, latCookie) == sorted_car_distance[i]) {
           // using the numberplate array to make sure theres no duplciates
           if (!temp_numberplate.includes('{{car.number_plate}}'))
@@ -42,7 +42,7 @@
             temp_numberplate.push('{{car.number_plate}}');
             // add the data into the json2string
             var data = [
-              {'car-brand':'{{car.brand}}','car-trans': '{{car.transmission}}','number-plate': '{{car.number_plate}}','distanceNumber': sorted_car_distance[i]}
+              {'car-brand':'{{car.brand}}','car-trans': '{{car.transmission}}','number-plate': '{{car.number_plate}}','distanceNumber': sorted_car_distance[i],'car-url': '{{car.get_absolute_url}}'}
             ]
             // appends the data and lists the data out
             var str = json2html.transform(data,template);
