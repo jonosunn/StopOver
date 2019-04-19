@@ -32,10 +32,14 @@ class ConfirmationPage(TemplateView):
 class ConfirmBooking(TemplateView):
 	template_name = 'confirmation/temp.html'
 
+	# Define our post method
 	def post(self, request):
-		# if request.method == 'POST':
 		print("POST METHOD")
+
+		# Get the number plate posted 
 		number_plate = request.POST.get("number_plate", "value")
+
+		# Get car object using number plate
 		booked_car = Car.objects.get(number_plate=number_plate)
 		args = {
 			"car": booked_car
