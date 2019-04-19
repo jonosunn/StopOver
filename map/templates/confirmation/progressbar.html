@@ -24,9 +24,11 @@
     <div class='session-block text-center'>
       Insert Session Timer Here
     </div>
-    <h2 class="fs-title">Sucess!</h2>
-    <h3 class="fs-subtitle">Please select submit to confirm purchases</h3>
-
+    <h2 class="fs-title">Please Confirm Booking</h2>
+    <!-- <h3 class="fs-subtitle">Please Confirm Booking</h3> -->
+    <div style="padding: 30px">
+      {% include "confirmation/blank.html" %}
+    </div>
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <input type="submit" name="submit" class="submit action-button" value="Submit" />
     <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
