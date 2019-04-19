@@ -1,34 +1,56 @@
 <!--- Displays list of cars by looping through a car list obtain from the db-->
 <div class="list-group">
 <script>
-const longCookie = getSpecificCookie('longitude', true);
-const latCookie = getSpecificCookie('latitude', true) ;
-</script>
+  const longCookie = getSpecificCookie('longitude', true);
+  const latCookie = getSpecificCookie('latitude', true) ;
+  // Created empty arrays to store distance + number plates
+  var temp_numberplate = [];
+  var car_distance = [];
+  // Template for json2Html
+    var template = {"<>":"a","href":"#","class":"list-group-item list-group-item-action flex-column align-items-start","html":[
+      {"<>":"div","class":"d-flex w-100 justify-content-between","html":[
+          {"<>":"h5","id":"car-brand","class":"mb-1 list-font","html":"${car-brand}"},
+          {"<>":"small","id":"car-trans","html":"${car-trans}"},
+          {"<>":"small","id":"number-plate","class":"list-font","html":"${number-plate}"}
+        ]},
+      {"<>":"div","class":"d-flex w-100 justify-content-between","html":[
+          {"<>":"p","html":[
+              {"<>":"small","id":"distanceNumber","html":"${distanceNumber}"},
+              {"<>":"small","html":" km from you"}
+            ]}
+        ]},
+      {"<>":"form","method":"GET","action":"${car-url}","html":[
+          {"<>":"input","type":"submit","value":"Book","html":""}
+        ]}
+    ]}
   {% for car in cars %}
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1 list-font">{{ car.brand }}<small id="car-trans"> ({{ car.transmission }})</small></h5>
-      <small class="list-font">{{ car.number_plate}}</small>
-    </div>
-      <div class="d-flex w-100 justify-content-between">
+    // store distance into the array
+    car_distance.push(getDistanceFromLatLonInKm({{car.longitude}}, {{car.latitude}}, longCookie, latCookie));
+  {% endfor %}
+  // sorted the array into smallest to largest
+  function sortDistance(a,b) { return a - b; }
+  var sorted_car_distance = car_distance.sort(sortDistance);
+    // sort through the car distance array
+    for (var i = 0; i < sorted_car_distance.length; i++) {
+      // sort through the car array
+      {% for car in cars %}
+      // compare the distance of the car to the sort the distance to list from smallest to largest
+        if (getDistanceFromLatLonInKm({{car.longitude}}, {{car.latitude}}, longCookie, latCookie) == sorted_car_distance[i]) {
+          // using the numberplate array to make sure theres no duplciates
+          if (!temp_numberplate.includes('{{car.number_plate}}'))
+          {
+            temp_numberplate.push('{{car.number_plate}}');
+            // add the data into the json2string
+            var data = [
+              {'car-brand':'{{car.brand}}','car-trans': '{{car.transmission}}','number-plate': '{{car.number_plate}}','distanceNumber': sorted_car_distance[i],'car-url': '{{car.get_absolute_url}}'}
+            ]
+            // appends the data and lists the data out
+            var str = json2html.transform(data,template);
+            document.write(str);
+          }
+        }
+      {% endfor %}
+    }
 
-          <p class="mb-1">{{ car.transmission }}</p>
-            <p><small class="distanceNumber"></small><small> km from you</small></p>
-    </div>
-
-    <form method="GET" action="{{ car.get_absolute_url }}">
-      <!-- <input type="hidden" name="number_plate" > -->
-      <input type="submit" value="Book">
-    </form>
-  </a>
-
- <script type="text/javascript">
-
- 	document.getElementsByClassName('distanceNumber')[i].innerHTML = getDistanceFromLatLonInKm({{car.longitude}}, {{car.latitude}}, longCookie, latCookie);
-	i++;
-
-</script>
-
- {% endfor %}
-
+  </script>
 </div>
