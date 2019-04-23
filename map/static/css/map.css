@@ -212,10 +212,9 @@ td {
 /*inputs*/
 #stepper input, #stepper textarea {
 	padding: 15px;
-	border: 1px solid #ccc;
-	border-radius: 3px;
+	border: none;
 	margin-bottom: 10px;
-	width: 100%;
+	width: 10%;
 	box-sizing: border-box;
 	font-family: montserrat;
 	color: #2C3E50;

@@ -7,6 +7,7 @@ from django.conf import settings
 from decimal import Decimal
 from paypal.standard.forms import PayPalPaymentsForm
 from django.views.decorators.csrf import csrf_exempt
+from django.urls import reverse
 
 
 from map.forms import CarForm
@@ -28,33 +29,28 @@ class ConfirmationPage(TemplateView):
 
 	def get(self, request, number_plate):
 		print("GET METHOD")
-		set_car = Car.objects.get(number_plate=number_plate)
-		args = {
-        	"car": set_car
-    	}
-		return render(request, self.template_name, args)
-	
-	#TODO: SET CORRECT URLS
-	def process_payment(self):
-		numberplate = self.request.GET.get("number_plate")
-		if numberplate != None:
-			set_car = Car.objects.get(number_plate=numberplate) 
-			
 		host = request.get_host();
-		
+
+		set_car = Car.objects.get(number_plate=number_plate)
 		paypal_dict = {
 	        'business': settings.PAYPAL_RECEIVER_EMAIL,
-	        'amount': '%.2f' % set_car.price().quantize(
-	            Decimal('.01')),
-	        'item_name': 'Order {}'.format(set_car.id),
-	        'invoice': str(numberplate),
+	        'amount': str(set_car.price),
+	        'item_name': 'Order {}'.format(set_car.number_plate),
+	        'invoice': str(set_car.id),
 	        'currency_code': 'AUD',
 	        'return_url': 'http://{}{}'.format(host,
 	                                           reverse('payment_done')),
 	    }
 		
 		form = PayPalPaymentsForm(initial=paypal_dict)
-		return render(request, 'confirmation/paysubmit.html', {'order': set_car, 'form': form})
+		args = {
+        	"car": set_car,
+        	"form": form
+    	}
+		
+		
+		return render(request, self.template_name, args)
+	
 	#TODO: SET CORRECT URLS
 	@csrf_exempt
 	def payment_done(request):

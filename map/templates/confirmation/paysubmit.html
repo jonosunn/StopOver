@@ -1,3 +1,26 @@
 <div class="payment-submit">
 THIS IS THE PAYMENT SUBMIT PAGE
+<table style="width:100%">
+  <tr>
+    <td class ="map-block"><img src="../static/images/car-image1.png" width=60% height=75%></td>
+    <td class ="details-block text-left">
+      <p> Number Plate: {{ car.number_plate }}
+      <br>
+      Brand: {{ car.brand }}
+      <br>
+      Type:
+      <br>
+      Transmission: {{ car.transmission }}
+      <br>
+      Year:
+      <br>
+      <br>
+      Booking Date:  <span id="currentdate"></span>
+      <br>
+      Booking Time: <span id="currenttime"></span></p>
+      <br>
+      <p> Price: ${{ car.price }}p/h</p>
+      <br></td>
+  </tr>
+</table>
 </div>
