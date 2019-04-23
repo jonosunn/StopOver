@@ -15,7 +15,7 @@
     </div>
     <h2 class="fs-title">Payment Info</h2>
     <h3 class="fs-subtitle">Please select your payment method</h3>
-    {% include "payment/paymethod.html" %}
+    {% include "confirmation/paymethod.html" %}
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <input type="button" name="next" class="next action-button" value="Next" />
   </div>
@@ -23,9 +23,9 @@
     <div class='session-block text-center'>
       Insert Session Timer Here
     </div>
-    <h2 class="fs-title">Sucess!</h2>
+    <h2 class="fs-title">Success!</h2>
     <h3 class="fs-subtitle">Please select submit to confirm purchases</h3>
-    {% include "payment/paysubmit.html" %}
+    {% include "confirmation/paysubmit.html" %}
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <input type="submit" name="submit" class="submit action-button" value="Submit" />
   </div>

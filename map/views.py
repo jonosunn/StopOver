@@ -51,12 +51,10 @@ class ConfirmationPage(TemplateView):
 	        'currency_code': 'AUD',
 	        'return_url': 'http://{}{}'.format(host,
 	                                           reverse('payment_done')),
-	        'cancel_return': 'http://{}{}'.format(host,
-	                                              reverse('payment_cancelled')),
 	    }
 		
 		form = PayPalPaymentsForm(initial=paypal_dict)
-		return render(request, 'confirmation/paysuccess.html', {'order': set_car, 'form': form})
+		return render(request, 'confirmation/paysubmit.html', {'order': set_car, 'form': form})
 	#TODO: SET CORRECT URLS
 	@csrf_exempt
 	def payment_done(request):
