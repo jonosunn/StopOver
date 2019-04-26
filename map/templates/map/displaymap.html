@@ -25,7 +25,7 @@
   // creating a fucntion to set a value into cookie expires in 30s
     function setCookie(name, value) {
       var today = new Date();
-      var expiry = new Date(today.getTime() + 30 * 1000);
+      var expiry = new Date(today.getTime() + 60 * 30 * 1000);
       document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
     }
 
@@ -133,46 +133,6 @@
     }
   }
 
-  function getSpecificCookie(cookieName, valueOnly) {
-    //Get original cookie string
-    var oCookieArray = document.cookie.split(';'),
-        fc,
-        cnRE = new RegExp(cookieName + '\=');
-    //Loop through cookies
-    for (var c = 0; c < oCookieArray.length; c++) {
-
-        //If found save to variable and end loop
-        if (cnRE.test(oCookieArray[c])) {
-            fc = oCookieArray[c].trim();
-            if (valueOnly) {
-                fc = fc.replace(cookieName +'=', '');
-            }
-            break;
-        }
-
-    }
-    return fc;
-}
-var i = 0;
-
-function getDistanceFromLatLonInKm(lon1, lat1, lon2, lat2) {
-	  var R = 6371; // Radius of the earth in km
-	  var dLat = deg2rad(lat2-lat1);  // deg2rad below
-	  var dLon = deg2rad(lon2-lon1);
-	  var a =
-	    Math.sin(dLat/2) * Math.sin(dLat/2) +
-	    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-	    Math.sin(dLon/2) * Math.sin(dLon/2)
-	    ;
-	  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-	  var d = R * c; // Distance in km
-
-	  return d.toFixed(2);
-	}
-
-function deg2rad(deg) {
-return deg * (Math.PI/180)
-}
-
+ 
 
 </script>
