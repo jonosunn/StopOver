@@ -13,7 +13,7 @@ from map.forms import CarForm
 class HomePageView(TemplateView):
 	template_name = 'map/homepage.html'
 
-	def get_context_data(self, request):
+	def get_context_data(self, *args, **kwargs):
 		print("get_context_data")
 		numberplate = self.request.GET.get("number_plate")
 		if numberplate != None:
