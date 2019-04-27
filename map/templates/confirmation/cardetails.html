@@ -1,4 +1,4 @@
-<div class='session-block text-center'>
+<div class='session-block text-center' id="countdowndiv">
   Insert Session Timer Here
 </div>
 <div id="car-map"></div>
@@ -76,4 +76,32 @@
       .addTo(map);
       });
     }
+
+
+    function countdown(elementID, minutes, seconds) {
+      var element, endTime, hours, mins, msLeft, time;
+
+      function twoDigits(n) {
+        return (n <= 9 ? "0" + n : n);
+      }
+
+      function updateTimer() {
+        msLeft = endTime - (+new Date);
+        if (msLeft < 10) {
+          alert("Session has timeout");
+          window.location.replace("/");
+        }
+        else {
+          time = new Date(msLeft);
+          hours = time.getUTCHours();
+          mins = time.getUTCMinutes();
+          element.innerHTML = (hours ? hours + ':' + twoDigits(mins) : mins) + ':' + twoDigits(time.getUTCSeconds());
+          setTimeout(updateTimer, time.getUTCMilliseconds() + 500);
+        }
+      }
+      element = document.getElementById(elementID);
+      endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+      updateTimer();
+    }
+    countdown("countdowndiv", 10, 0);
 </script>
