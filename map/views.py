@@ -18,6 +18,15 @@ class HomePageView(TemplateView):
 		context['cars'] = Car.objects.filter(available=True)
 		return context
 
+
+	def post(self, request):
+		if request.method == "POST":
+			number_plate = request.POST['car']
+			set_car = Car.objects.get(number_plate=number_plate)
+			set_car.available = True
+			set_car.save()
+		return render(request, self.template_name)
+
 class ConfirmationPage(TemplateView):
 	template_name = 'confirmation/confirmation.html'
 

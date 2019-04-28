@@ -1,4 +1,4 @@
-<div class='session-block text-center' id="countdowndiv">
+<div class='session-block text-center' id="countdowndiv1">
   Insert Session Timer Here
 </div>
 <div id="car-map"></div>
@@ -77,10 +77,12 @@
       });
     }
 
-
     function countdown(elementID, minutes, seconds) {
       var element, endTime, hours, mins, msLeft, time;
+      var car = "{{ car.number_plate }}";
+      var token = '{{csrf_token}}';
 
+      console.log("countdown called");
       function twoDigits(n) {
         return (n <= 9 ? "0" + n : n);
       }
@@ -88,6 +90,12 @@
       function updateTimer() {
         msLeft = endTime - (+new Date);
         if (msLeft < 10) {
+          $.ajax({
+            headers: { "X-CSRFToken": token },
+            url: '/',
+            type: "POST",
+            data: {car : car}
+          })
           alert("Session has timeout");
           window.location.replace("/");
         }
@@ -103,5 +111,7 @@
       endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
       updateTimer();
     }
-    countdown("countdowndiv", 10, 0);
+
+    countdown("countdowndiv1", 10, 0);
+
 </script>
