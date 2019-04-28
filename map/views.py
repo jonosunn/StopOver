@@ -3,6 +3,10 @@ from django.http import HttpResponse
 from map.models import Car
 from django.views.generic import TemplateView, View
 from django.views.generic.list import ListView
+from django.conf import settings
+from decimal import Decimal
+
+
 
 from map.forms import CarForm
 
@@ -17,7 +21,7 @@ class HomePageView(TemplateView):
 		context = super(HomePageView, self).get_context_data(*args, **kwargs)
 		context['cars'] = Car.objects.filter(available=True)
 		return context
-
+	
 class ConfirmationPage(TemplateView):
 	template_name = 'confirmation/confirmation.html'
 

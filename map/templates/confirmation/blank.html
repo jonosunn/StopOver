@@ -16,16 +16,26 @@
 		</tr>
 		<tr>
 			<td>Payment Method</td>
-			<td>PayPal</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Date Ordered</td>
+			<td><span id="order-date"></span></td>
+		</tr>
+		<tr>
+			<td>Time Ordered</td>
+			<td><span id="order-time"></span></td>
 		</tr>
 		<tr>
 			<td>Email</td>
 			<td></td>
 		</tr>
-		<tr>
-			<td>Date Ordered</td>
-			<td></td>
-		</tr>
 	</table>
 </body>
 </html>
+
+<script>
+  var dt = new Date();
+    document.getElementById("order-date").innerHTML = dt.toLocaleDateString();
+    document.getElementById("order-time").innerHTML = dt.toLocaleTimeString();
+</script>
