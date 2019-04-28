@@ -17,9 +17,9 @@
       Year:
       <br>
       <br>
-      Booking Date:
+      Booking Date: <span id="currentdate"></span>
       <br>
-      Booking Time: </p>
+      Booking Time: <span id="currenttime"></span></p>
       <br>
       <p> Price: ${{ car.price }}p/h</p>
       <br></td>
@@ -29,6 +29,9 @@
 <input type="button" name="next" class="next action-button" value="Next" />
 
 <script>
+    var dt = new Date();
+    document.getElementById("currentdate").innerHTML = dt.toLocaleDateString();
+    document.getElementById("currenttime").innerHTML = dt.toLocaleTimeString();
   // This gets the location of the car that has been selected
     function carLocation() {
       mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
