@@ -37,8 +37,8 @@ class ConfirmationPage(TemplateView):
 	# Recieving get request from form
 	def get(self, request, number_plate):
 		set_car = Car.objects.get(number_plate=number_plate) # Set car object using the number_plate
-		#set_car.available = False	# Set the selected car to false so other users can't select the car
-		#set_car.save() # Save car object to database
+		set_car.available = False	# Set the selected car to false so other users can't select the car
+		set_car.save() # Save car object to database
 		args = {
         	"car": set_car
     	}
