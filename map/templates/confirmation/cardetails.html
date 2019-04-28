@@ -17,9 +17,9 @@
       Year:
       <br>
       <br>
-      Booking Date:  <span id="currentdate"></span>
+      Booking Date:
       <br>
-      Booking Time: <span id="currenttime"></span></p>
+      Booking Time: </p>
       <br>
       <p> Price: ${{ car.price }}p/h</p>
       <br></td>
@@ -29,9 +29,6 @@
 <input type="button" name="next" class="next action-button" value="Next" />
 
 <script>
-  var dt = new Date();
-    document.getElementById("currentdate").innerHTML = dt.toLocaleDateString();
-    document.getElementById("currenttime").innerHTML = dt.toLocaleTimeString();
   // This gets the location of the car that has been selected
     function carLocation() {
       mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
@@ -82,36 +79,36 @@
 
     function countdown(elementID, minutes, seconds) {
       var element, endTime, hours, mins, msLeft, time;
-      var car = "{{ car.number_plate }}";
-      var token = '{{csrf_token}}';
+      var car = "{{ car.number_plate }}"; // set car number_plate to a car variable
+      var token = '{{csrf_token}}'; // set csrf token for post request
 
-      console.log("countdown called");
-      function twoDigits(n) {
+      function twoDigits(n) { // when digit is less than 9, add a 0 in front
         return (n <= 9 ? "0" + n : n);
       }
 
       function updateTimer() {
         msLeft = endTime - (+new Date);
-        if (msLeft < 10) {
-          $.ajax({
+        console.log(msLeft)
+        if (msLeft < 1) { // when millisecond is less than 1
+          $.ajax({ // sending car number_plate to views
             headers: { "X-CSRFToken": token },
             url: '/',
             type: "POST",
             data: {car : car}
           })
-          alert("Session has timeout");
-          window.location.replace("/");
+          alert("Session has timeout"); // display popup
+          window.location.replace("/"); // redirect to homepage
         }
-        else {
+        else { // continue updating the timer
           time = new Date(msLeft);
           hours = time.getUTCHours();
           mins = time.getUTCMinutes();
-          element.innerHTML = (hours ? hours + ':' + twoDigits(mins) : mins) + ':' + twoDigits(time.getUTCSeconds());
+          element.innerHTML = (hours ? hours + ':' + twoDigits(mins) : mins) + ':' + twoDigits(time.getUTCSeconds()); // Display countdown timer
           setTimeout(updateTimer, time.getUTCMilliseconds() + 500);
         }
       }
       element = document.getElementById(elementID);
-      endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+      endTime = (+new Date) + 1000 * (60 * minutes + seconds) + 500; 
       updateTimer();
     }
 
