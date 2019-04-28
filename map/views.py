@@ -39,20 +39,26 @@ class ConfirmationPage(TemplateView):
 	        'invoice': str(set_car.id),
 	        'currency_code': 'AUD',
 	        'return_url': 'http://{}{}'.format(host,
-	                                           reverse('payment_done')),
+	                                           reverse('home')),
 	    }
-		
+
 		form = PayPalPaymentsForm(initial=paypal_dict)
 		args = {
         	"car": set_car,
         	"form": form
     	}
-		
-		
+
+
 		return render(request, self.template_name, args)
-	
+
+class SuccessPage(TemplateView):
+	template_name = 'confirmation/paysuccess.html'
 	#TODO: SET CORRECT URLS
 	@csrf_exempt
-	def payment_done(request):
-	    return render(request, 'confirmation/paysuccess.html')
-	
+	def get_context_data(self, *args, **kwargs):
+		numberplate = self.request.GET.get("number_plate")
+		if numberplate != None:
+			set_car = Car.objects.get(number_plate=numberplate)
+		context = super(HomePageView, self).get_context_data(*args, **kwargs)
+		context['cars'] = Car.objects.filter(available=True)
+		return context
