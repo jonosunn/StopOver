@@ -73,10 +73,10 @@ class MapAppTest(TestCase):
     #     response = self.client.get(reverse('confirmation', args=(car.number_plate,)))
     #     self.assertEquals(response.status_code, 200)
     #
-    # def test_booking_url_by_name(self):
-    #     car = Car.objects.get(id=1)
-    #     response = self.client.get(reverse('confirmation', args=(car.number_plate,)))
-    #     self.assertEquals(response.status_code, 200)
+    def test_booking_url_by_name(self):
+        # car = Car.objects.get(id=1)
+        response = self.client.get('confirmation', args=['ABC000'])
+        self.assertEquals(response.status_code, 200)
     #
     # def test_booking_uses_correct_template(self):
     #     car = Car.objects.get(id=1)
