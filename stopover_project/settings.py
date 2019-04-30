@@ -90,7 +90,7 @@ DATABASES = {
     }
 }
 
-TEST_RUNNER = 'map.discover_runner.HerokuDiscoverRunner'
+# TEST_RUNNER = 'map.discover_runner.HerokuDiscoverRunner'
 
 # Password validation
 
@@ -144,6 +144,6 @@ DATABASES['default'].update(db_from_env)
 # DATABASES['default']['TEST'].update(db_from_env)
 
 # Use sqlite3 database when performing unit tests
-# import sys
-# if 'test' in sys.argv or 'test_coverage' in sys.argv:
-#     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+import sys
+if 'test' in sys.argv or 'test_coverage' in sys.argv:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
