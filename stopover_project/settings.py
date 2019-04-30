@@ -73,14 +73,14 @@ WSGI_APPLICATION = 'stopover_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd8mpuegruaai9f',
         'USER': 'blwdfizxidfgsr',
         'PASSWORD': 'fca09f51620fcdcf1a74fd8e7e32f6cac1de9c495c705505451c669be7b5e46c',
         'HOST': 'ec2-54-221-243-211.compute-1.amazonaws.com',
         'PORT': '5432',
         'TEST': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'd551580ks5f1e1',
             'USER': 'sornyxxhqzklyh',
             'PASSWORD': 'ba8784b5daf0495a80b69f785561eedb4c9a8b1f3c4f489ff76f7cbf03358310',
