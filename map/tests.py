@@ -61,6 +61,8 @@ class MapAppTest(TestCase):
         Car.objects.create(brand='test_brand', transmission='automatic', number_plate='TEST01',
             price=100, longitude=-37.6799703, latitude=145.0548504, available=True)
 
+        user_login = get_user_model().objects.create_user(username='test', password='asdf1234')
+
     # Test for content within created dummy object
     def test_car_content(self):
         car = Car.objects.get(id=1)
@@ -90,10 +92,7 @@ class MapAppTest(TestCase):
         self.assertIsInstance(car.latitude, float)
         self.assertIsInstance(car.available, bool)
 
-    def test_redirect_to_login(self):
-        response = self.client.get('/confirmation/TEST01/', follow=True)
-        self.assertContains(response, "You must be logged in", status_code=401)
 
-    def test_redirect_to_booking(self):
-        response = self.client.get('/confirmation/TEST01/', follow=True)
-        self.assertContains(reponse, "Redirect to booking", status_code=200)
+    def test_booking_reverse_url(self):
+        url = reverse('confirmation', args=['ABC000'])
+        self.assertEquals(url, '/confirmation/ABC000')
