@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'paypal.standard.ipn', 
     'jquery',
 ]
 
@@ -110,11 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# PAYPAL SETTINGS
-PAYPAL_RECEIVER_EMAIL = 'anapatricia_teo-facilitator@yahoo.com.ph'
- 
-PAYPAL_TEST = True
-
 # Internationalization
 
 LANGUAGE_CODE = 'en-us'
@@ -126,6 +120,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# Session Timer
+SESSION_EXPIRE_SECONDS = 10*60 # 10 minutes session timer
 
 # Static files (CSS, JavaScript, Images)
 
