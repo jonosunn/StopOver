@@ -52,7 +52,27 @@ class MapAppTest(TestCase):
     #     self.assertNotContains(
     #         response, 'Hi there! I should not be on the page.')
 
+    def test_confirmation_page_status_code(self):
+        response = self.client.get('paysuccess/')
+        self.assertEquals(response.status_code, 200)
 
+    def test_home_url_by_name(self):
+        response = self.client.get(reverse('payment_done'))
+        self.assertEquals(response.status_code, 200)
+
+    def test_home_uses_correct_template(self):
+        response = self.client.get(reverse('payment_done'))
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'confirmation/paysuccess.html')
+
+    def test_home_page_contains_correct_html(self):
+        response = self.client.get('paysuccess/')
+        self.assertContains(response, '<title>Pay Success</title>')
+
+    def test_home_page_does_not_contain_incorrect_html(self):
+        response = self.client.get('paysuccess/')
+        self.assertNotContains(
+            response, 'Hi there! I should not be on the page.')
 
     # Test for database models
 
