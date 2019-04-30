@@ -53,7 +53,7 @@ class MapAppTest(TestCase):
     #         response, 'Hi there! I should not be on the page.')
 
     def test_confirmation_page_status_code(self):
-        response = self.client.get('paysuccess/')
+        response = self.client.get(reverse('payment_done'))
         self.assertEquals(response.status_code, 200)
 
     def test_confirmation_url_by_name(self):
@@ -66,11 +66,11 @@ class MapAppTest(TestCase):
         self.assertTemplateUsed(response, 'confirmation/paysuccess.html')
 
     def test_confirmation_page_contains_correct_html(self):
-        response = self.client.get('paysuccess/')
+        response = self.client.get(reverse('payment_done'))
         self.assertContains(response, '<title>Pay Success</title>')
 
     def test_confirmation_page_does_not_contain_incorrect_html(self):
-        response = self.client.get('paysuccess/')
+        response = self.client.get(reverse('payment_done'))
         self.assertNotContains(
             response, 'Hi there! I should not be on the page.')
 
