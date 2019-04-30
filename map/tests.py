@@ -91,5 +91,9 @@ class MapAppTest(TestCase):
         self.assertIsInstance(car.available, bool)
 
     def test_redirect_to_login(self):
+        response = self.client.get('/confirmation/TEST01/', follow=True)
+        self.assertContains(response, "You must be logged in", status_code=401)
 
-        response = self.client.get('/confirmation/{{car.number_plate}}/', follow=True)
+    def test_redirect_to_booking(self):
+        response = self.client.get('/confirmation/TEST01/', follow=True)
+        self.assertContains(reponse, "Redirect to booking", status_code=200)
