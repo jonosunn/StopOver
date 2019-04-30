@@ -41,7 +41,7 @@ class ConfirmationPage(TemplateView):
 	        'invoice': str(set_car.id),
 	        'currency_code': 'AUD',
 	        'return_url': 'http://{}{}'.format(host,
-	                                           reverse('home')),
+	                                           reverse('payment_done')),
 	    }
 
 		form = PayPalPaymentsForm(initial=paypal_dict)
