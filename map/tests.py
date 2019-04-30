@@ -89,3 +89,7 @@ class MapAppTest(TestCase):
         self.assertIsInstance(car.longitude, float)
         self.assertIsInstance(car.latitude, float)
         self.assertIsInstance(car.available, bool)
+
+    def test_redirect_to_login(self):
+
+        response = self.client.get('/confirmation/{{car.number_plate}}/', follow=True)
