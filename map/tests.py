@@ -5,18 +5,18 @@ from django.urls import reverse
 from . import views
 from .models import Car
 
-class HomePageTest(TestCase):
+class MapAppTest(TestCase):
 
     # Test for correct web application routing
     def test_home_page_status_code(self):
         response = self.client.get('')
         self.assertEquals(response.status_code, 200)
 
-    def test_view_url_by_name(self):
+    def test_home_url_by_name(self):
         response = self.client.get(reverse('home'))
         self.assertEquals(response.status_code, 200)
 
-    def test_view_uses_correct_template(self):
+    def test_home_uses_correct_template(self):
         response = self.client.get(reverse('home'))
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'map/homepage.html')
@@ -29,6 +29,30 @@ class HomePageTest(TestCase):
         response = self.client.get('')
         self.assertNotContains(
             response, 'Hi there! I should not be on the page.')
+
+    # def test_booking_page_status_code(self):
+    #     response = self.client.get(reverse('confirmation'))
+    #     self.assertEquals(response.status_code, 200)
+    #
+    # def test_booking_url_by_name(self):
+    #     response = self.client.get(reverse('confirmation'))
+    #     self.assertEquals(response.status_code, 200)
+    #
+    # def test_booking_uses_correct_template(self):
+    #     response = self.client.get(reverse('confirmation'))
+    #     self.assertEquals(response.status_code, 200)
+    #     self.assertTemplateUsed(response, 'confirmation/confirmation.html')
+    #
+    # def test_booking_page_contains_correct_html(self):
+    #     response = self.client.get(reverse('confirmation'))
+    #     self.assertContains(response, '<title>Booking</title>')
+    #
+    # def test_booking_page_does_not_contain_incorrect_html(self):
+    #     response = self.client.get(reverse('confirmation'))
+    #     self.assertNotContains(
+    #         response, 'Hi there! I should not be on the page.')
+
+
 
     # Test for database models
 
@@ -56,12 +80,20 @@ class HomePageTest(TestCase):
         self.assertTrue(expected_object_available, True)
 
     # Test data types of car object
-    # def test_data_type(self):
-    #     car = Car.objects.get(id=1)
-    #     self.assertIsInstance(car.brand, str)
-    #     self.assertIsInstance(car.transmission, str)
-    #     self.assertIsInstance(car.number_plate, str)
-    #     self.assertIsInstance(car.price, int)
-    #     self.assertIsInstance(car.longitude, float)
-    #     self.assertIsInstance(car.latitude, float)
-    #     self.assertIsInstance(car.available, bool)
+    def test_data_type(self):
+        car = Car.objects.get(id=1)
+        self.assertIsInstance(car.brand, str)
+        self.assertIsInstance(car.transmission, str)
+        self.assertIsInstance(car.number_plate, str)
+        self.assertIsInstance(car.price, int)
+        self.assertIsInstance(car.longitude, float)
+        self.assertIsInstance(car.latitude, float)
+        self.assertIsInstance(car.available, bool)
+
+    def test_redirect_to_login(self):
+        response = self.client.get('/confirmation/TEST01/', follow=True)
+        self.assertContains(response, "You must be logged in", status_code=401)
+
+    def test_redirect_to_booking(self):
+        response = self.client.get('/confirmation/TEST01/', follow=True)
+        self.assertContains(reponse, "Redirect to booking", status_code=200)
