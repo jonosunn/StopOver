@@ -79,7 +79,7 @@ class MapAppTest(TestCase):
         self.assertEquals(expected_object_latitude, 145.0548504)
         self.assertTrue(expected_object_available, True)
 
-    Test data types of car object
+    # Test data types of car object
     def test_data_type(self):
         car = Car.objects.get(id=1)
         self.assertIsInstance(car.brand, str)
