@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'jquery',
+    'paypal.standard.ipn', 
+
 ]
 
 MIDDLEWARE = [
@@ -108,6 +110,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# PAYPAL SETTINGS
+PAYPAL_RECEIVER_EMAIL = 'anapatricia_teo-facilitator@yahoo.com.ph'
+ 
+PAYPAL_TEST = True
 
 # Internationalization
 
