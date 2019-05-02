@@ -1,5 +1,6 @@
 import os
 import psycopg2
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'jquery',
-    'paypal.standard.ipn', 
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -141,7 +142,6 @@ STATICFILES_DIR = (
 
 # Activate Django-Heroku
 if 'HEROKU' in os.environ:
-    import django_heroku
     django_heroku.settings(locals())
 
 # Parse values of DATABASE_URL and convert for django readability
