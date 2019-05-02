@@ -141,8 +141,8 @@ STATICFILES_DIR = (
 )
 
 # Activate Django-Heroku
-if 'HEROKU' in os.environ:
-    django_heroku.settings(locals())
+# if 'HEROKU' in os.environ:
+#     django_heroku.settings(locals())
 
 # Parse values of DATABASE_URL and convert for django readability
 import dj_database_url
