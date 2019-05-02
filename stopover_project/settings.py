@@ -1,6 +1,5 @@
 import os
 import psycopg2
-import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,12 +20,15 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 INSTALLED_APPS = [
     'map.apps.MapConfig',
+    'user.apps.UserConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'jquery',
+    'paypal.standard.ipn', 
 ]
 
 MIDDLEWARE = [
@@ -71,14 +73,14 @@ WSGI_APPLICATION = 'stopover_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd8mpuegruaai9f',
         'USER': 'blwdfizxidfgsr',
         'PASSWORD': 'fca09f51620fcdcf1a74fd8e7e32f6cac1de9c495c705505451c669be7b5e46c',
         'HOST': 'ec2-54-221-243-211.compute-1.amazonaws.com',
         'PORT': '5432',
         'TEST': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'd551580ks5f1e1',
             'USER': 'sornyxxhqzklyh',
             'PASSWORD': 'ba8784b5daf0495a80b69f785561eedb4c9a8b1f3c4f489ff76f7cbf03358310',
@@ -88,7 +90,7 @@ DATABASES = {
     }
 }
 
-TEST_RUNNER = 'map.discover_runner.HerokuDiscoverRunner'
+# TEST_RUNNER = 'map.discover_runner.HerokuDiscoverRunner'
 
 # Password validation
 
@@ -107,6 +109,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+# PAYPAL settings
+PAYPAL_RECEIVER_EMAIL = 'anapatricia_teo-facilitator@yahoo.com.ph'
+PAYPAL_TEST = True
+
 # Internationalization
 
 LANGUAGE_CODE = 'en-us'
@@ -119,6 +126,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Session Timer
+SESSION_EXPIRE_SECONDS = 10*60 # 10 minutes session timer
+
 # Static files (CSS, JavaScript, Images)
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -130,7 +140,9 @@ STATICFILES_DIR = (
 )
 
 # Activate Django-Heroku
-django_heroku.settings(locals())
+if 'HEROKU' in os.environ:
+    import django_heroku
+    django_heroku.settings(locals())
 
 # Parse values of DATABASE_URL and convert for django readability
 import dj_database_url
@@ -139,6 +151,7 @@ DATABASES['default'].update(db_from_env)
 # DATABASES['default']['TEST'].update(db_from_env)
 
 # Use sqlite3 database when performing unit tests
-# import sys
-# if 'test' in sys.argv or 'test_coverage' in sys.argv:
-#     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+import sys
+if 'test' in sys.argv or 'test_coverage' in sys.argv:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+    del DATABASES['default']['OPTIONS']['sslmode']
