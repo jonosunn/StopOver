@@ -134,7 +134,7 @@ SESSION_EXPIRE_SECONDS = 10*60 # 10 minutes session timer
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
 
 # Extra places for collectstatic to find static files
 STATICFILES_DIR = (
