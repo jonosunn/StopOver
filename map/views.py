@@ -9,7 +9,6 @@ from paypal.standard.forms import PayPalPaymentsForm
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 
-
 from map.forms import CarForm
 
 class HomePageView(TemplateView):
