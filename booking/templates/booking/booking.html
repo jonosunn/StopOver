@@ -19,8 +19,12 @@
     <body onLoad="carLocation()">
       {% include "map/navbar.html" %}
       <div class='steps-block'>
-          {% include "booking/progressbar.html" %}
+        <div id="stepper">
+          <div class="fieldset">
+            {% include "booking/cardetails.html" %}
+          </div>
+        </div>
       </div>
-      
+
     </body>
 </html>

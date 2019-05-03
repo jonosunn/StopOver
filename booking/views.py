@@ -24,10 +24,10 @@ class BookingPage(TemplateView):
 
 
 class ConfirmationPage(TemplateView):
-	template_name = 'confirmation/paysuccess.html'
+	template_name = 'booking/confirmation.html'
 	#TODO: SET CORRECT URLS
 	@csrf_exempt
 	def get_context_data(self, *args, **kwargs):
-		context = super(SuccessPage, self).get_context_data(*args, **kwargs)
+		context = super(ConfirmationPage, self).get_context_data(*args, **kwargs)
 		context['cars'] = Car.objects.filter(available=True)
 		return context
