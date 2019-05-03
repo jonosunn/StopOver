@@ -50,7 +50,7 @@ class MapAppTest(TestCase):
     def test_confirmation_uses_correct_template(self):
         response = self.client.get(reverse('confirmation'))
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'booking/confirmation.html')
+        self.assertTemplateUsed(response, 'confirmation/confirmation.html')
 
     def test_confirmation_page_contains_correct_html(self):
         response = self.client.get(reverse('confirmation'))

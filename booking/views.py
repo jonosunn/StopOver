@@ -24,7 +24,7 @@ class BookingPage(TemplateView):
 
 
 class ConfirmationPage(TemplateView):
-	template_name = 'booking/confirmation.html'
+	template_name = 'confirmation/confirmation.html'
 	#TODO: SET CORRECT URLS
 	@csrf_exempt
 	def get_context_data(self, *args, **kwargs):
