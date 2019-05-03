@@ -61,8 +61,6 @@ class ConfirmationPage(TemplateView):
 				except stripe.CardError as e:
 					message.info(request, "Your card has been declined.")
 		context = {
-			'order': existing_order,
-			'client_token': client_token,
 			'STRIPE_PUBLISHABLE_KEY': publishKey
 		}
 
