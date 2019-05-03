@@ -54,7 +54,7 @@ class MapAppTest(TestCase):
 
     def test_confirmation_page_contains_correct_html(self):
         response = self.client.get(reverse('confirmation'))
-        self.assertContains(response, '<title>Pay Success</title>')
+        self.assertContains(response, '<title>Confirmation</title>')
 
     def test_confirmation_page_does_not_contain_incorrect_html(self):
         response = self.client.get(reverse('confirmation'))
