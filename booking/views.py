@@ -32,8 +32,9 @@ class BookingPage(TemplateView):
 class ConfirmationPage(TemplateView):
 	template_name = 'booking/confirmation.html'
 
+	#TODO: SET CORRECT URLS
+	@csrf_exempt
 	def payment(request):
-		set_car = Car.objects.get(number_plate=number_plate)
 		publishKey = settings.STRIPE_PUBLISHABLE_KEY
 		if request.method == 'POST':
 			print('test')
