@@ -41,13 +41,18 @@ class ConfirmationPage(TemplateView):
 			print('test')
 			if token:
 				try:
-					charge = stripe.Charge.create(
-						amount=10,
-						currency='aud',
-						description='Deposit charge',
+					# Create a Customer:
+					customer = stripe.Customer.create(
 						source=token,
+						email='paying.user@example.com',
 					)
 
+					# Charge the Customer instead of the card:
+					charge = stripe.Charge.create(
+						amount=1000,
+						currency='aud',
+						customer=customer.id,
+					)
 					return redirect(reverse('home',
 							kwargs={
 								'token': token
