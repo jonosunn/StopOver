@@ -24,10 +24,12 @@ class BookingPage(TemplateView):
 
 
 class ConfirmationPage(TemplateView):
-	template_name = 'confirmation/confirmation.html'
+	template_name = 'booking/confirmation.html'
 	#TODO: SET CORRECT URLS
 	@csrf_exempt
-	def get_context_data(self, *args, **kwargs):
-		context = super(ConfirmationPage, self).get_context_data(*args, **kwargs)
-		context['cars'] = Car.objects.filter(available=True)
-		return context
+	def get(self, request, number_plate):
+		set_car = Car.objects.get(number_plate=number_plate) # Set car object using the number_plate
+		args = {
+        	"car": set_car,
+    	}
+		return render(request, self.template_name, args)

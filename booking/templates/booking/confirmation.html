@@ -25,6 +25,29 @@
       <div class='steps-block'>
         <div id="stepper">
           <div class="fieldset">
+            <div id="car-map"></div>
+            <table style="width:100%">
+              <tr>
+                <td class ="details-block text-left">
+                  <p> Number Plate: {{ car.number_plate }}
+                  <br>
+                  Brand: {{ car.brand }}
+                  <br>
+                  Type:
+                  <br>
+                  Transmission: {{ car.transmission }}
+                  <br>
+                  Year:
+                  <br>
+                  <br>
+                  Booking Date: <span id="currentdate"></span>
+                  <br>
+                  Booking Time: <span id="currenttime"></span></p>
+                  <br>
+                  <p> Price: ${{ car.price }}p/h</p>
+                  <br></td>
+              </tr>
+            </table>
             <div class="wrapper">
               <script src="https://js.stripe.com/v3/"></script>
 
@@ -48,7 +71,54 @@
           </div>
         </div>
       </div>
-    <script nonce="">  // Create a Stripe client.
+    <script>
+    function carLocation() {
+      mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
+      var bounds = [
+         [144.70345,-37.91802],
+         [145.22873,-37.64668]
+      ];
+
+        var map = new mapboxgl.Map({
+          container: 'car-map',
+          style: 'mapbox://styles/mapbox/streets-v11',
+          center: [{{ car.longitude }}, {{ car.latitude }}],
+          zoom: 16,
+          bearing: 0,
+          maxBounds: bounds
+      });
+
+      // Cars location marker
+      var geojson_cars = {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [{{ car.longitude }}, {{ car.latitude }}]
+            },
+            properties: {
+              title: 'Mapbox',
+              description: 'Car Locations'
+            }
+          },
+      ]
+      };
+      // add markers to map
+      geojson_cars.features.forEach(function(marker) {
+      // create a HTML element for each feature
+      var el = document.createElement('div');
+      el.className = 'car-marker';
+      // car markers
+      new mapboxgl.Marker(el)
+      .setLngLat(marker.geometry.coordinates)
+        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+          .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+      .addTo(map);
+      });
+    }
+     // Create a Stripe client.
       var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
       // Create an instance of Elements.
