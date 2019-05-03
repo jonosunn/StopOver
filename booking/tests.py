@@ -3,7 +3,7 @@ from django.http import HttpRequest
 from django.urls import reverse
 
 from . import views
-from .models import Car
+from map.models import Car
 
 class MapAppTest(TestCase):
     # Test for database models
