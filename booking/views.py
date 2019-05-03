@@ -31,25 +31,21 @@ class BookingPage(TemplateView):
 
 class ConfirmationPage(TemplateView):
 	template_name = 'booking/confirmation.html'
-	#TODO: SET CORRECT URLS
-	@csrf_exempt
+
 	def payment(request):
 		set_car = Car.objects.get(number_plate=number_plate)
 		publishKey = settings.STRIPE_PUBLISHABLE_KEY
 		if request.method == 'POST':
+			print('test')
 			token = request.POST.get('stripeToken', False)
 			print('test')
 			if token:
 				try:
-					session = stripe.checkout.Session.create(
-						payment_method_types=['card'],
-					  	subscription_data={
-					    	items: [{
-					      	'plan': 'plan_123',
-					    	}],
-					  	},
-					  	success_url='https://example.com/success',
-					  	cancel_url='https://example.com/cancel',
+					charge = stripe.Charge.create(
+						amount=10,
+						currency='aud',
+						description='Deposit charge',
+						source=token,
 					)
 
 					return redirect(reverse('home',
