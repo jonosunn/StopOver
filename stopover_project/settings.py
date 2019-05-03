@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'jquery',
     'paypal.standard.ipn',
@@ -34,6 +35,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -131,6 +133,7 @@ USE_TZ = True
 SESSION_EXPIRE_SECONDS = 10*60 # 10 minutes session timer
 
 # Static files (CSS, JavaScript, Images)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
@@ -141,8 +144,8 @@ STATICFILES_DIR = (
 )
 
 # Activate Django-Heroku
-if 'HEROKU' in os.environ:
-    django_heroku.settings(locals())
+# if 'HEROKU' in os.environ:
+# django_heroku.settings(locals())
 
 # Parse values of DATABASE_URL and convert for django readability
 import dj_database_url
