@@ -40,23 +40,28 @@ class MapAppTest(TestCase):
             response, 'Hi there! I should not be on the page.')
 
     def test_confirmation_page_status_code(self):
+        car = Car.objects.get(id=1)
         response = self.client.get(reverse('confirmation', args=(car.number_plate,)))
         self.assertEquals(response.status_code, 200)
 
     def test_confirmation_url_by_name(self):
+        car = Car.objects.get(id=1)
         response = self.client.get(reverse('confirmation', args=(car.number_plate,)))
         self.assertEquals(response.status_code, 200)
 
     def test_confirmation_uses_correct_template(self):
+        car = Car.objects.get(id=1)
         response = self.client.get(reverse('confirmation', args=(car.number_plate,)))
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'booking/confirmation.html')
 
     def test_confirmation_page_contains_correct_html(self):
+        car = Car.objects.get(id=1)
         response = self.client.get(reverse('confirmation', args=(car.number_plate,)))
         self.assertContains(response, '<title>Confirmation</title>')
 
     def test_confirmation_page_does_not_contain_incorrect_html(self):
+        car = Car.objects.get(id=1)
         response = self.client.get(reverse('confirmation', args=(car.number_plate,)))
         self.assertNotContains(
             response, 'Hi there! I should not be on the page.')
