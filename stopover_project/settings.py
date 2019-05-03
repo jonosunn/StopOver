@@ -22,7 +22,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 INSTALLED_APPS = [
     'map.apps.MapConfig',
-    'booking.apps.BookingConfig'
+    'booking.apps.BookingConfig',
     'user.apps.UserConfig',
     'django.contrib.admin',
     'django.contrib.auth',
