@@ -54,7 +54,7 @@
             <div class="wrapper">
               <script src="https://js.stripe.com/v3/"></script>
 
-              <form action="." method="POST" id="payment-form">
+              <form action="/confirmation" method="POST" id="payment-form">
                 {% csrf_token %}
                 <div class="form-row">
                   <label for="card-element">
@@ -75,6 +75,10 @@
         </div>
       </div>
     <script>
+    var dt = new Date();
+    document.getElementById("currentdate").innerHTML = dt.toLocaleDateString();
+    document.getElementById("currenttime").innerHTML = dt.toLocaleTimeString();
+  // This gets the location of the car that has been selected
     function navigation() {
       mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
       var bounds = [

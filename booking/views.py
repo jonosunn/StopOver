@@ -33,18 +33,11 @@ class BookingPage(TemplateView):
 class ConfirmationPage(TemplateView):
 	template_name = 'booking/confirmation.html'
 
-	def get_context_data(self, *args, **kwargs):
-		print("get_context_data")
-		number_plate = request.POST.get("number_plate", "value")
-		if numberplate != None:
-			context['cars'] = Car.objects.get(number_plate=number_plate)
-		context = super(HomePageView, self).get_context_data(*args, **kwargs)
-		return context
-
 	#TODO: SET CORRECT URLS
 	@csrf_exempt
 	def post(self, request):
 		publishKey = settings.STRIPE_PUBLISHABLE_KEY
+		print('test')
 		if request.method == 'POST':
 			print('test')
 			token = request.POST.get('stripeToken', False)
@@ -77,3 +70,17 @@ class ConfirmationPage(TemplateView):
 		}
 
 		return render(request, self.template_name, context)
+
+	def get(self, request):
+		print("GET METHOD")
+
+		# Get the number plate posted
+		number_plate = request.GET.get("number_plate", "value")
+
+		# Get car object using number plate
+		booked_car = Car.objects.get(number_plate=number_plate)
+		args = {
+			"car": booked_car
+		}
+
+		return render(request, self.template_name, args)

@@ -40,25 +40,19 @@
                   Year:
                   <br>
                   <br>
-                  Booking Date: <span id="currentdate"></span>
-                  <br>
-                  Booking Time: <span id="currenttime"></span></p>
-                  <br>
                   <p> Price: ${{ car.price }}p/h</p>
                   <br></td>
               </tr>
             </table>
-            <form method="POST" action="/temp">
+            <form method="GET" action="/confirmation">
                <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
+               <input type="submit" value="Confirm">
             </form>
           </div>
         </div>
       </div>
         <script>
-            var dt = new Date();
-            document.getElementById("currentdate").innerHTML = dt.toLocaleDateString();
-            document.getElementById("currenttime").innerHTML = dt.toLocaleTimeString();
-          // This gets the location of the car that has been selected
+
             function carLocation() {
               mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
               var bounds = [
