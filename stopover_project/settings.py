@@ -151,12 +151,8 @@ MEDIA_ROOT = os.path.join(VENV_PATH, 'media_root')
 MEDIA_URL = '/media/'
 
 # Stripe Settings
-if DEBUG:
-    STRIPE_PUBLISHABLE_KEY = ''
-    STRIPE_SECRET_KEY = ''
-else:
-    STRIPE_PUBLISHABLE_KEY = 'pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB'
-    STRIPE_SECRET_KEY = 'sk_test_DJ8eXuMEwbOYBXgCNvr24g3V00UQhuVkC6'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB'
+STRIPE_SECRET_KEY = 'sk_test_DJ8eXuMEwbOYBXgCNvr24g3V00UQhuVkC6'
 
 # Activate Django-Heroku
 # if 'HEROKU' in os.environ:
