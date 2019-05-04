@@ -33,7 +33,7 @@ class BookingPage(TemplateView):
 class ConfirmationPage(TemplateView):
 	template_name = 'booking/confirmation.html'
 
-	def get(self, request):
+	def post(self, request):
 		print("GET METHOD")
 
 		# Get the number plate posted

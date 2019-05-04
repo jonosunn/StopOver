@@ -45,6 +45,7 @@
               </tr>
             </table>
             <form method="POST" action="/confirmation">
+               {% csrf_token %}
                <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
                <input type="submit" value="Confirm">
             </form>
