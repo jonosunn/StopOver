@@ -34,14 +34,16 @@ class ConfirmationPage(TemplateView):
 
 	#TODO: SET CORRECT URLS
 	@csrf_exempt
-	def payment(request):
+	def post(self, request, number_plate):
 		publishKey = settings.STRIPE_PUBLISHABLE_KEY
 		if request.method == 'POST':
 			print('test')
 			token = request.POST.get('stripeToken', False)
 			print('test')
 			if token:
+				print('test1')
 				try:
+					print('test2')
 					# Create a Customer:
 					customer = stripe.Customer.create(
 						source=token,
