@@ -14,7 +14,3 @@ class Car(models.Model):
 	def get_absolute_url(self):
 		return reverse("booking", kwargs={"number_plate": self.number_plate})
 		# f"/confirmation/{self.number_plate}"
-
-	def get_confirmation_url(self):
-		return reverse("confirmation", kwargs={"number_plate": self.number_plate})
-		# f"/confirmation/{self.number_plate}"

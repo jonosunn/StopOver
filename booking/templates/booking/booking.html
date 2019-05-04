@@ -48,8 +48,8 @@
                   <br></td>
               </tr>
             </table>
-            <form method="GET" action="{{ car.get_confirmation_url }}">
-              <input type="submit" value="Confirm">
+            <form method="POST" action="/temp">
+               <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
             </form>
           </div>
         </div>
