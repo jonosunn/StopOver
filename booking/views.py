@@ -109,5 +109,4 @@ class SuccessPage(TemplateView):
 					customer=customer.id,
 				)
 
-
 		return render(request, self.template_name)

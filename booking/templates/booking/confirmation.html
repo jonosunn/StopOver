@@ -48,6 +48,8 @@
                   Booking Time: <span id="currenttime"></span></p>
                   <br>
                   <p> Price: ${{ car.price }}p/h</p>
+                  <br>
+                  <p> There is a $10 Intial deposit fee, this will be added as credit towards to final price when car is returned </p>
                   <br></td>
               </tr>
             </table>
@@ -56,8 +58,10 @@
               <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                       data-key="pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB"
                       data-description="A Django Charge"
-                      data-amount="100"
-                      data-locale="auto"></script>
+                      data-amount="1000"
+                      data-locale="auto"
+                      data-email="example@mail.com">
+              </script>
             </form>
 
           </div>
