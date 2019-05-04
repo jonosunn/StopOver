@@ -7,6 +7,7 @@ from django.conf import settings
 from decimal import Decimal
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 import stripe
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
