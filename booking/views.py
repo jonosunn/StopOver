@@ -35,7 +35,7 @@ class ConfirmationPage(TemplateView):
 
 	#TODO: SET CORRECT URLS
 	@csrf_exempt
-	def post(self, request, number_plate):
+	def post(self, request):
 		publishKey = settings.STRIPE_PUBLISHABLE_KEY
 		if request.method == 'POST':
 			print('test')
@@ -73,6 +73,6 @@ class ConfirmationPage(TemplateView):
 	def get(self, request, number_plate):
 		set_car = Car.objects.get(number_plate=number_plate) # Set car object using the number_plate
 		args = {
-        	"car": set_car,
+        	"car": set_car
     	}
 		return render(request, self.template_name, args)
