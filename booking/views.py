@@ -37,7 +37,7 @@ class ConfirmationPage(TemplateView):
 		print("GET METHOD")
 
 		# Get the number plate posted
-		number_plate = request.GET.get("number_plate", "value")
+		number_plate = request.POST.get("number_plate", "value")
 
 		# Get car object using number plate
 		booked_car = Car.objects.get(number_plate=number_plate)
