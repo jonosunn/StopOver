@@ -56,12 +56,39 @@ a
 
 }
 
+.d-inline-block
+{
+	margin: 20px;
+
+
+}
+
+#rightBox
+{
+width: 500px;
+vertical-align: top;
+ height:450px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#leftBox
+{
+		width: 700px;
+
+}
+
+#twoBoxes
+{
+	vertical-align: center;
+	position: absolute;
+}
 
 .list-group-item
 {
 	-bottom: 20px !important;
 	width: 350px;
-	
+
 }
 
 
@@ -94,7 +121,6 @@ a
   font-family: 'Open Sans', sans-serif;
 }
 
-.distanceNumber
-{
+.distanceNumber {
 	color: #C25100 !important;
 }
