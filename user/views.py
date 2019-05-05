@@ -8,7 +8,7 @@ from user.forms import RegisterForm
 class RegisterPageView(TemplateView):
     template_name = 'user/register.html'
 
-    def post(request):
+    def post(self, request):
         if request.method == 'POST':
             form = RegisterForm(request.POST)
             if form.is_valid():
@@ -18,6 +18,11 @@ class RegisterPageView(TemplateView):
                 return redirect('home')
         else:
             form = RegisterForm()
+        return render(request, self.template_name, {'form': form})
+
+    def get(self, request):
+        if request.method == 'GET':
+            form = RegisterForm(request.POST)
         return render(request, self.template_name, {'form': form})
 
 

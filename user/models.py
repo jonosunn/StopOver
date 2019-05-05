@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-import birthday
+
 
 # Our Account Model
 class Account(models.Model):
@@ -14,7 +14,7 @@ class Account(models.Model):
     #     ('F', 'Female'),
     # )
     # gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-	mobile = models.CharField(max_length=10)
+	# mobile = models.CharField(max_length=10)
 	car_license = models.CharField(max_length=7)
 	# location information
 	street_number = models.CharField(max_length=4)
