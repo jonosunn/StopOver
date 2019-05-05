@@ -7,3 +7,4 @@ dj-database-url
 django-jquery
 django-paypal
 whitenoise
+stripe
