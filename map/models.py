@@ -12,5 +12,5 @@ class Car(models.Model):
 	available = models.BooleanField(default=True)
 
 	def get_absolute_url(self):
-		return reverse("confirmation", kwargs={"number_plate": self.number_plate})
+		return reverse("booking", kwargs={"number_plate": self.number_plate})
 		# f"/confirmation/{self.number_plate}"
