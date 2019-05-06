@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from map.models import Car
+from booking.models import Booking
 from django.views.generic import TemplateView, View
 from django.views.generic.list import ListView
 from django.conf import settings
@@ -9,6 +10,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 import stripe
+import datetime
+from django.utils import timezone
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -42,8 +45,12 @@ class ConfirmationPage(TemplateView):
 		# Get car object using number plate
 		booked_car = Car.objects.get(number_plate=number_plate)
 		args = {
-			"car": booked_car
+			"car": booked_car,
 		}
+
+		# Initialize booking
+		Booking.objects.create(brand=booked_car.brand, transmission=booked_car.transmission, number_plate=booked_car.number_plate,
+								price=booked_car.price, start_latitude=booked_car.latitude, start_longitude=booked_car.longitude)
 
 		return render(request, self.template_name, args)
 
@@ -70,5 +77,11 @@ class SuccessPage(TemplateView):
 					currency='aud',
 					customer=customer.id,
 				)
+
+				user = user.request
+				booking = user.booking
+				booking.customer_id = customer_id
+				booking.end_date = datetime.date.today()
+				booking.end_time = timezone.now()
 
 		return render(request, self.template_name)
