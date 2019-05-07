@@ -69,8 +69,8 @@
             coordinates: [longitude, latitude]
           },
           properties: {
-            title: 'Mapbox',
-            description: 'Current Users Location'
+            title: 'Full Name',
+            description: 'Your Current Location'
           }
         }]
       };
@@ -100,8 +100,8 @@
               coordinates: [{{ car.longitude }}, {{ car.latitude }}]
             },
             properties: {
-              title: 'Mapbox',
-              description: 'Car Locations'
+              title: '{{ car.number_plate }}',
+              description: 'Type: {{ car.brand }} Transmission: {{ car.transmission }} Price: ${{ car.price }} per hour'
             }
           },
         {% endfor %}
