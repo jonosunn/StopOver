@@ -57,10 +57,10 @@
               {% csrf_token %}
               <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                       data-key="pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB"
-                      data-description="A Django Charge"
+                      data-description="Booking Deposit Fee"
                       data-amount="1000"
                       data-locale="auto"
-                      data-email="example@mail.com">
+                      data-email="{{ user.email }}">
               </script>
               <script>
                   document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
