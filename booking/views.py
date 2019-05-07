@@ -48,10 +48,14 @@ class ConfirmationPage(TemplateView):
 			"car": booked_car,
 		}
 
+		# Get current user
+		user  = request.user
+
 		# Initialize booking
 		booking = Booking.objects.create(brand=booked_car.brand, transmission=booked_car.transmission, number_plate=booked_car.number_plate,
-								price=booked_car.price, start_latitude=booked_car.latitude, start_longitude=booked_car.longitude)
+								price=booked_car.price, start_latitude=booked_car.latitude, start_longitude=booked_car.longitude, user=user)
 		booking.save()
+
 		return render(request, self.template_name, args)
 
 class SuccessPage(TemplateView):
@@ -78,10 +82,9 @@ class SuccessPage(TemplateView):
 					customer=customer.id,
 				)
 
-				user = user.request
-				booking = user.booking
-				booking.customer_id = customer_id
-				booking.end_date = datetime.date.today()
-				booking.end_time = timezone.now()
+				# Recording customer_id for charging payment later
+				user = request.user
+				booking = Booking.objects.get(user_id=user.id)
+				booking.customer_id = customer.id
 				booking.save()
 		return render(request, self.template_name)
