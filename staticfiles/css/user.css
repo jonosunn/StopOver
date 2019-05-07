@@ -8,10 +8,31 @@
 }
 
 #current-booking, #account-settings, #booking-hist{
+  margin-top: 45px;
+  padding: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
+}
+#nav-contact{
   margin-top: 20px;
 }
 
-#nav-contact, #nav-contact-tab{
+
+.userSubmit{
+  margin-top: 25px;
+}
+
+#personal-details{
+  margin-bottom: 25px;
+}
+
+#payment-details{
+  margin-top: 25px;
+}
+
+.form-group{
+  margin-bottom: 20px;
+}
+#nav-contact-tab{
   float: right;
 }
 #exTab1 .tab-content {
