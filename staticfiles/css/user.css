@@ -1,0 +1,84 @@
+.dash-body {
+  padding : 10px ;
+
+}
+
+.this-dash{
+  margin-top:25px;
+}
+
+#current-booking, #account-settings, #booking-hist{
+  margin-top: 45px;
+  padding: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
+}
+#nav-contact{
+  margin-top: 20px;
+}
+
+
+.userSubmit{
+  margin-top: 25px;
+}
+
+#personal-details{
+  margin-bottom: 25px;
+}
+
+#payment-details{
+  margin-top: 25px;
+}
+
+.form-group{
+  margin-bottom: 20px;
+}
+#nav-contact-tab{
+  float: right;
+}
+#exTab1 .tab-content {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
+
+#exTab2 h3 {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
+
+
+#exTab1 .nav-pills > li > a {
+  border-radius: 0;
+}
+
+/* change border radius for the tab , apply corners on top*/
+
+#exTab3 .nav-pills > li > a {
+  border-radius: 4px 4px 0 0 ;
+}
+
+#exTab3 .tab-content {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
+
+.dash-icon{
+  width:15%;
+}
+
+.left-box{
+  margin-top: 25px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.right-box{
+  margin-top: 25px;
+  margin-left: 75px;
+  display: inline-block;
+}
+#car-photo{
+  height:200px;
+}

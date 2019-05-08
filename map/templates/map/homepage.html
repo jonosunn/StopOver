@@ -31,8 +31,6 @@
     </head>
     <body onload="geoFindMe()">
 		    <div class="content-wrap">
-		    
-
 		     <div class="container_list">
                   <span class="arrow-menu" id="open-button"><img alt="" src="{% static 'images/forward_arrow.png' %}" id="image-menu"></span>
                   <div class="menu-wrap">
@@ -49,16 +47,16 @@
           					</div>
        				</div>
 			    </div>
-			    
+
 			    <div class="content">
-			     
+
 			     {% include "map/navbar.html" %}
-			     
+
 		         {% include "map/displaymap.html" %}
 
-              
+
 		    	</div>
-		    	
+
 	   <script src="{% static 'js/classie.js' %}"></script>
        <script src="{% static 'js/main4.js' %}"></script>
    	</div>
