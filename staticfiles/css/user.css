@@ -47,7 +47,6 @@
   padding : 5px 15px;
 }
 
-/* remove border radius for the tab */
 
 #exTab1 .nav-pills > li > a {
   border-radius: 0;
@@ -67,4 +66,19 @@
 
 .dash-icon{
   width:15%;
+}
+
+.left-box{
+  margin-top: 25px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.right-box{
+  margin-top: 25px;
+  margin-left: 75px;
+  display: inline-block;
+}
+#car-photo{
+  height:200px;
 }
