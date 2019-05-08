@@ -18,7 +18,7 @@ class UserDataBaseTest(TestCase):
 							is_active=False, date_joined=timezone.now())
 
 		user = User.objects.get(id=1)
-		Account.objects.create(user_id=user.id)
+		# Account.objects.create(user_id=user.id)
 
 	# Test for content within created dummy object
 	def test_user_content(self):
