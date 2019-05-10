@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Confirmation</title>
+     	  <link rel="stylesheet" href="{% static 'css/map.css' %}">
+        <link rel="stylesheet" href="{% static 'css/booking.css' %}">
+        <link rel="stylesheet" href="{% static 'css/payment.css' %}">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    </head>
+
+    <body onLoad="navigation()">
+      {% include "map/navbar.html" %}
+      <div class='steps-block'>
+        <div class='session-block text-center' id="countdowndiv1">
+          Insert Session Timer Here
+        </div>
+        <div id="stepper">
+          <div class="fieldset">
+            <div id="car-map"></div>
+            <table style="width:100%">
+              <tr>
+                <td class ="details-block text-left">
+                  <p> Number Plate: {{ car.number_plate }}
+                  <br>
+                  Brand: {{ car.brand }}
+                  <br>
+                  Type:
+                  <br>
+                  Transmission: {{ car.transmission }}
+                  <br>
+                  Year:
+                  <br>
+                  <br>
+                  Booking Date: <span id="currentdate"></span>
+                  <br>
+                  Booking Time: <span id="currenttime"></span></p>
+                  <br>
+                  <p> Price: ${{ car.price }}p/h</p>
+                  <br>
+                  <p> There is a $10 Intial deposit fee, this will be added as credit towards to final price when car is returned </p>
+                  <br></td>
+              </tr>
+            </table>
+            <form action="/success" method="post">
+              {% csrf_token %}
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                      data-key="pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB"
+                      data-description="Booking Deposit Fee"
+                      data-amount="1000"
+                      data-locale="auto"
+                      data-email="{{ user.email }}">
+              </script>
+              <script>
+                  document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+              </script>
+              <button type="submit" class="submit-button">Confirm Booking</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    <script>
+    var dt = new Date();
+    document.getElementById("currentdate").innerHTML = dt.toLocaleDateString();
+    document.getElementById("currenttime").innerHTML = dt.toLocaleTimeString();
+  // This gets the location of the car that has been selected
+    function navigation() {
+      mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
+      var bounds = [
+         [144.70345,-37.91802],
+         [145.22873,-37.64668]
+      ];
+
+        var map = new mapboxgl.Map({
+          container: 'car-map',
+          style: 'mapbox://styles/mapbox/streets-v11',
+          center: [{{ car.longitude }}, {{ car.latitude }}],
+          zoom: 14,
+          bearing: 0,
+          maxBounds: bounds
+      });
+
+      // Cars location marker
+      var geojson_cars = {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [{{ car.longitude }}, {{ car.latitude }}]
+            },
+            properties: {
+              title: 'Mapbox',
+              description: 'Car Locations'
+            }
+          },
+      ]
+      };
+      // add markers to map
+      geojson_cars.features.forEach(function(marker) {
+      // create a HTML element for each feature
+      var el = document.createElement('div');
+      el.className = 'car-marker';
+      // car markers
+      new mapboxgl.Marker(el)
+      .setLngLat(marker.geometry.coordinates)
+        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+          .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+      .addTo(map);
+      });
+    }
+    </script>
+    </body>
+</html>
