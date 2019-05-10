@@ -68,6 +68,28 @@
         </div>
       </div>
     <script>
+    function getSpecificCookie(cookieName, valueOnly) {
+     //Get original cookie string
+    	 var oCookieArray = document.cookie.split(';'),
+    	     fc,
+    	     cnRE = new RegExp(cookieName + '\=');
+    	 //Loop through cookies
+    	 for (var c = 0; c < oCookieArray.length; c++) {
+    	 	   //If found save to variable and end loop
+    	     if (cnRE.test(oCookieArray[c])) {
+    	         fc = oCookieArray[c].trim();
+    	         if (valueOnly) {
+    	             fc = fc.replace(cookieName +'=', '');
+    	         }
+    	         break;
+    	     }
+    	 }
+    	 return fc;
+    }
+
+      const longCookie = getSpecificCookie('longitude', true);
+      const latCookie = getSpecificCookie('latitude', true) ;
+
       mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
       var bounds = [
          [144.70345,-37.91802],
@@ -83,11 +105,70 @@
           maxBounds: bounds
       });
 
+      // loading marker for the users Location
+      var geojson_user = {
+        type: 'FeatureCollection',
+        features: [{
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [longCookie, latCookie]
+          },
+          properties: {
+            title: '{{ user.first_name }} {{ user.last_name }}',
+            description: 'Your Current Location'
+          }
+        }]
+      };
+
+      // add users marker to map
+      geojson_user.features.forEach(function(marker) {
+        // create a HTML element for each feature
+        var el = document.createElement('div');
+        el.className = 'users-marker';
+        // user marker
+        new mapboxgl.Marker(el)
+          .setLngLat(marker.geometry.coordinates)
+            .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+              .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+          .addTo(map);
+      });
+
+      // Cars location marker
+      var geojson_cars = {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [{{ car.longitude }}, {{ car.latitude }}]
+            },
+            properties: {
+              title: '{{ car.number_plate }}',
+              description: 'Type: {{ car.brand }} Transmission: {{ car.transmission }} Price: ${{ car.price }} per hour'
+            }
+          },
+      ]
+      };
+      // add markers to map
+      geojson_cars.features.forEach(function(marker) {
+      // create a HTML element for each feature
+      var el = document.createElement('div');
+      el.className = 'car-marker';
+      // car markers
+      new mapboxgl.Marker(el)
+      .setLngLat(marker.geometry.coordinates)
+        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+          .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+      .addTo(map);
+      });
+
       var canvas = map.getCanvasContainer();
 
        // an arbitrary start will always be the same
        // only the end or destination will change
-       var start = [{{car.longitude}}, {{car.latitude}}];
+       var start = [longCook1ie, latCookie];
 
        // create a function to make a directions request
        function getRoute(end) {
@@ -177,14 +258,10 @@
                }
              ]
            }
-         },
-         "paint": {
-           "circle-radius": 10,
-           "circle-color": "#3887be"
          }
        });
 
-       var coords = [144.962769, -37.810238];
+       var coords = [{{car.longitude}}, {{car.latitude}}];
          var end = {
            "type": "FeatureCollection",
            "features": [{
@@ -217,10 +294,6 @@
                }
              ]
            }
-         },
-         "paint": {
-           "circle-radius": 10,
-           "circle-color": "#f30"
          }
        });
      };

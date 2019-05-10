@@ -81,8 +81,8 @@
                       coordinates: [{{ car.longitude }}, {{ car.latitude }}]
                     },
                     properties: {
-                      title: 'Mapbox',
-                      description: 'Car Locations'
+                      title: '{{ car.number_plate }}',
+                      description: 'Type: {{ car.brand }} Transmission: {{ car.transmission }} Price: ${{ car.price }} per hour'
                     }
                   },
               ]
