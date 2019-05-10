@@ -121,7 +121,37 @@
           .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
       .addTo(map);
       });
+
+      map.on('load', function () {
+
+        map.addLayer({
+          "id": "route",
+          "type": "line",
+          "source": {
+            "type": "geojson",
+            "data": {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                  [144.962769,-37.810238],
+                  [{{ car.longitude }}, {{ car.latitude }}]
+                ]
+              }
+            }
+          },
+          "layout": {
+            "line-join": "round",
+            "line-cap": "round"
+          },
+          "paint": {
+            "line-color": "#888",
+            "line-width": 8
+          }
+        });
+      });
     }
-    </script>
-    </body>
+  </script>
+  </body>
 </html>
