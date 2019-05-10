@@ -43,10 +43,6 @@
                   Year:
                   <br>
                   <br>
-                  Booking Date: <span id="currentdate"></span>
-                  <br>
-                  Booking Time: <span id="currenttime"></span></p>
-                  <br>
                   <p> Price: ${{ car.price }}p/h</p>
                   <br>
                   <p> There is a $10 Intial deposit fee, this will be added as credit towards to final price when car is returned </p>
@@ -72,11 +68,6 @@
         </div>
       </div>
     <script>
-    var dt = new Date();
-    document.getElementById("currentdate").innerHTML = dt.toLocaleDateString();
-    document.getElementById("currenttime").innerHTML = dt.toLocaleTimeString();
-  // This gets the location of the car that has been selected
-    function navigation() {
       mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
       var bounds = [
          [144.70345,-37.91802],
@@ -92,66 +83,149 @@
           maxBounds: bounds
       });
 
-      // Cars location marker
-      var geojson_cars = {
-        type: 'FeatureCollection',
-        features: [
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [{{ car.longitude }}, {{ car.latitude }}]
-            },
-            properties: {
-              title: 'Mapbox',
-              description: 'Car Locations'
-            }
-          },
-      ]
-      };
-      // add markers to map
-      geojson_cars.features.forEach(function(marker) {
-      // create a HTML element for each feature
-      var el = document.createElement('div');
-      el.className = 'car-marker';
-      // car markers
-      new mapboxgl.Marker(el)
-      .setLngLat(marker.geometry.coordinates)
-        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-          .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
-      .addTo(map);
-      });
+      var canvas = map.getCanvasContainer();
 
-      map.on('load', function () {
+       // an arbitrary start will always be the same
+       // only the end or destination will change
+       var start = [{{car.longitude}}, {{car.latitude}}];
 
-        map.addLayer({
-          "id": "route",
-          "type": "line",
-          "source": {
-            "type": "geojson",
-            "data": {
-              "type": "Feature",
-              "properties": {},
-              "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                  [144.962769,-37.810238],
-                  [{{ car.longitude }}, {{ car.latitude }}]
-                ]
-              }
-            }
-          },
-          "layout": {
-            "line-join": "round",
-            "line-cap": "round"
-          },
-          "paint": {
-            "line-color": "#888",
-            "line-width": 8
-          }
-        });
-      });
-    }
+       // create a function to make a directions request
+       function getRoute(end) {
+         // make directions request using cycling profile
+         var url = 'https://api.mapbox.com/directions/v5/mapbox/walking/' + start[0] + ',' + start[1] + ';' + end[0] + ',' + end[1] + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
+
+         // make an XHR request https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+         var req = new XMLHttpRequest();
+         req.responseType = 'json';
+         req.open('GET', url, true);
+         req.onload  = function() {
+           var data = req.response.routes[0];
+           var route = data.geometry.coordinates;
+           var geojson = {
+             "type": "Feature",
+             "properties": {},
+             "geometry": {
+               "type": "LineString",
+               "coordinates": route
+             }
+           };
+           // if the route already exists on the map, we'll reset it using setData
+           if (map.getSource('route')) {
+             map.getSource('route').setData(geojson);
+           }
+           // otherwise, we'll make a new request
+           else {
+             map.addLayer({
+               "id": "route",
+               "type": "line",
+               "source": {
+                 "type": "geojson",
+                 "data": {
+                   "type": "Feature",
+                   "properties": {},
+                   "geometry": {
+                     "type": "LineString",
+                     "coordinates": geojson
+                   }
+                 }
+               },
+               "layout": {
+                 "line-join": "round",
+                 "line-cap": "round"
+               },
+               "paint": {
+                 "line-color": "#3887be",
+                 "line-width": 5,
+                 "line-opacity": 0.75
+               }
+             });
+           };
+
+           // get the sidebar and add the instructions
+           var instructions = document.getElementById('instructions');
+           var steps = data.legs[0].steps;
+
+           var tripInstructions = [];
+           for (var i = 0; i < steps.length; i++) {
+             tripInstructions.push('<br><li>' + steps[i].maneuver.instruction) + '</li>';
+             instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration/60) + ' min 🚴 </span>' + tripInstructions;
+           };
+         };
+         req.send();
+       };
+
+       map.on('load', function(){
+         // make an initial directions request that
+         // starts and ends at the same location
+         getRoute(start);
+
+         // Add destination to the map
+         map.addLayer({
+           "id": "point",
+           "type": "circle",
+           "source": {
+             "type": "geojson",
+             "data": {
+               "type": "FeatureCollection",
+               "features": [{
+                 "type": "Feature",
+                 "properties": {},
+                 "geometry": {
+                   "type": "Point",
+                   "coordinates": start
+                 }
+               }
+             ]
+           }
+         },
+         "paint": {
+           "circle-radius": 10,
+           "circle-color": "#3887be"
+         }
+       });
+
+       var coords = [144.962769, -37.810238];
+         var end = {
+           "type": "FeatureCollection",
+           "features": [{
+             "type": "Feature",
+             "properties": {},
+             "geometry": {
+               "type": "Point",
+               "coordinates": coords
+             }
+           }
+         ]
+       };
+       if (map.getLayer('end')) {
+         map.getSource('end').setData(end);
+       } else {
+         map.addLayer({
+           "id": "end",
+           "type": "circle",
+           "source": {
+             "type": "geojson",
+             "data": {
+               "type": "FeatureCollection",
+               "features": [{
+                 "type": "Feature",
+                 "properties": {},
+                 "geometry": {
+                   "type": "Point",
+                   "coordinates": coords
+                 }
+               }
+             ]
+           }
+         },
+         "paint": {
+           "circle-radius": 10,
+           "circle-color": "#f30"
+         }
+       });
+     };
+     getRoute(coords);
+     });
   </script>
   </body>
 </html>
