@@ -7,8 +7,8 @@ from django.views.generic.list import ListView
 from django.conf import settings
 from decimal import Decimal
 from django.urls import reverse
-from user.forms import AccountForm, UserForm
-
+from user.forms import AccountForm, UserForm, CustomAuthenticationForm
+from django.contrib.auth.views import LoginView
 
 class UserDashPage(TemplateView):
     template_name = 'user/userdash.html'
@@ -77,3 +77,7 @@ class RegisterPageView(TemplateView):
             'user_form': user_form,
         }
         return render(request, self.template_name, args)
+
+
+class LoginPageView(LoginView):
+    authentication_form = CustomAuthenticationForm

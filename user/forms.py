@@ -1,12 +1,11 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django.contrib.auth.models import User
 from user.models import Account
 
 class UserForm(UserCreationForm):
 
     # UserCreationForm has username, password, password confirmation
-
     class Meta:
         model = User
         fields = ['email', 'password1', 'password2', 'first_name', 'last_name']
@@ -24,3 +23,8 @@ class AccountForm(forms.ModelForm):
     class Meta:
         model = Account
         fields = ['car_license', 'mobile', 'street_number', 'street_name', 'suburb', 'postcode']
+
+class CustomAuthenticationForm(AuthenticationForm):
+    username = UsernameField(
+        label='Email'
+    )
