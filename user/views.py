@@ -1,10 +1,27 @@
+# Create your views here.
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from user.models import Account
 from django.views.generic import TemplateView, View
 from django.views.generic.list import ListView
+from django.conf import settings
+from decimal import Decimal
+from django.urls import reverse
 from user.forms import AccountForm, UserForm
 
 
-# Create your views here.
+class UserDashPage(TemplateView):
+    template_name = 'user/userdash.html'
+
+    # def get(self, request, user_id):
+    #     set_user = Acount.objects.get(user_id=user_id)
+    #
+    #
+    #     args = {
+    #         "user": set_user,
+    #     }
+    #     return render(request, self.template_name, args)
+
 class RegisterPageView(TemplateView):
     template_name = 'user/register.html'
 
@@ -17,8 +34,13 @@ class RegisterPageView(TemplateView):
 
             if account_form.is_valid() and user_form.is_valid():
 
-                user = user_form.save()
+                # user = user_form.save()
+                user = user_form.save(commit=False)
+                user.username = user.email
+                user.save()
+
                 account = account_form.save(commit=False) # Don't save to the database right away
+
                 account.user = user
                 account.save()
 
@@ -55,7 +77,3 @@ class RegisterPageView(TemplateView):
             'user_form': user_form,
         }
         return render(request, self.template_name, args)
-
-
-# class LoginPageView(TemplateView):
-#     template_name = 'user/login.html'
