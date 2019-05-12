@@ -5,31 +5,17 @@
      <div id="car-image"><img id="car-photo" src="{% static 'images/car-image1.png' %}"></div>
    </div>
   <div class="right-box col-">
-<!--     <div id="car-type">Car model: Toyota</div>
-    <div id="start-date">Start date: 08 May 2018</div>
     <div id="timer">1:00:53</div>
-    <div id="end-button"></div> -->
     <div id="car-type">Car model: {{ booking.brand }}</div>
     <div id="car-transmission">Transmission: {{ booking.transmission }}</div>
     <div id="car-number-plate">Number Plate: {{ booking.number_plate }}</div>
     <div id="start-date">Start date: {{ booking.start_date }}</div>
     <div id="start-time">Start time: {{ booking.start_time }}</div>
     <div id="price">Price p/h: ${{ booking.price }}</div>
-    <div id="timer">1:00:53</div>
     <div id="test"> </div>
     <div id="end-button">
     <form action="user" method="post">
       {% csrf_token %}
-        <!-- <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB"
-          data-description="Booking Fee"
-          data-amount=""
-          data-locale="auto"
-          data-email="{{ user.email }}">
-  		</script>
-  		<script>
-      	  document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
-  		</script> -->
   	    <button type="submit" class="submit-button">Return Car</button>
     </form>
     </div>

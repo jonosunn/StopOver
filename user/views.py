@@ -12,8 +12,6 @@ from booking.models import Booking
 import datetime
 import stripe
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
 class UserDashPage(TemplateView):
 	template_name = 'user/userdash.html'
 
