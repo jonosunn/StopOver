@@ -20,9 +20,11 @@ class UserForm(UserCreationForm):
         return user
 
 class AccountForm(forms.ModelForm):
+
     class Meta:
         model = Account
-        fields = ['car_license', 'mobile', 'street_number', 'street_name', 'suburb', 'postcode']
+        fields = [ 'mobile', 'car_license_name', 'car_license', 'car_license_expirydate', 'street_number', 'street_name', 'suburb', 'postcode']
+
 
 class CustomAuthenticationForm(AuthenticationForm):
     username = UsernameField(
