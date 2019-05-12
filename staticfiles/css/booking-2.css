@@ -1,0 +1,67 @@
+@import url(//fonts.googleapis.com/css?family=Roboto+Mono:400,700i);
+
+#bg-block-1 {
+	width: 100%;
+	text-align: center;
+  background-color: #CDCDCD;
+  height: 150px;
+	/* position: relative; */
+}
+#bg-block-2 {
+	width: 100%;
+	text-align: center;
+  background-color: #99D3DF;
+  height: 325px;
+	/* position: relative; */
+}
+
+.fieldset {
+  /* -moz-box-shadow:    3px 3px 45px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 45px 6px #ccc;
+  box-shadow:         3px 3px 45px 6px #ccc;
+  background-color: white;
+  margin: 2%;
+  margin-left: 4%;
+  margin-right: 4%;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 1%; */
+  position: absolute;
+  background: white;
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 1%;
+  box-sizing: border-box;
+  width: 80%;
+  /* margin: 0 10%; */
+  margin-left: 10%;
+  margin-right:5%;
+  margin-top: 8%;
+  height: 350px;
+}
+
+#booking-table{
+  margin-bottom: 35px;
+  margin-top: 25px;
+}
+
+#booking-button{
+  background-color: #88CD8F;
+  font-family: 'Roboto Mono', monospace;
+  border: none;
+}
+
+.details-block  {
+  width: 400px;
+}
+
+.booking-text{
+  margin-right: 25%;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+
+}
+.booking-form-title{
+  font-weight: bold;
+}
