@@ -1,13 +1,13 @@
 @import url(//fonts.googleapis.com/css?family=Roboto+Mono:400,700i);
 
-#bg-block-1 {
+.bg-block-1 {
 	width: 100%;
 	text-align: center;
   background-color: #CDCDCD;
   height: 150px;
 	/* position: relative; */
 }
-#bg-block-2 {
+.bg-block-2 {
 	width: 100%;
 	text-align: center;
   background-color: #99D3DF;
@@ -63,5 +63,7 @@
 
 }
 .booking-form-title{
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
   font-weight: bold;
 }

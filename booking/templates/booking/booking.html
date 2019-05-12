@@ -16,9 +16,12 @@
         <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
-    <body>
+    <body onload="carLocation()">
       {% include "map/navbar.html" %}
-      <div id="bg-block-1">
+      <div class="bg-block-1">
+        <!-- <div class='session-block text-center' id="countdowndiv1">
+          Insert Session Timer Here
+        </div> -->
         <div id="booking-content" class="fieldset">
           <table style="width:100%" id="booking-table">
             <tr>
@@ -47,8 +50,8 @@
           </form>
         </div>
       </div>
-      <div id="bg-block-2"></div>
-      <div id="booking-footer">
+      <div class="bg-block-2"></div>
+      <div class="booking-footer">
       </div>
         <script>
 
