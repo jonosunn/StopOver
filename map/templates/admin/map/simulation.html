@@ -13,39 +13,59 @@
     </style>
   </head>
   <body>
-    <div id='map'></div>
-    <script>
-      mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
-      var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [144.399232, -37.8102],
-        zoom: 2
-      });
 
-      var marker = new mapboxgl.Marker();
+ <div id='map'></div>
+ <script>
+   mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
+   var map = new mapboxgl.Map({
+     container: 'map',
+     style: 'mapbox://styles/mapbox/streets-v11',
+     center: [144.9628, -37.8102],
+     zoom: 2
+   });
 
-      function animateMarker(timestamp) {
-        var longRadius = 20;
-        var latRadius = 50
+   var long = -996;
+   var lat = -38.2;
 
-        // Update the data to a new position based on the animation timestamp. The
-        // divisor in the expression `timestamp / 1000` controls the animation speed.
-        marker.setLngLat([
-          Math.cos(timestamp / 1000) * longRadius,
-          Math.sin(timestamp / 1000) * latRadius
-        ]);
+   function pointOnCircle(angle) {
+     return {
+       "type": "Point",
+       "coordinates": [
+         Math.cos(angle) * long,
+         Math.sin(angle) * lat
+       ]
+     };
+   }
 
-        // Ensure it's added to the map. This is safe to call if it's already added.
-        marker.addTo(map);
+   map.on('load', function () {
+     // Add a source and layer displaying a point which will be animated in a circle.
+     map.addSource('point', {
+       "type": "geojson",
+       "data": pointOnCircle(8)
+     });
 
-        // Request the next frame of the animation.
-        requestAnimationFrame(animateMarker);
-      }
+     map.addLayer({
+       "id": "point",
+       "source": "point",
+       "type": "circle",
+       "paint": {
+         "circle-radius": 10,
+         "circle-color": "#007cbf"
+     }
+   });
 
-      // Start the animation.
-      requestAnimationFrame(animateMarker);
-    </script>
+   function animateMarker(timestamp) {
+     // Update the data to a new position based on the animation timestamp. The
+     // divisor in the expression `timestamp / 1000` controls the animation speed.
+     map.getSource('point').setData(pointOnCircle(timestamp / 10000000));
 
+     // Request the next frame of the animation.
+     requestAnimationFrame(animateMarker);
+   }
+
+   // Start the animation.
+   animateMarker(0);
+   });
+  </script>
   </body>
 </html>
