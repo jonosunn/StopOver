@@ -64,3 +64,26 @@ class UserDashPage(TemplateView):
 			)
 
 			return render(request, self.template_name)
+
+class BookingHistoryPage(TemplateView):
+	template_name = 'user/bookinghist.html'
+
+	def get(self, request):
+		if request.method == 'GET':
+
+			# Get current user
+			user = request.user
+
+			# Get the booking history
+			if user.account.book_status == True:
+				booking_history = Booking.objects.all().filter(user_id=user.id).order_by("-id")[1:]
+			else:
+				booking_history = Booking.objects.all().filter(user_id=user.id)
+
+			args = {
+				"history": booking_history
+			}
+
+		return render(request, self.template_name, args)
+
+
