@@ -46,10 +46,28 @@
   margin-top: 25px;
 }
 
-#booking-button{
-  background-color: #88CD8F;
+#confirm-table{
+position:relative;
+top: -60px;
+}
+
+.booking-button{
   font-family: 'Roboto Mono', monospace;
+}
+
+#process-button{
+  background-color: #88CD8F;
   border: none;
+  top: -50px;
+
+
+}
+
+#confirm-button{
+  background-color: #88CD8F;
+  border: none;
+
+
 }
 
 .details-block  {
@@ -66,4 +84,22 @@
   font-family: 'Roboto Mono', monospace;
   font-size: 12px;
   font-weight: bold;
+}
+
+#confirm-form{
+  padding:0 !important;
+}
+.confirm-block{
+  display: inline-block;
+}
+#car-map {
+  /* width: 90% !important; */
+  /* margin: 10px; */
+  /* position: absolute; */
+  width: 50%;
+  max-width: 100%;
+  height: 250px !important;
+  margin: 2%;
+  text-align: left;
+  margin-top: 1%;
 }

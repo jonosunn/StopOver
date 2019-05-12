@@ -6,7 +6,7 @@ body, html {
 
 *, label {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 16px;
+  /* font-size: 16px; */
   font-variant: normal;
   padding: 0;
   margin: 0;
