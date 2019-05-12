@@ -30,3 +30,12 @@ class HomePageView(TemplateView):
 			set_car.available = True	# change set_car available to True
 			set_car.save()	# save changes into the database
 		return render(request, self.template_name)
+
+class SimulationPageView(TemplateView):
+	template_name ='admin/map/simulation.html'
+
+	def get_context_data(self, *args, **kwargs):
+		print('test')
+		context = super(SimulationPageView, self).get_context_data(*args, **kwargs)
+		context['cars'] = Car.objects.filter(available=True)
+		return context

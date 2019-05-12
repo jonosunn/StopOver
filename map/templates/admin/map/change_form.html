@@ -1,5 +1,5 @@
 {% extends "admin/change_form.html" %}
 {% block field_sets %}
-  <a href="admin/simulation.html" target="_blank">GPS Location</a>
+  <a href="{% url 'simulation' %}" class="btn btn-high btn-success">GPS Location</a>
   {{ block.super }}
 {% endblock %}
