@@ -23,8 +23,18 @@ class UserDashPage(TemplateView):
 		# if user.account.book_status == True:
 		curr_booking = Booking.objects.all().filter(user_id=user.id).order_by("-id")[0]
 
+		# Get the booking history
+		booking_history = None
+			
+		if user.account.book_status == True:
+			print("True")
+			booking_history = Booking.objects.all().filter(user_id=user.id).order_by("-id")[1:]
+		else:
+			booking_history = Booking.objects.all().filter(user_id=user.id)
+
 		args = {
 			"booking": curr_booking,
+			"booking_history": booking_history
 		}
 
 		return render(request, self.template_name, args)
@@ -51,10 +61,10 @@ class UserDashPage(TemplateView):
 			duration = round((seconds/60/60), 2)
 
 			# Determine price subtracting initial $10 booking deposit fee and round to nearest dollar
-			price_in_dollars = round((duration * curr_booking.price) - 10, 0)
+			price_in_dollars = int(round((duration * curr_booking.price) - 10))
 
 			# Convert to cents for stripe format
-			price_in_cents = int(price_in_dollars * 100)
+			price_in_cents = price_in_dollars * 100
 
 			# Charge the Customer instead of the card:
 			charge = stripe.Charge.create(
@@ -69,20 +79,22 @@ class BookingHistoryPage(TemplateView):
 	template_name = 'user/bookinghist.html'
 
 	def get(self, request):
-		if request.method == 'GET':
+		# if request.method == 'GET':
 
-			# Get current user
-			user = request.user
+		# 	# Get current user
+		# 	user = request.user
 
-			# Get the booking history
-			if user.account.book_status == True:
-				booking_history = Booking.objects.all().filter(user_id=user.id).order_by("-id")[1:]
-			else:
-				booking_history = Booking.objects.all().filter(user_id=user.id)
+		# 	# Get the booking history
+		# 	booking_history = None
 
-			args = {
-				"history": booking_history
-			}
+		# 	if user.account.book_status == True:
+		# 		booking_history = Booking.objects.all().filter(user_id=user.id).order_by("-id")[1:]
+		# 	else:
+		# 		booking_history = Booking.objects.all().filter(user_id=user.id)
+
+		# 	args = {
+		# 		"booking_history": booking_history,
+		# 	}
 
 		return render(request, self.template_name, args)
 
