@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <title>Success</title>
      	  <link rel="stylesheet" href="{% static 'css/map.css' %}">
-        <link rel="stylesheet" href="{% static 'css/booking.css' %}">
+        <link rel="stylesheet" href="{% static 'css/booking-2.css' %}">
         <link rel="stylesheet" href="{% static 'css/payment.css' %}">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
@@ -22,17 +22,21 @@
 
     <body onLoad="navigation()">
       {% include "map/navbar.html" %}
-      <div class='steps-block'>
-        <div id="stepper">
-          <div class="fieldset">
-            <h2>Thanks, for booking with StopOver!</h2>
-            <h2>Happy Driving!! </h2>
-            <h3>
+      <div class="bg-block-1">
+        <div id="booking-content" class="fieldset">
+          <div id="success-text">
+            <h3>Thanks, for booking with StopOver!</h2>
+              <br/>
+            <div id="success-photo"><img src="../static/images/success-image.png" height=200px></div>
+            <br/>
+            <h5>
               Redirecting to the Home Page in <span id="countdown">10</span> seconds
-            </h3>
+            </h5>
           </div>
         </div>
       </div>
+      <div class="bg-block-2"></div>
+      <div class="booking-footer"></div>
       <script type="text/javascript">
 
           // Total seconds to wait

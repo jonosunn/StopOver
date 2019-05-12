@@ -80,12 +80,25 @@ top: -60px;
   font-size: 12px;
 
 }
+#success-text{
+  text-align: center;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+  position:relative;
+  top: -10px;
+}
 .booking-form-title{
   font-family: 'Roboto Mono', monospace;
   font-size: 12px;
   font-weight: bold;
 }
+#countdown{
+  font-family: 'Roboto Mono', monospace;
 
+}
+#success-photo{
+  height:50%;
+}
 #confirm-form{
   padding:0 !important;
 }
