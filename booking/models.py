@@ -17,6 +17,7 @@ class Booking(models.Model):
 	transmission = models.CharField(max_length=20)
 	number_plate = models.CharField(max_length=7)
 	price = models.IntegerField()
+	actual_price = models.IntegerField()
 	start_longitude = models.FloatField(default=None)
 	start_latitude = models.FloatField(default=None)
 	end_longitude = models.FloatField(default=None, null=True)
