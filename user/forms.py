@@ -23,7 +23,7 @@ class UserForm(UserCreationForm):
             return email
 
         # A user was found with this as a username, raise an error.
-        raise forms.ValidationError('This email address is already in use.')
+        raise forms.ValidationError('This email has already been registered.')
 
     def save(self, commit=True):
         user = super().save(commit=False)
