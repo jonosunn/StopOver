@@ -23,8 +23,10 @@ class BookingPage(TemplateView):
 		# Set car object using the number_plate
 				
 		set_car = Car.objects.get(number_plate=number_plate)
+
 		# Set the selected car to false so other users can't select the car
 		# set_car.available = False
+		
 		# Save car object to database
 		# set_car.save()
 
@@ -38,7 +40,6 @@ class ConfirmationPage(TemplateView):
 	template_name = 'booking/confirmation.html'
 
 	def post(self, request):
-		print("GET METHOD")
 
 		# Get the number plate posted
 		number_plate = request.POST.get("number_plate", "value")
@@ -57,6 +58,10 @@ class ConfirmationPage(TemplateView):
 								price=booked_car.price, start_latitude=booked_car.latitude, start_longitude=booked_car.longitude, user=user)
 		booking.save()
 
+		# Update user's book status in Account model database
+		user.account.book_status = True
+		user.save()
+
 		return render(request, self.template_name, args)
 
 class SuccessPage(TemplateView):
@@ -64,16 +69,12 @@ class SuccessPage(TemplateView):
 
 	def post(self, request):
 		if request.method == 'POST':
-			print('test')
 			token = request.POST.get('stripeToken', False)
-			print('test')
 			if token:
-				print('test1')
-				print('test2')
 				# Create a Customer:
 				customer = stripe.Customer.create(
 					source=token,
-					email='paying.user@example.com',
+					email=request.user.email,
 				)
 
 				# Charge the Customer instead of the card:
@@ -84,8 +85,8 @@ class SuccessPage(TemplateView):
 				)
 
 				# Recording customer_id for charging payment later
-				user = request.user
-				booking = Booking.objects.get(user_id=user.id)
+				booking = Booking.objects.all().filter(user_id=request.user.id).order_by("-id")[0]
 				booking.customer_id = customer.id
 				booking.save()
+
 		return render(request, self.template_name)
