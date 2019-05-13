@@ -73,7 +73,7 @@ class SuccessPage(TemplateView):
 				# Create a Customer:
 				customer = stripe.Customer.create(
 					source=token,
-					email='paying.user@example.com',
+					email=request.user.email,
 				)
 
 				# Charge the Customer instead of the card:
@@ -84,8 +84,7 @@ class SuccessPage(TemplateView):
 				)
 
 				# Recording customer_id for charging payment later
-				user = request.user
-				booking = Booking.objects.all().filter(user_id=user.id).order_by("-id")[0]
+				booking = Booking.objects.all().filter(user_id=request.user.id).order_by("-id")[0]
 				booking.customer_id = customer.id
 				booking.save()
 		return render(request, self.template_name)
