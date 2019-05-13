@@ -1,6 +1,6 @@
-html, 
-body, 
-.container_list, 
+html,
+body,
+.container_list,
 .content-wrap {
 	overflow: hidden;
 	width: 100%;
@@ -16,7 +16,7 @@ body,
 }
 
 .content-wrap {
-	overflow-y: scroll;
+	overflow-y: hidden;
 	-webkit-overflow-scrolling: touch;
 	-webkit-transition: -webkit-transform 0.4s;
 	transition: transform 0.4s;
@@ -24,7 +24,7 @@ body,
 
 .content {
 	position: relative;
-	
+
 }
 
 .content::before {
@@ -52,7 +52,7 @@ body,
 	padding: 0;
 	text-indent: 20px;
 	border: none;
-		
+
 }
 
 .arrow-menu::after{
@@ -84,7 +84,7 @@ body,
 	overflow-y: scroll;
  	overflow-x: hidden;
 	background: WHITESMOKE;
- 	
+
 }
 
 .menu {
@@ -108,7 +108,7 @@ body,
 	display: block;
 	padding: 0.8em;
 	margin-bottom: 5px;
-  
+
 }
 
 .icon-list i {
