@@ -11,7 +11,8 @@ class MapAppTest(TestCase):
     def setUp(self):
         Car.objects.create(brand='test_brand', transmission='automatic', number_plate='TEST01',
             price=100, longitude=-37.6799703, latitude=145.0548504, available=True)
-        self.client.force_login(self.user)
+
+        self.client.force_login(User.objects.get_or_create(username='teststop')[0])
 
     def test_booking_page_status_code(self):
         car = Car.objects.get(id=1)
