@@ -20,15 +20,12 @@ class UserDashPage(TemplateView):
 
 		user = request.user
 
-		# Get the current user logged in and their current booking
-		if user.account.book_status == True:
-		curr_booking = Booking.objects.all().filter(user_id=user.id).order_by("-id")[0]
-
-		# Get the booking history
+		# Get user's current booking and booking history
 		booking_history = None
-			
+		curr_booking = None	
+
 		if user.account.book_status == True:
-			print("True")
+			curr_booking = Booking.objects.all().filter(user_id=user.id).order_by("-id")[0]
 			booking_history = Booking.objects.all().filter(user_id=user.id).order_by("-id")[1:]
 		else:
 			booking_history = Booking.objects.all().filter(user_id=user.id)
@@ -58,6 +55,10 @@ class UserDashPage(TemplateView):
 			end = datetime.datetime.combine(curr_booking.end_date, curr_booking.end_time)
 			time_difference = end - start
 			seconds = time_difference.total_seconds()
+
+			# Charge user for minimum 1 hour booking
+			if seconds < 3600:
+				seconds = 3600
 
 			# Determine hours and minutes rounded with 2 decimal places
 			duration = round((seconds/60/60), 2)
