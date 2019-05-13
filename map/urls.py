@@ -7,3 +7,4 @@ urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
     path('admin/car/simulation', SimulationPageView.as_view(), name='simulation')
 ]
+
