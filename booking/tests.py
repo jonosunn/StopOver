@@ -16,11 +16,13 @@ class MapAppTest(TestCase):
         self.client.force_login(User.objects.get_or_create(username='teststop')[0])
 
     def test_booking_page_status_code(self):
+        self.client.force_login(User.objects.get_or_create(username='teststop')[0])
         car = Car.objects.get(id=1)
         response = self.client.get(reverse('booking', args=(car.number_plate,)))
         self.assertEquals(response.status_code, 200)
 
     def test_booking_url_by_name(self):
+        self.client.force_login(User.objects.get_or_create(username='teststop')[0])
         car = Car.objects.get(id=1)
         response = self.client.get(reverse('booking', args=(car.number_plate,)))
         self.assertEquals(response.status_code, 200)
