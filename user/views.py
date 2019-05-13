@@ -21,7 +21,7 @@ class UserDashPage(TemplateView):
 		user = request.user
 
 		# Get the current user logged in and their current booking
-		# if user.account.book_status == True:
+		if user.account.book_status == True:
 		curr_booking = Booking.objects.all().filter(user_id=user.id).order_by("-id")[0]
 
 		# Get the booking history
@@ -78,6 +78,10 @@ class UserDashPage(TemplateView):
 				currency='aud',
 				customer=curr_booking.customer_id,
 			)
+
+			# Update user's book status in Account model database
+			user.account.book_status = False
+			user.save()
 
 			return render(request, "user/return_success.html")
 
