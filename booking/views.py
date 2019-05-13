@@ -25,13 +25,19 @@ class BookingPage(TemplateView):
 		if account_user.book_status == False:
 			# Set car object using the number_plate
 			set_car = Car.objects.get(number_plate=number_plate)
-			# Set the selected car to false so other users can't select the car
-			# set_car.available = False
-			# Save car object to database
-			# set_car.save()
-			args = {
-	        	"car": set_car,
-	    	}
+
+			if set_car.available == True:
+				# Set the selected car to false so other users can't select the car
+				# set_car.available = False
+				# Save car object to database
+				# set_car.save()
+				args = {
+	        		"car": set_car,
+	    		}
+			#if set_car is not available
+			else:
+				# add alert popup "Car is currently unavailable"
+				return redirect(reverse('home'))
 		else:
 			# User has booked a car already, send an alert
 			return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
@@ -50,7 +56,7 @@ class ConfirmationPage(TemplateView):
 	def post(self, request):
 		print("POST METHOD")
 		# Get user book status to see if they have booked a car
-		account_user = Account.objects.get(user__username=request.user)	
+		account_user = Account.objects.get(user__username=request.user)
 		if account_user.book_status == False:	# if false, they can't book
 			# Get the number plate posted
 			number_plate = request.POST.get("number_plate", "value")
@@ -61,11 +67,16 @@ class ConfirmationPage(TemplateView):
 			}
 		else:
 			return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-			# User has booked a car already... Alert.
+
 		return render(request, self.template_name, args)
 
 class SuccessPage(TemplateView):
 	template_name = 'booking/success.html'
+
+	def get(self, request):
+		print("GET success")
+		# when user enters url instead through booking, redirect to homepage
+		return redirect(reverse('home'))
 
 	def post(self, request):
 		if request.method == 'POST':
