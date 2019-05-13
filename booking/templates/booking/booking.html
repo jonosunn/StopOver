@@ -44,7 +44,7 @@
                   <br></td>
               </tr>
             </table>
-            <form method="POST" action="/confirmation">
+            <form method="POST" action="{% url 'confirmation' %}">
                {% csrf_token %}
                <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
                <input type="submit" class="submit-button" value="Process to Confirmation">
