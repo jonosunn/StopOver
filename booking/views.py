@@ -21,6 +21,7 @@ class BookingPage(TemplateView):
 	# Recieving get request from form
 	def get(self, request, number_plate):
 		# Set car object using the number_plate
+				
 		set_car = Car.objects.get(number_plate=number_plate)
 		# Set the selected car to false so other users can't select the car
 		# set_car.available = False

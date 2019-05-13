@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from user.models import Account
 
 from django.utils import timezone
@@ -156,3 +157,13 @@ class UserDataBaseTest(TestCase):
 			self.assertTrue(True, "New email is more than 254 characters")
 		else:
 			self.assertTrue(False, "New email is less than 254 characters")
+
+
+	# def test_regex(self):
+	# 	test_mobile = Account(mobile="A")
+	# 	with self.assertRaises(ValidationError):
+	#
+	# 		if test_mobile.full_clean():
+	# 			test_mobile.save()
+	#
+	# 	self.assertEquals(Account.objects.filter(mobile="A").count(), 0)
