@@ -11,6 +11,7 @@ from django.contrib.auth.views import LoginView
 from booking.models import Booking
 import datetime
 import stripe
+from django.contrib import messages
 
 class UserDashPage(TemplateView):
 	template_name = 'user/userdash.html'
@@ -19,15 +20,12 @@ class UserDashPage(TemplateView):
 
 		user = request.user
 
-		# Get the current user logged in and their current booking
-		# if user.account.book_status == True:
-		curr_booking = Booking.objects.all().filter(user_id=user.id).order_by("-id")[0]
-
-		# Get the booking history
+		# Get user's current booking and booking history
 		booking_history = None
-			
+		curr_booking = None	
+
 		if user.account.book_status == True:
-			print("True")
+			curr_booking = Booking.objects.all().filter(user_id=user.id).order_by("-id")[0]
 			booking_history = Booking.objects.all().filter(user_id=user.id).order_by("-id")[1:]
 		else:
 			booking_history = Booking.objects.all().filter(user_id=user.id)
@@ -40,6 +38,7 @@ class UserDashPage(TemplateView):
 		return render(request, self.template_name, args)
 
 	def post(self, request):
+
 		if request.method == 'POST':
 
 			# Get current user's booking
@@ -57,16 +56,22 @@ class UserDashPage(TemplateView):
 			time_difference = end - start
 			seconds = time_difference.total_seconds()
 
+			# Charge user for minimum 1 hour booking
+			if seconds < 3600:
+				seconds = 3600
+
 			# Determine hours and minutes rounded with 2 decimal places
 			duration = round((seconds/60/60), 2)
 
 			# Determine price subtracting initial $10 booking deposit fee and round to nearest dollar
 			price_in_dollars = int(round((duration * curr_booking.price) - 10))
-			curr_booking.actual_price = price_in_dollars
-			curr_booking.save()
 			
 			# Convert to cents for stripe format
 			price_in_cents = price_in_dollars * 100
+
+			# Save actual price paid to database
+			curr_booking.actual_price = price_in_dollars + 10
+			curr_booking.save()
 
 			# Charge the Customer instead of the card:
 			charge = stripe.Charge.create(
@@ -75,7 +80,11 @@ class UserDashPage(TemplateView):
 				customer=curr_booking.customer_id,
 			)
 
-			return render(request, self.template_name)
+			# Update user's book status in Account model database
+			user.account.book_status = False
+			user.save()
+
+			return render(request, "user/return_success.html")
 
 class RegisterPageView(TemplateView):
     template_name = 'user/register.html'
