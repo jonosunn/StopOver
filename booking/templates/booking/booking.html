@@ -49,41 +49,9 @@
 
           </form>
         </div>
-<<<<<<< HEAD
-        <div id="stepper">
-          <div class="fieldset">
-            <div id="car-map"></div>
-            <table style="width:100%">
-              <tr>
-                <td class ="map-block"><img src="../static/images/car-image1.png" width=60% height=75%></td>
-                <td class ="details-block text-left">
-                  <p> Number Plate: {{ car.number_plate }}
-                  <br>
-                  Brand: {{ car.brand }}
-                  <br>
-                  Type:
-                  <br>
-                  Transmission: {{ car.transmission }}
-                  <br>
-                  Year:
-                  <br>
-                  <br>
-                  <p> Price: ${{ car.price }}p/h</p>
-                  <br></td>
-              </tr>
-            </table>
-            <form method="POST" action="{% url 'confirmation' %}">
-               {% csrf_token %}
-               <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
-               <input type="submit" class="submit-button" value="Process to Confirmation">
-            </form>
-          </div>
-        </div>
-=======
       </div>
       <div class="bg-block-2"></div>
       <div class="booking-footer">
->>>>>>> d8db6cc513610f462a26f31c58617d13be8290f8
       </div>
         <script>
 

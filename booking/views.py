@@ -1,13 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from map.models import Car
-<<<<<<< HEAD
 from user.models import Account
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
-=======
 from booking.models import Booking
->>>>>>> d8db6cc513610f462a26f31c58617d13be8290f8
 from django.views.generic import TemplateView, View
 from django.views.generic.list import ListView
 from django.views.decorators.csrf import csrf_exempt
@@ -71,21 +67,22 @@ class ConfirmationPage(TemplateView):
 			number_plate = request.POST.get("number_plate", "value")
 			# Get car object using number plate
 			booked_car = Car.objects.get(number_plate=number_plate)
+
+			# Get current user
+			user  = request.user
+			# Initialize booking
+			booking = Booking.objects.create(brand=booked_car.brand, transmission=booked_car.transmission, number_plate=booked_car.number_plate,
+									price=booked_car.price, start_latitude=booked_car.latitude, start_longitude=booked_car.longitude, user=user)
+			booking.save()
+
 			args = {
 				"car": booked_car
 			}
+			
+			return render(request, self.template_name, args)
 		else:
 			return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-		# Get current user
-		user  = request.user
-
-		# Initialize booking
-		booking = Booking.objects.create(brand=booked_car.brand, transmission=booked_car.transmission, number_plate=booked_car.number_plate,
-								price=booked_car.price, start_latitude=booked_car.latitude, start_longitude=booked_car.longitude, user=user)
-		booking.save()
-
-		return render(request, self.template_name, args)
 
 class SuccessPage(TemplateView):
 	template_name = 'booking/success.html'
