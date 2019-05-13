@@ -75,10 +75,14 @@ class ConfirmationPage(TemplateView):
 									price=booked_car.price, start_latitude=booked_car.latitude, start_longitude=booked_car.longitude, user=user)
 			booking.save()
 
+			# Update user's book status in Account model database
+			user.account.book_status = True
+			user.save()
+			
 			args = {
 				"car": booked_car
 			}
-			
+
 			return render(request, self.template_name, args)
 		else:
 			return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
