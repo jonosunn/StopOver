@@ -4,6 +4,7 @@ from django.urls import reverse
 
 from . import views
 from map.models import Car
+from django.contrib.auth.models import User
 
 class MapAppTest(TestCase):
     # Test for database models
