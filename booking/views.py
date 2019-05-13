@@ -37,6 +37,9 @@ class BookingPage(TemplateView):
 			#if set_car is not available
 			else:
 				# add alert popup "Car is currently unavailable"
+				args = {
+					"message" : "Car is currently unavailable"
+				}
 				return redirect(reverse('home'))
 		else:
 			# User has booked a car already, send an alert
