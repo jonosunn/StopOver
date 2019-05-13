@@ -50,18 +50,6 @@ class ConfirmationPage(TemplateView):
 			"car": booked_car,
 		}
 
-		# Get current user
-		user  = request.user
-
-		# Initialize booking
-		booking = Booking.objects.create(brand=booked_car.brand, transmission=booked_car.transmission, number_plate=booked_car.number_plate,
-								price=booked_car.price, start_latitude=booked_car.latitude, start_longitude=booked_car.longitude, user=user)
-		booking.save()
-
-		# Update user's book status in Account model database
-		user.account.book_status = True
-		user.save()
-
 		return render(request, self.template_name, args)
 
 class SuccessPage(TemplateView):
@@ -71,10 +59,13 @@ class SuccessPage(TemplateView):
 		if request.method == 'POST':
 			token = request.POST.get('stripeToken', False)
 			if token:
+				# Get current user
+				user  = request.user
+
 				# Create a Customer:
 				customer = stripe.Customer.create(
 					source=token,
-					email=request.user.email,
+					email=user.email,
 				)
 
 				# Charge the Customer instead of the card:
@@ -84,9 +75,23 @@ class SuccessPage(TemplateView):
 					customer=customer.id,
 				)
 
+				# Get the number plate posted
+				number_plate = request.POST.get("number_plate", "value")
+
+				# Get car object using number plate
+				booked_car = Car.objects.get(number_plate=number_plate)
+
+				# Initialize booking
+				booking = Booking.objects.create(brand=booked_car.brand, transmission=booked_car.transmission, number_plate=booked_car.number_plate,
+										price=booked_car.price, start_latitude=booked_car.latitude, start_longitude=booked_car.longitude, user=user)
+
 				# Recording customer_id for charging payment later
 				booking = Booking.objects.all().filter(user_id=request.user.id).order_by("-id")[0]
 				booking.customer_id = customer.id
 				booking.save()
+
+				# Update user's book status in Account model database
+				user.account.book_status = True
+				user.save()
 
 		return render(request, self.template_name)

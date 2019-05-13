@@ -14,7 +14,7 @@
       <div id="start-time">Start time: {{ booking.start_time }}</div>
       <div id="price">Price p/h: ${{ booking.price }}</div>
       <div id="end-button">
-      <form action="user" method="post">
+      <form action={% url 'user' %} method="post">
         {% csrf_token %}
         <button type="submit" class="submit-button">Return Car</button>
       </form>
