@@ -1,8 +1,4 @@
 <div id="booking-hist">
-<!-- Check if there are any past bookings -->
-{% if booking_history != None %}
-  <!-- Display all the past bookings -->
-  {% for booking in booking_history %}
   <table class="table table-striped">
     <thead>
       <tr>
@@ -13,6 +9,10 @@
         <th scope="col">Price</th>
       </tr>
     </thead>
+    <!-- Check if there are any past bookings -->
+    {% if booking_history != None %}
+    <!-- Display all the past bookings -->
+    {% for booking in booking_history %}
     <tbody>
       <tr>
         <th scope="row">{{ booking.id }}</th>
@@ -22,8 +22,8 @@
         <td>$ {{ booking.actual_price }}</td>
       </tr>
     </tbody>
+    {% endfor %}
   </table>
-  {% endfor %}
 {% else %}
 <!-- Display no bookings message -->
  <p>No history to be displayed</p>
