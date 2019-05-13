@@ -120,6 +120,10 @@ AUTH_PASSWORD_VALIDATORS = [
 PAYPAL_RECEIVER_EMAIL = 'anapatricia_teo-facilitator@yahoo.com.ph'
 PAYPAL_TEST = True
 
+# LOGIN url
+
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = 'home'
 # Internationalization
 
 LANGUAGE_CODE = 'en-us'

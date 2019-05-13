@@ -16,41 +16,42 @@
         <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
-    <body onLoad="carLocation()">
+    <body onload="carLocation()">
       {% include "map/navbar.html" %}
-      <div class='steps-block'>
-        <div class='session-block text-center' id="countdowndiv1">
+      <div class="bg-block-1">
+        <!-- <div class='session-block text-center' id="countdowndiv1">
           Insert Session Timer Here
+        </div> -->
+        <div id="booking-content" class="fieldset">
+          <table style="width:100%" id="booking-table">
+            <tr>
+              <td class ="map-block"><img src="../static/images/car-image1.png" width=60% height=75%></td>
+              <td class ="details-block text-right">
+                <p class="booking-text"><span class="booking-form-title">Number Plate:</span> {{ car.number_plate }}
+                <br>
+                <span class="booking-form-title">Brand:</span> {{ car.brand }}
+                <br>
+                <span class="booking-form-title">Type:</span>
+                <br>
+                <span class="booking-form-title">Transmission:</span> {{ car.transmission }}
+                <br>
+                <span class="booking-form-title">Year:</span>
+                <br>
+                <br>
+                <p class="booking-text"><span class="booking-form-title">Price:</span> ${{ car.price }}p/h</p>
+                <br></td>
+            </tr>
+          </table>
+          <form method="POST" action="/confirmation">
+             {% csrf_token %}
+             <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
+             <input type="submit" class="btn btn-primary btn-block booking-button" value="Process to Confirmation" id="process-button"></input>
+
+          </form>
         </div>
-        <div id="stepper">
-          <div class="fieldset">
-            <div id="car-map"></div>
-            <table style="width:100%">
-              <tr>
-                <td class ="map-block"><img src="../static/images/car-image1.png" width=60% height=75%></td>
-                <td class ="details-block text-left">
-                  <p> Number Plate: {{ car.number_plate }}
-                  <br>
-                  Brand: {{ car.brand }}
-                  <br>
-                  Type:
-                  <br>
-                  Transmission: {{ car.transmission }}
-                  <br>
-                  Year:
-                  <br>
-                  <br>
-                  <p> Price: ${{ car.price }}p/h</p>
-                  <br></td>
-              </tr>
-            </table>
-            <form method="POST" action="/confirmation">
-               {% csrf_token %}
-               <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
-               <input type="submit" class="submit-button" value="Process to Confirmation">
-            </form>
-          </div>
-        </div>
+      </div>
+      <div class="bg-block-2"></div>
+      <div class="booking-footer">
       </div>
         <script>
 
@@ -81,8 +82,8 @@
                       coordinates: [{{ car.longitude }}, {{ car.latitude }}]
                     },
                     properties: {
-                      title: 'Mapbox',
-                      description: 'Car Locations'
+                      title: '{{ car.number_plate }}',
+                      description: 'Type: {{ car.brand }} Transmission: {{ car.transmission }} Price: ${{ car.price }} per hour'
                     }
                   },
               ]

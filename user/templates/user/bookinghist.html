@@ -1,4 +1,8 @@
 <div id="booking-hist">
+<!-- Check if there are any past bookings -->
+{% if booking_history != None %}
+  <!-- Display all the past bookings -->
+  {% for booking in booking_history %}
   <table class="table table-striped">
     <thead>
       <tr>
@@ -11,26 +15,17 @@
     </thead>
     <tbody>
       <tr>
-        <th scope="row">1</th>
-        <td>Toyota</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>$ 34.30</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Mazda</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        <td>$ 50.1</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>BMW</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-        <td>$ 32.30</td>
+        <th scope="row">{{ booking.id }}</th>
+        <td>{{ booking.brand }}</td>
+        <td>{{ booking.start_date }} {{ booking.start_time }}</td>
+        <td>{{ booking.end_date }} {{ booking.end_time }}</td>
+        <td>$ {{ booking.actual_price }}</td>
       </tr>
     </tbody>
   </table>
+  {% endfor %}
+{% else %}
+<!-- Display no bookings message -->
+ <p>No history to be displayed</p>
+{% endif %}
 </div>
