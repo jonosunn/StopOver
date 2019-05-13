@@ -11,6 +11,7 @@ from django.contrib.auth.views import LoginView
 from booking.models import Booking
 import datetime
 import stripe
+from django.contrib import messages
 
 class UserDashPage(TemplateView):
 	template_name = 'user/userdash.html'
@@ -40,6 +41,7 @@ class UserDashPage(TemplateView):
 		return render(request, self.template_name, args)
 
 	def post(self, request):
+
 		if request.method == 'POST':
 
 			# Get current user's booking
@@ -77,7 +79,7 @@ class UserDashPage(TemplateView):
 				customer=curr_booking.customer_id,
 			)
 
-			return render(request, self.template_name)
+			return render(request, "user/return_success.html")
 
 class RegisterPageView(TemplateView):
     template_name = 'user/register.html'
