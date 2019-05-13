@@ -85,7 +85,7 @@ class SuccessPage(TemplateView):
 
 				# Recording customer_id for charging payment later
 				user = request.user
-				booking = Booking.objects.get(user_id=user.id)
+				booking = Booking.objects.all().filter(user_id=user.id).order_by("-id")[0]
 				booking.customer_id = customer.id
 				booking.save()
 		return render(request, self.template_name)

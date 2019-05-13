@@ -62,11 +62,13 @@ class UserDashPage(TemplateView):
 
 			# Determine price subtracting initial $10 booking deposit fee and round to nearest dollar
 			price_in_dollars = int(round((duration * curr_booking.price) - 10))
-			curr_booking.actual_price = price_in_dollars
-			curr_booking.save()
 			
 			# Convert to cents for stripe format
 			price_in_cents = price_in_dollars * 100
+
+			# Save actual price paid to database
+			curr_booking.actual_price = price_in_dollars + 10
+			curr_booking.save()
 
 			# Charge the Customer instead of the card:
 			charge = stripe.Charge.create(
