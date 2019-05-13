@@ -19,54 +19,54 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     </head>
-
     <body onLoad="navigation()">
-      {% include "map/navbar.html" %}
-      <div class='steps-block'>
-        <div class='session-block text-center' id="countdowndiv1">
-          Insert Session Timer Here
+    {% include "map/navbar.html" %}
+    <div class="bg-block-1">
+      <!-- <div class='session-block text-center' id="countdowndiv1">
+        Insert Session Timer Here
+      </div> -->
+      <div id="booking-content" class="fieldset">
+        <div class="confirm-block" id="car-map"></div>
+        <div class="details-block confirm-block">
+        <table style="width:100%" id="confirm-table">
+          <tr>
+            <td class ="details-block text-right">
+              <p class="booking-text"><span class="booking-form-title">Number Plate:</span> {{ car.number_plate }}
+              <br>
+              <span class="booking-form-title">Brand: {{ car.brand }}</span>
+              <br>
+              <span class="booking-form-title">Type:</span>
+              <br>
+              <span class="booking-form-title">Transmission:</span> {{ car.transmission }}
+              <br>
+              <span class="booking-form-title">Year:</span>
+              <br>
+              <br>
+              <p class="booking-text"><span class="booking-form-title">Price:</span> ${{ car.price }}p/h</p>
+              <br>
+              <br></td>
+          </tr>
+        </table>
         </div>
-        <div id="stepper">
-          <div class="fieldset">
-            <div id="car-map"></div>
-            <table style="width:100%">
-              <tr>
-                <td class ="details-block text-left">
-                  <p> Number Plate: {{ car.number_plate }}
-                  <br>
-                  Brand: {{ car.brand }}
-                  <br>
-                  Type:
-                  <br>
-                  Transmission: {{ car.transmission }}
-                  <br>
-                  Year:
-                  <br>
-                  <br>
-                  <p> Price: ${{ car.price }}p/h</p>
-                  <br>
-                  <p> There is a $10 Intial deposit fee, this will be added as credit towards to final price when car is returned </p>
-                  <br></td>
-              </tr>
-            </table>
-            <form action="/success" method="post">
-              {% csrf_token %}
-              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                      data-key="pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB"
-                      data-description="Booking Deposit Fee"
-                      data-amount="1000"
-                      data-locale="auto"
-                      data-email="{{ user.email }}">
-              </script>
-              <script>
-                  document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
-              </script>
-              <button type="submit" class="submit-button">Confirm Booking</button>
-            </form>
-
-          </div>
-        </div>
+        <form action="/success" method="post" id="confirm-form">
+          {% csrf_token %}
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB"
+                  data-description="Booking Deposit Fee"
+                  data-amount="1000"
+                  data-locale="auto"
+                  data-email="{{ user.email }}">
+          </script>
+          <script>
+              document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+          </script>
+          <input type="submit"  class="btn btn-primary btn-block booking-button" value="Confirm Booking" id="confirm-button"></input>
+        </form>
       </div>
+    </div>
+    <div class="bg-block-2">
+    </div>
+  </body>
     <script>
     function getSpecificCookie(cookieName, valueOnly) {
      //Get original cookie string

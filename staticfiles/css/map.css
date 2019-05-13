@@ -60,7 +60,7 @@ a
 
 .nav-item
 {
-	font-size: 12px;
+	font-size: 12px !important;
 	padding-right: 7px;
 
 
