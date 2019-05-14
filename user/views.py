@@ -28,7 +28,7 @@ class UserDashPage(TemplateView):
 			curr_booking = Booking.objects.all().filter(user_id=user.id).order_by("-id")[0]
 			booking_history = Booking.objects.all().filter(user_id=user.id).order_by("-id")[1:]
 		else:
-			booking_history = Booking.objects.all().filter(user_id=user.id)
+			booking_history = Booking.objects.all().filter(user_id=user.id).order_by("-id")
 
 		args = {
 			"booking": curr_booking,
