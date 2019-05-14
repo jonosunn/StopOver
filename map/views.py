@@ -8,7 +8,8 @@ from decimal import Decimal
 from paypal.standard.forms import PayPalPaymentsForm
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
-
+from django.utils.decorators import method_decorator
+from django.contrib.admin.views.decorators import staff_member_required
 from map.forms import CarForm
 
 class HomePageView(TemplateView):
@@ -34,6 +35,7 @@ class HomePageView(TemplateView):
 class SimulationPageView(TemplateView):
 	template_name ='admin/map/simulation.html'
 
+	# @method_decorator(staff_member_required)
 	def get_context_data(self, *args, **kwargs):
 		print('test')
 		context = super(SimulationPageView, self).get_context_data(*args, **kwargs)

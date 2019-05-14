@@ -90,6 +90,7 @@ class RegisterPageView(TemplateView):
     template_name = 'user/register.html'
 
     def post(self, request):
+
         if request.method == 'POST':
             print("Post")
 
@@ -114,7 +115,7 @@ class RegisterPageView(TemplateView):
                 # new_user = authenticate(username=username, password=password)
                 print("Account Saved")
                 # message
-                return redirect('login') # Redirect to login for user to log in.
+                return redirect(reverse('login')) # Redirect to login for user to log in.
 
             else:
                 print(account_form.is_valid())
@@ -133,15 +134,17 @@ class RegisterPageView(TemplateView):
 
     def get(self, request):
         print("Set form")
-        if request.method == 'GET':
-            user_form = UserForm()
-            account_form =AccountForm()
-        args = {
-            'account_form': account_form,
-            'user_form': user_form,
-        }
-        return render(request, self.template_name, args)
-
+        if request.user.is_authenticated == False: # if user is not login
+            if request.method == 'GET':
+                user_form = UserForm()
+                account_form =AccountForm()
+                args = {
+                    'account_form': account_form,
+                    'user_form': user_form,
+                }
+            return render(request, self.template_name, args)
+        else:
+            return redirect(reverse('home'))
 
 class LoginPageView(LoginView):
     authentication_form = CustomAuthenticationForm
