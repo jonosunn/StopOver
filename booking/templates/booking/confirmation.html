@@ -19,6 +19,7 @@
     </head>
     <body onLoad="navigation()">
     {% include "map/navbar.html" %}
+<<<<<<< HEAD
       <div class="confirm-block" id="car-map"></div>
       <div class='session-block text-center' id="countdowndiv1">
         Insert Session Timer Here
@@ -26,6 +27,12 @@
       <h1 class='text-center'>Youre about to Confirm booking {{car.number_plate}}</h1>
       <h2 class='text-center'>You have 30 mins to get the car</h1>
       <h3 class='text-center'>Once you have arrived at the car, click confirm to pay and start driving</h3>
+=======
+    <div class="bg-block-1">
+      <div class='session-block text-center' id="countdowndiv">
+        Insert Session Timer Here
+      </div>
+>>>>>>> 4328170f0306cc196ab0b28def9970936111ccc3
       <div id="booking-content" class="fieldset">
         <table style="width:100%" id="confirm-table">
           <tr>
@@ -301,6 +308,43 @@
      };
      getRoute(coords);
      });
+
+     function countdown(elementID, minutes, seconds) {
+       var element, endTime, hours, mins, msLeft, time;
+       var car = "{{ car.number_plate }}"; // set car number_plate to a car variable
+       var token = '{{csrf_token}}'; // set csrf token for post request
+
+       function twoDigits(n) { // when digit is less than 9, add a 0 in front
+         return (n <= 9 ? "0" + n : n);
+       }
+
+       function updateTimer() {
+         msLeft = endTime - (+new Date);
+         console.log(msLeft)
+         if (msLeft < 1) { // when millisecond is less than 1
+           $.ajax({ // sending car number_plate to views
+             headers: { "X-CSRFToken": token },
+             url: '/',
+             type: "POST",
+             data: {car : car}
+           })
+           alert("Session has timeout"); // display popup
+           window.location.replace("/"); // redirect to homepage
+         }
+         else { // continue updating the timer
+           time = new Date(msLeft);
+           hours = time.getUTCHours();
+           mins = time.getUTCMinutes();
+           element.innerHTML = (hours ? hours + ':' + twoDigits(mins) : mins) + ':' + twoDigits(time.getUTCSeconds()); // Display countdown timer
+           setTimeout(updateTimer, time.getUTCMilliseconds() + 500);
+         }
+       }
+       element = document.getElementById(elementID);
+       endTime = (+new Date) + 1000 * (60 * minutes + seconds) + 500;
+       updateTimer();
+     }
+
+     countdown("countdowndiv", 30, 0);
   </script>
   </body>
 </html>
