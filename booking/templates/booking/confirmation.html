@@ -48,6 +48,10 @@
         </table>
         <form method="POST" action="/confirmation" id="confirm-form">
            {% csrf_token %}
+           <input type="hidden" name="car" value="{{ car.number_plate }}">
+         </form>
+         <form action="/success" method="post" id="confirm-form">
+           {% csrf_token %}
            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                    data-key="pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB"
                    data-description="Booking Deposit Fee"
@@ -342,6 +346,13 @@
      }
 
      countdown("countdowndiv", 30, 0);
+
+     window.onbeforeunload = closingCode;
+     function closingCode(){
+       document.getElementById("carf").submit();
+       return "Are you sure? Leaving will return to the home page"; //<-- this prevents the dialog confirm box
+     }
+
   </script>
   </body>
 </html>
