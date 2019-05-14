@@ -46,7 +46,21 @@ class BookingPage(TemplateView):
 		else:
 			# User has booked a car already, send an alert
 			return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+	def get(self, request):
+		# when user enters url instead through booking, redirect to homepage
+		return redirect(reverse('home'))
 
+	def post(self, request):
+
+		# Get the number plate posted
+		number_plate = request.POST.get("number_plate", "value")
+		
+		# Get car object using number plate
+		booked_car = Car.objects.get(number_plate=number_plate)
+
+		args = {
+			"car": booked_car
+		}
 
 		return render(request, self.template_name, args)
 
