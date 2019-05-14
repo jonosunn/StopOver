@@ -51,3 +51,4 @@ class CustomAuthenticationForm(AuthenticationForm):
     username = UsernameField(
         label='Email'
     )
+    
