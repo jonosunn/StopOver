@@ -31,8 +31,9 @@ class BookingPage(TemplateView):
 			if set_car.available == True:
 				# Set the selected car to false so other users can't select the car
 				# set_car.available = False
-				# Save car object to database
+				# # Save car object to database
 				# set_car.save()
+
 				args = {
 	        		"car": set_car,
 	    		}
@@ -45,7 +46,9 @@ class BookingPage(TemplateView):
 				return redirect(reverse('home'))
 		else:
 			# User has booked a car already, send an alert
+			print("Book Statement")
 			return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 
 		return render(request, self.template_name, args)
 
@@ -57,11 +60,12 @@ class ConfirmationPage(TemplateView):
 		# when user enters url instead through booking, redirect to homepage
 		return redirect(reverse('home'))
 
+
 	def post(self, request):
 
 		# Get the number plate posted
 		number_plate = request.POST.get("number_plate", "value")
-		
+
 		# Get car object using number plate
 		booked_car = Car.objects.get(number_plate=number_plate)
 
@@ -70,6 +74,7 @@ class ConfirmationPage(TemplateView):
 		}
 
 		return render(request, self.template_name, args)
+
 
 class SuccessPage(TemplateView):
 	template_name = 'booking/success.html'
