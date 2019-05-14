@@ -1,7 +1,17 @@
+@import url(//fonts.googleapis.com/css?family=Roboto+Mono:400,700i);
+
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+  table, thead, tbody, th, td, tr {
+		display: block;
+	}
+}
+
 body, html {
   height: 100%;
   background-color: #f7f8f9;
   color: #6b7c93;
+  overflow: auto;
 }
 
 *, label {
@@ -46,7 +56,6 @@ button:hover {
 
 form {
   padding: 30px;
-  height: 120px;
 }
 
 label {
