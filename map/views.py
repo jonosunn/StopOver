@@ -25,7 +25,6 @@ class HomePageView(TemplateView):
 	# Reciving ajax request for session timer
 	def post(self, request):
 		if request.method == "POST":
-			print("POST")
 			number_plate = request.POST['car'] # set data from POST into number_plate variable
 			set_car = Car.objects.get(number_plate=number_plate) # set car object with the car that has number_plate
 			set_car.available = True	# change set_car available to True
