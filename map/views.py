@@ -8,8 +8,6 @@ from decimal import Decimal
 from paypal.standard.forms import PayPalPaymentsForm
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
-from django.utils.decorators import method_decorator
-from django.contrib.admin.views.decorators import staff_member_required
 from map.forms import CarForm
 
 class HomePageView(TemplateView):
@@ -23,19 +21,27 @@ class HomePageView(TemplateView):
 		context = super(HomePageView, self).get_context_data(*args, **kwargs)
 		context['cars'] = Car.objects.filter(available=True)
 		return context
+
 	# Reciving ajax request for session timer
 	def post(self, request):
 		if request.method == "POST":
+
 			number_plate = request.POST['car'] # set data from POST into number_plate variable
 			set_car = Car.objects.get(number_plate=number_plate) # set car object with the car that has number_plate
 			set_car.available = True	# change set_car available to True
 			set_car.save()	# save changes into the database
+
+			user  = request.user 	# set user
+			user.account.book_status = False	# user book status to false
+			user.save() # save the status
+
+			# change booking status to cancelled?
+
 		return render(request, self.template_name)
 
 class SimulationPageView(TemplateView):
 	template_name ='admin/map/simulation.html'
 
-	# @method_decorator(staff_member_required)
 	def get_context_data(self, *args, **kwargs):
 		print('test')
 		context = super(SimulationPageView, self).get_context_data(*args, **kwargs)

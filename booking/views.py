@@ -56,6 +56,11 @@ class ConfirmationPage(TemplateView):
 
 	def get(self, request):
 		# when user enters url instead through booking, redirect to homepage
+		user  = request.user 	# set user
+		if user.account.book_status == True:	# user book status is True
+			user.account.book_status = False
+			user.save() # save the status
+
 		return redirect(reverse('home'))
 
 	def post(self, request):
@@ -93,6 +98,13 @@ class SuccessPage(TemplateView):
 
 	def get(self, request):
 		print("GET success")
+
+		user  = request.user 	# set user
+		if user.account.book_status == True:	# user book status is True
+			user.account.book_status = False
+			user.save() # save the status
+
+		# Set car available to True
 		# when user enters url instead through booking, redirect to homepage
 		return redirect(reverse('home'))
 
