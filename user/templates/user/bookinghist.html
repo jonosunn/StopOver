@@ -3,6 +3,7 @@
     <thead>
       <tr>
         <th scope="col">Booking Id</th>
+        <th scope="col">Number Plate</th>
         <th scope="col">Car Model</th>
         <th scope="col">Booking Start Date/Time</th>
         <th scope="col">Booking End Date/Time</th>
@@ -16,6 +17,7 @@
     <tbody>
       <tr>
         <th scope="row">{{ booking.id }}</th>
+        <td>{{ booking.number_plate }}</td>
         <td>{{ booking.brand }}</td>
         <td>{{ booking.start_date }} {{ booking.start_time }}</td>
         <td>{{ booking.end_date }} {{ booking.end_time }}</td>
