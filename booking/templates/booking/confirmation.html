@@ -19,51 +19,55 @@
     </head>
     <body onLoad="navigation()">
     {% include "map/navbar.html" %}
-      <div class="confirm-block" id="car-map"></div>
-      <div class='session-block text-center' id="countdowndiv1">
+    <div class="confirm-block" id="car-map"></div>
+      <!-- <div class='session-block text-center' id="countdowndiv1">
         Insert Session Timer Here
-      </div>
-      <h1 class='text-center'>Youre about to Confirm booking {{car.number_plate}}</h1>
-      <h2 class='text-center'>You have 30 mins to get the car</h1>
-      <h3 class='text-center'>Once you have arrived at the car, click confirm to pay and start driving</h3>
+      </div> -->
+      <h3 class='text-center header-label first-header'>You are about to confirm your booking for <span class="car-number">{{car.number_plate}}</span></h3>
+      <h4 class='text-center header-label'>You have 30 minutes to get to your car.</h4>
+      <h4 class='text-center header-label'>Once you have arrived at your car, confirm your booking to pay and start driving.</h4>
       <div id="booking-content" class="fieldset">
-        <table style="width:100%" id="confirm-table">
+        <table style="width:100%" class="booking-table">
           <tr>
-            <td class ="map-block"><img src="../static/images/car-image1.png" width=60% height=75%></td>
+            <td class ="car-block"><img src="../static/images/car-image1.png" height=60%></td>
             <td class ="details-block text-right">
               <p class="booking-text"><span class="booking-form-title">Number Plate:</span> {{ car.number_plate }}
               <br>
-              <span class="booking-form-title">Brand: {{ car.brand }}</span>
+              <span class="booking-form-title">Brand:</span> {{ car.brand }}
               <br>
-              <span class="booking-form-title">Type:</span>
+              <span class="booking-form-title">Type:</span> Sample Car Type
               <br>
               <span class="booking-form-title">Transmission:</span> {{ car.transmission }}
               <br>
-              <span class="booking-form-title">Year:</span>
+              <span class="booking-form-title">Year:</span> 2010
               <br>
               <br>
               <p class="booking-text"><span class="booking-form-title">Price:</span> ${{ car.price }}p/h</p>
-              <br>
               <br></td>
           </tr>
         </table>
-        <form action="/success" method="post" id="confirm-form">
-          {% csrf_token %}
-          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                  data-key="pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB"
-                  data-description="Booking Deposit Fee"
-                  data-amount="1000"
-                  data-locale="auto"
-                  data-email="{{ user.email }}">
-          </script>
-          <script>
-              document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
-          </script>
-          <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
-          <input type="submit"  class="btn btn-primary btn-block booking-button" value="Confirm Booking" id="confirm-button"></input>
+        <form method="POST" action="/confirmation" id="confirm-form">
+           {% csrf_token %}
+           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                   data-key="pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB"
+                   data-description="Booking Deposit Fee"
+                   data-amount="1000"
+                   data-locale="auto"
+                   data-email="{{ user.email }}">
+           </script>
+           <script>
+               document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+           </script>
+           <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
+           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+           <div class="btn-group mr-2 my-button" role="group" aria-label="First group">
+           <input type="submit" class="btn btn-primary btn-block booking-button process-button" value="Confirm Booking"></input>
+         </div>
         </form>
-        <br>
-         <input type="submit" class="btn btn-primary btn-block booking-button" value="Cancel Booking" id="process-button"></input>
+        <div class="btn-group mr-2" role="group" aria-label="Second group">
+         <input type="submit" class="btn btn-primary btn-block booking-button bg-red cancel-button" value="Cancel Booking"></input>
+       </div>
+     </div>
          <br>
       </div>
       <div class="booking-footer">

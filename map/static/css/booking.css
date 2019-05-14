@@ -8,16 +8,19 @@ only screen and (max-width: 760px),
 	}
 }
 
-#car-number{
+.car-number{
   color: #99D3DF;
+  font-family: 'Roboto Mono', monospace;
 }
 
-#first-header{
+.first-header{
   margin-top: 60px;
+  font-size: 15px !important;
 }
 
 .header-label{
   font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
 
 }
 
@@ -49,46 +52,34 @@ only screen and (max-width: 760px),
   /* margin-top: 8%; */
 }
 
-#booking-table{
+.booking-table{
   margin-top: 0;
   margin-left: 5%;
   margin-right: 5%;
   margin-bottom: 5%;
 }
 
-#confirm-table{
-margin: 5%;
-}
 
 .booking-button{
   font-family: 'Roboto Mono', monospace;
 }
 
-#process-button{
-  background-color: #88CD8F;
-  border: none;
+.process-button{
+  background-color: #88CD8F !important;
+  border: none !important;
 }
 
-#my-button{
-  margin-left: 25%;
-
-}
-
-#cancel-button{
-  background-color: RED;
-  border: none;
-}
-
-#confirm-button{
-  background-color: #88CD8F;
-  border: none;
-
+.my-button{
+  margin-left: 25% !important;
 
 }
 
-#booking-content{
-  /* top:50px; */
+.cancel-button{
+  background-color: #FB5151 !important;
+  border: none !important;
 }
+
+
 
 .details-block  {
   /* top: 100px; */
