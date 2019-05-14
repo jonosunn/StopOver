@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+{% if booking != None %}
+<div id="current-booking">
+    <div class="left-box">
+      <div id="car-image"><img id="car-photo" src="{% static 'images/car-image1.png' %}"></div>
+    </div>
+    <div class="right-box col-">
+      <div id="timer">1:00:53</div>
+      <div id="car-type">Car model: {{ booking.brand }}</div>
+      <div id="car-transmission">Transmission: {{ booking.transmission }}</div>
+      <div id="car-number-plate">Number Plate: {{ booking.number_plate }}</div>
+      <div id="start-date">Start date: {{ booking.start_date }}</div>
+      <div id="start-time">Start time: {{ booking.start_time }}</div>
+      <div id="price">Price p/h: ${{ booking.price }}</div>
+      <div id="end-button">
+      <form action={% url 'user' %} method="post">
+        {% csrf_token %}
+        <button type="submit" class="submit-button">Return Car</button>
+      </form>
+      </div>
+    </div>
+</div>
+{% else %}
+  <!-- Display no bookings message -->
+  <div id="current-booking">No booking to be displayed</div>
+{% endif %}

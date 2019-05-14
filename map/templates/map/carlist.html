@@ -1,6 +1,6 @@
 <!--- Displays list of cars by looping through a car list obtain from the db-->
 <div class="list-group">
-<script>
+	<script>
 function getDistanceFromLatLonInKm(lon1, lat1, lon2, lat2) {
 	  var R = 6371; // Radius of the earth in km
 	  var dLat = deg2rad(lat2-lat1);  // deg2rad below
@@ -59,13 +59,13 @@ function getSpecificCookie(cookieName, valueOnly) {
           {"<>":"input","type":"submit","value":"Book","html":""}
         ]}
     ]}
-  {% for car in cars %}
+  	{% for car in cars %}
     // store distance into the array
     car_distance.push(getDistanceFromLatLonInKm({{car.longitude}}, {{car.latitude}}, longCookie, latCookie));
-  {% endfor %}
-  // sorted the array into smallest to largest
-  function sortDistance(a,b) { return a - b; }
-  var sorted_car_distance = car_distance.sort(sortDistance);
+  	{% endfor %}
+  	// sorted the array into smallest to largest
+  	function sortDistance(a,b) { return a - b; }
+  	var sorted_car_distance = car_distance.sort(sortDistance);
     // sort through the car distance array
     for (var i = 0; i < sorted_car_distance.length; i++) {
       // sort through the car array
@@ -87,5 +87,5 @@ function getSpecificCookie(cookieName, valueOnly) {
         }
       {% endfor %}
     }
-  </script>
+	</script>
 </div>

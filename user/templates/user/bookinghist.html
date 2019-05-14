@@ -1,0 +1,31 @@
+<div id="booking-hist">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Booking Id</th>
+        <th scope="col">Car Model</th>
+        <th scope="col">Booking Start Date/Time</th>
+        <th scope="col">Booking End Date/Time</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <!-- Check if there are any past bookings -->
+    {% if booking_history != None %}
+    <!-- Display all the past bookings -->
+    {% for booking in booking_history %}
+    <tbody>
+      <tr>
+        <th scope="row">{{ booking.id }}</th>
+        <td>{{ booking.brand }}</td>
+        <td>{{ booking.start_date }} {{ booking.start_time }}</td>
+        <td>{{ booking.end_date }} {{ booking.end_time }}</td>
+        <td>$ {{ booking.actual_price }}</td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+{% else %}
+<!-- Display no bookings message -->
+ <p>No history to be displayed</p>
+{% endif %}
+</div>
