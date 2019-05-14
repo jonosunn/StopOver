@@ -32,12 +32,11 @@ only screen and (max-width: 760px),
 }
 
 #booking-table{
-  margin-bottom: 35px;
-  margin-top: 25px;
+  margin: 5%;
 }
 
 #confirm-table{
-position:relative;
+margin: 5%;
 }
 
 .booking-button{
