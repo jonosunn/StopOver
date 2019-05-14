@@ -124,6 +124,8 @@ PAYPAL_TEST = True
 
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = 'home'
+
+LOGOUT_REDIRECT_URL = 'home'
 # Internationalization
 
 LANGUAGE_CODE = 'en-us'
