@@ -31,8 +31,9 @@ class BookingPage(TemplateView):
 			if set_car.available == True:
 				# Set the selected car to false so other users can't select the car
 				# set_car.available = False
-				# Save car object to database
+				# # Save car object to database
 				# set_car.save()
+
 				args = {
 	        		"car": set_car,
 	    		}
@@ -45,6 +46,7 @@ class BookingPage(TemplateView):
 				return redirect(reverse('home'))
 		else:
 			# User has booked a car already, send an alert
+			print("Book Statement")
 			return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
@@ -56,42 +58,22 @@ class ConfirmationPage(TemplateView):
 
 	def get(self, request):
 		# when user enters url instead through booking, redirect to homepage
-		user  = request.user 	# set user
-		if user.account.book_status == True:	# user book status is True
-			user.account.book_status = False
-			user.save() # save the status
-
 		return redirect(reverse('home'))
 
 
 	def post(self, request):
 
-		# Get user book status to see if they have booked a car
-		account_user = Account.objects.get(user__username=request.user)
-		if account_user.book_status == False:	# if false, they can't book
-			# Get the number plate posted
-			number_plate = request.POST.get("number_plate", "value")
-			# Get car object using number plate
-			booked_car = Car.objects.get(number_plate=number_plate)
+		# Get the number plate posted
+		number_plate = request.POST.get("number_plate", "value")
 
-			# Get current user
-			user  = request.user
-			# Initialize booking
-			booking = Booking.objects.create(brand=booked_car.brand, transmission=booked_car.transmission, number_plate=booked_car.number_plate,
-									price=booked_car.price, start_latitude=booked_car.latitude, start_longitude=booked_car.longitude, user=user)
-			booking.save()
+		# Get car object using number plate
+		booked_car = Car.objects.get(number_plate=number_plate)
 
-			# Update user's book status in Account model database
-			user.account.book_status = True
-			user.save()
+		args = {
+			"car": booked_car
+		}
 
-			args = {
-				"car": booked_car
-			}
-
-			return render(request, self.template_name, args)
-		else:
-			return redirect(reverse('home'))
+		return render(request, self.template_name, args)
 
 
 class SuccessPage(TemplateView):
@@ -99,13 +81,6 @@ class SuccessPage(TemplateView):
 
 	def get(self, request):
 		print("GET success")
-
-		user  = request.user 	# set user
-		if user.account.book_status == True:	# user book status is True
-			user.account.book_status = False
-			user.save() # save the status
-
-		# Set car available to True
 		# when user enters url instead through booking, redirect to homepage
 		return redirect(reverse('home'))
 

@@ -25,12 +25,12 @@ class HomePageView(TemplateView):
 	# Reciving ajax request for session timer
 	def post(self, request):
 		if request.method == "POST":
-			if request.user.account.book_status == False:
-				number_plate = request.POST['car'] # set data from POST into number_plate variable
-				set_car = Car.objects.get(number_plate=number_plate) # set car object with the car that has number_plate
-				set_car.available = True	# change set_car available to True
-				set_car.save()	# save changes into the database
-		return render(request, self.template_name)
+			print("POST")
+			number_plate = request.POST['car'] # set data from POST into number_plate variable
+			set_car = Car.objects.get(number_plate=number_plate) # set car object with the car that has number_plate
+			set_car.available = True	# change set_car available to True
+			set_car.save()	# save changes into the database
+		return render(request, self.template_name, self.get_context_data())
 
 
 class SimulationPageView(TemplateView):

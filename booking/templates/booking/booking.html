@@ -54,7 +54,6 @@
       <div class="booking-footer">
       </div>
         <script>
-
             function carLocation() {
               mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
               var bounds = [
@@ -113,7 +112,6 @@
 
               function updateTimer() {
                 msLeft = endTime - (+new Date);
-                console.log(msLeft)
                 if (msLeft < 1) { // when millisecond is less than 1
                   $.ajax({ // sending car number_plate to views
                     headers: { "X-CSRFToken": token },
@@ -138,6 +136,7 @@
             }
 
             countdown("countdowndiv", 10, 0);
+
 
         </script>
     </body>
