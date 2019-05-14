@@ -19,25 +19,25 @@
     <body onload="carLocation()">
       {% include "map/navbar.html" %}
       <div class="confirm-block" id="car-map"></div>
-        <div class='session-block text-center' id="countdowndiv1">
+        <!-- <div class='session-block text-center' id="countdowndiv1">
           Insert Session Timer Here
-        </div>
-        <h1 class='text-center'>Youre about to book {{car.number_plate}}</h1>
-        <h2 class='text-center'>Please procceed to confirmation to pay and start driving!</h1>
+        </div> -->
+        <h3 class='text-center header-label' id="first-header">You are about to book <span id="car-number">{{car.number_plate}}</span></h3>
+        <h4 class='text-center header-label'>Please procceed to confirmation to pay and start driving!</h4>
         <div id="booking-content" class="fieldset">
           <table style="width:100%" id="booking-table">
             <tr>
-              <td class ="map-block"><img src="../static/images/car-image1.png" width=60% height=75%></td>
+              <td class ="car-block"><img src="../static/images/car-image1.png" height=60%></td>
               <td class ="details-block text-right">
                 <p class="booking-text"><span class="booking-form-title">Number Plate:</span> {{ car.number_plate }}
                 <br>
                 <span class="booking-form-title">Brand:</span> {{ car.brand }}
                 <br>
-                <span class="booking-form-title">Type:</span>
+                <span class="booking-form-title">Type:</span> Sample Car Type
                 <br>
                 <span class="booking-form-title">Transmission:</span> {{ car.transmission }}
                 <br>
-                <span class="booking-form-title">Year:</span>
+                <span class="booking-form-title">Year:</span> 2010
                 <br>
                 <br>
                 <p class="booking-text"><span class="booking-form-title">Price:</span> ${{ car.price }}p/h</p>
@@ -47,11 +47,15 @@
           <form method="POST" action="/confirmation">
              {% csrf_token %}
              <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
+             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+             <div class="btn-group mr-2" role="group" aria-label="First group" id="my-button">
              <input type="submit" class="btn btn-primary btn-block booking-button" value="Process to Confirmation" id="process-button"></input>
-
+           </div>
           </form>
-          <br>
-           <input type="submit" class="btn btn-primary btn-block booking-button" value="Cancel Booking" id="process-button"></input>
+          <div class="btn-group mr-2" role="group" aria-label="Second group">
+           <input type="submit" class="btn btn-primary btn-block booking-button bg-red" value="Cancel Booking" id="cancel-button"></input>
+         </div>
+       </div>
            <br>
         </div>
       <div class="booking-footer">

@@ -8,6 +8,23 @@ only screen and (max-width: 760px),
 	}
 }
 
+#car-number{
+  color: #99D3DF;
+}
+
+#first-header{
+  margin-top: 60px;
+}
+
+.header-label{
+  font-family: 'Roboto Mono', monospace;
+
+}
+
+.car-block{
+  width:25%;
+}
+
 .fieldset {
   /* -moz-box-shadow:    3px 3px 45px 6px #ccc;
   -webkit-box-shadow: 3px 3px 45px 6px #ccc;
@@ -29,11 +46,14 @@ only screen and (max-width: 760px),
   /* margin: 0 10%; */
   margin-left: 10%;
   margin-right:5%;
-  margin-top: 8%;
+  /* margin-top: 8%; */
 }
 
 #booking-table{
-  margin: 5%;
+  margin-top: 0;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
 }
 
 #confirm-table{
@@ -47,9 +67,16 @@ margin: 5%;
 #process-button{
   background-color: #88CD8F;
   border: none;
-  top: -50px;
+}
 
+#my-button{
+  margin-left: 25%;
 
+}
+
+#cancel-button{
+  background-color: RED;
+  border: none;
 }
 
 #confirm-button{
@@ -59,16 +86,21 @@ margin: 5%;
 
 }
 
+#booking-content{
+  /* top:50px; */
+}
+
 .details-block  {
+  /* top: 100px; */
   width: 400px;
 }
 
 .booking-text{
   margin-right: 25%;
   font-family: 'Roboto Mono', monospace;
-  font-size: 12px;
-
+  font-size: 15px;
 }
+
 #success-text{
   text-align: center;
   font-family: 'Roboto Mono', monospace;
@@ -78,8 +110,9 @@ margin: 5%;
 }
 .booking-form-title{
   font-family: 'Roboto Mono', monospace;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: bold;
+  color: #99D3DF;
 }
 #countdown{
   font-family: 'Roboto Mono', monospace;
@@ -103,4 +136,11 @@ margin: 5%;
   height: 480px !important;
   text-align: left;
   margin-top: 1%;
+}
+
+div.btn-group{
+  margin: 0;
+text-align: center;
+width: inherit;
+display: inline-block;
 }
