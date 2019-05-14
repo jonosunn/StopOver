@@ -1,3 +1,5 @@
+@import url(//fonts.googleapis.com/css?family=Roboto+Mono:400,700i);
+
 .dash-body {
   padding : 10px ;
 
@@ -5,6 +7,7 @@
 
 .this-dash{
   margin-top:25px;
+  font-family: 'Roboto Mono', monospace;
 }
 
 #current-booking, #account-settings, #booking-hist{
@@ -81,4 +84,39 @@
 }
 #car-photo{
   height:200px;
+}
+
+.login-page{
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto Mono', monospace !important;
+
+}
+
+#form-login{
+  top: 100px;
+  margin-right:50px;
+}
+
+#form-login-photo{
+  /* top: 10px; */
+}
+
+#login-button{
+  width:50%;
+  margin-right:0px;
+  right: 10px;
+  position:absolute;
+}
+#login-label{
+  margin-left: 70px;
+}
+
+#note-label{
+  margin-left: 70px;
+}
+
+#user-login-form{
+
 }
