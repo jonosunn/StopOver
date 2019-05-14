@@ -7,7 +7,6 @@
      	  <link rel="stylesheet" href="{% static 'css/map.css' %}">
         <link rel="stylesheet" href="{% static 'css/booking.css' %}">
         <link rel="stylesheet" href="{% static 'css/payment.css' %}">
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
         <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -17,19 +16,20 @@
       	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     </head>
     <body onLoad="navigation()">
     {% include "map/navbar.html" %}
-    <div class="bg-block-1">
-      <!-- <div class='session-block text-center' id="countdowndiv1">
+      <div class="confirm-block" id="car-map"></div>
+      <div class='session-block text-center' id="countdowndiv1">
         Insert Session Timer Here
-      </div> -->
+      </div>
+      <h1 class='text-center'>Youre about to Confirm booking {{car.number_plate}}</h1>
+      <h2 class='text-center'>You have 30 mins to get the car</h1>
+      <h3 class='text-center'>Once you have arrived at the car, click confirm to pay and start driving</h3>
       <div id="booking-content" class="fieldset">
-        <div class="confirm-block" id="car-map"></div>
-        <div class="details-block confirm-block">
         <table style="width:100%" id="confirm-table">
           <tr>
+            <td class ="map-block"><img src="../static/images/car-image1.png" width=60% height=75%></td>
             <td class ="details-block text-right">
               <p class="booking-text"><span class="booking-form-title">Number Plate:</span> {{ car.number_plate }}
               <br>
@@ -47,7 +47,6 @@
               <br></td>
           </tr>
         </table>
-        </div>
         <form action="/success" method="post" id="confirm-form">
           {% csrf_token %}
           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -63,10 +62,12 @@
           <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
           <input type="submit"  class="btn btn-primary btn-block booking-button" value="Confirm Booking" id="confirm-button"></input>
         </form>
+        <br>
+         <input type="submit" class="btn btn-primary btn-block booking-button" value="Cancel Booking" id="process-button"></input>
+         <br>
       </div>
-    </div>
-    <div class="bg-block-2">
-    </div>
+      <div class="booking-footer">
+      </div>
   </body>
     <script>
     function getSpecificCookie(cookieName, valueOnly) {
