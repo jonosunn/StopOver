@@ -30,9 +30,9 @@ class BookingPage(TemplateView):
 
 			if set_car.available == True:
 				# Set the selected car to false so other users can't select the car
-				# set_car.available = False
-				# # Save car object to database
-				# set_car.save()
+				set_car.available = False
+				# Save car object to database
+				set_car.save()
 
 				args = {
 	        		"car": set_car,

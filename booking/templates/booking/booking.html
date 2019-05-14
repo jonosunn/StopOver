@@ -42,11 +42,14 @@
                 <br></td>
             </tr>
           </table>
+          <form method="POST" id="carf" action="/">
+            {% csrf_token %}
+            <input type="hidden" name="car" value="{{ car.number_plate }}">
+          </form>
           <form method="POST" action="/confirmation">
              {% csrf_token %}
              <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
              <input type="submit" class="btn btn-primary btn-block booking-button" value="Process to Confirmation" id="process-button"></input>
-
           </form>
         </div>
       </div>
@@ -137,6 +140,11 @@
 
             countdown("countdowndiv", 10, 0);
 
+            window.onbeforeunload = closingCode;
+            function closingCode(){
+              document.getElementById("carf").submit();
+              return null; //<-- this prevents the dialog confirm box
+            }
 
         </script>
     </body>
