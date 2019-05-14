@@ -63,6 +63,7 @@ class ConfirmationPage(TemplateView):
 
 		return redirect(reverse('home'))
 
+
 	def post(self, request):
 
 		# Get user book status to see if they have booked a car
