@@ -14,11 +14,11 @@ function getDistanceFromLatLonInKm(lon1, lat1, lon2, lat2) {
 	  var d = R * c; // Distance in km
 	  return d.toFixed(2);
 
-}	  
+}
  function deg2rad(deg) {
 	return deg * (Math.PI/180)
 }
-	
+
 function getSpecificCookie(cookieName, valueOnly) {
  //Get original cookie string
 	 var oCookieArray = document.cookie.split(';'),
@@ -56,7 +56,7 @@ function getSpecificCookie(cookieName, valueOnly) {
             ]}
         ]},
       {"<>":"form","method":"GET","action":"${car-url}","html":[
-          {"<>":"input","type":"submit","value":"Book","html":""}
+          {"<>":"input","type":"submit","value":"Book", "class":"booking-button-list btn btn-primary btn-block","html":""}
         ]}
     ]}
   	{% for car in cars %}

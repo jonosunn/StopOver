@@ -12,7 +12,7 @@ body,
 
 .menu-wrap a:hover,
 .menu-wrap a:focus {
-	color: #c94e50;
+	color: GRAY;
 }
 
 .content-wrap {
@@ -163,4 +163,9 @@ body,
 	opacity: 1;
 	-webkit-transition: opacity 0.4s;
 	transition: opacity 0.4s;
+}
+
+.booking-button-list{
+  background-color: #88CD8F!important;
+	border: none !important;
 }
