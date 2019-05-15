@@ -129,8 +129,8 @@ class BookingAppTest(TestCase):
         expected_transmission = booking.transmission
         expected_number_plate = booking.number_plate
         expected_price = booking.price
-        expected_latitude = booking.latitude
-        expected_longitude = booking.longitude
+        expected_latitude = booking.start_latitude
+        expected_longitude = booking.start_longitude
         epxected_actual_price = booking.actual_price
         expected_end_date = booking.end_date
         expected_end_time = booking.end_time
