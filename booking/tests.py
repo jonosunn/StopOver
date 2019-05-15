@@ -49,6 +49,11 @@ class MapAppTest(TestCase):
         self.assertNotContains(
             response, 'Hi there! I should not be on the page.')
 
+    def test_booking_login_redirect(self):
+        car = Car.objects.get(id=1)
+        response = self.client.get(reverse('booking', args=(car.number_plate,)))
+        self.assertEquals(response.status_code, 302)
+        
     def test_confirmation_page_status_code(self):
         self.client.force_login(self.testuser)
         car = Car.objects.get(id=1)
@@ -81,6 +86,11 @@ class MapAppTest(TestCase):
         self.assertNotContains(
             response, 'Hi there! I should not be on the page.')
 
+    def test_confirmation_home_redirect(self):
+        car = Car.objects.get(id=1)
+        response = self.client.get(reverse('confirmation'), {'number_plate':car.number_plate})
+        self.assertEquals(response.status_code, 302)
+
     def test_success_page_status_code(self):
         self.client.force_login(self.testuser)
         response = self.client.post(reverse('success'))
@@ -107,3 +117,8 @@ class MapAppTest(TestCase):
         response = self.client.post(reverse('success'))
         self.assertNotContains(
             response, 'Hi there! I should not be on the page.')
+
+    def test_success_home_redirect(self):
+        self.client.force_login(self.testuser)
+        response = self.client.get(reverse('success'))
+        self.assertEquals(response.status_code, 302)

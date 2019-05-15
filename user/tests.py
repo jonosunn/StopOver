@@ -20,6 +20,7 @@ class UserDataBaseTest(TestCase):
 
 		user = User.objects.get(id=1)
 
+
 	# Test for content within created dummy object
 	def test_user_content(self):
 		user = User.objects.get(id=1)
@@ -157,6 +158,18 @@ class UserDataBaseTest(TestCase):
 			self.assertTrue(True, "New email is more than 254 characters")
 		else:
 			self.assertTrue(False, "New email is less than 254 characters")
+
+
+	def test_register_email(self):
+
+		email = User(email='test@test.com')
+		
+		with self.assertRaises(ValidationError):
+			if email.full_clean():
+				email.save()
+
+		self.assertEqual(User.objects.filter(email='test@test.com').count(), 1)
+
 
 
 	# def test_regex(self):

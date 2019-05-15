@@ -174,4 +174,4 @@ DATABASES['default'].update(db_from_env)
 import sys
 if 'test' in sys.argv or 'test_coverage' in sys.argv:
     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
-    del DATABASES['default']['OPTIONS']['sslmode']
+    # del DATABASES['default']['OPTIONS']['sslmode']
