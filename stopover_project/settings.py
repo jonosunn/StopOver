@@ -4,6 +4,7 @@ import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+VENV_PATH = os.path.dirname(BASE_DIR)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'exhlfdat&vfum(-34*c2uroi(($ww(yo$9pv98=e6p^gl(-eoj'
@@ -21,6 +22,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 INSTALLED_APPS = [
     'map.apps.MapConfig',
+    'booking.apps.BookingConfig',
     'user.apps.UserConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -29,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'stripe',
     'jquery',
     'paypal.standard.ipn',
 ]
@@ -117,11 +120,17 @@ AUTH_PASSWORD_VALIDATORS = [
 PAYPAL_RECEIVER_EMAIL = 'anapatricia_teo-facilitator@yahoo.com.ph'
 PAYPAL_TEST = True
 
+# LOGIN url
+
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = 'home'
+
+LOGOUT_REDIRECT_URL = 'home'
 # Internationalization
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Australia/Melbourne'
 
 USE_I18N = True
 
@@ -142,6 +151,14 @@ STATIC_URL = '/static/'
 STATICFILES_DIR = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+# Media files
+MEDIA_ROOT = os.path.join(VENV_PATH, 'media_root')
+MEDIA_URL = '/media/'
+
+# Stripe Settings
+STRIPE_PUBLISHABLE_KEY = 'pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB'
+STRIPE_SECRET_KEY = 'sk_test_DJ8eXuMEwbOYBXgCNvr24g3V00UQhuVkC6'
 
 # Activate Django-Heroku
 # if 'HEROKU' in os.environ:
