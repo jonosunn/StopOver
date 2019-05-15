@@ -56,7 +56,7 @@ function getSpecificCookie(cookieName, valueOnly) {
             ]}
         ]},
       {"<>":"form","method":"GET","action":"${car-url}","html":[
-          {"<>":"input","type":"submit","value":"Book", "class":"booking-button-list btn btn-primary btn-block onClick()","html":""}
+          {"<>":"input","type":"submit","value":"Book", "class":"booking-button-list btn btn-primary btn-block",'onclick':'onClick()',"html":""}
         ]}
     ]}
   	{% for car in cars %}
