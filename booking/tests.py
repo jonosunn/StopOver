@@ -2,8 +2,8 @@ from django.test import TestCase
 from django.http import HttpRequest
 from django.urls import reverse
 from . import views
-from map.models import Car
-from django.contrib.auth.models import User, Booking
+from map.models import Car, Booking
+from django.contrib.auth.models import User
 import datetime
 
 class BookingAppTest(TestCase):
