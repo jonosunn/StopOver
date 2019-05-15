@@ -123,6 +123,7 @@ class BookingAppTest(TestCase):
         self.assertNotContains(
             response, 'Hi there! I should not be on the page.')
 
+    # Tests that content in booking is correct and has relationship with the user
     def test_booking_content(self):
         booking = Booking.objects.get(user_id=self.testuser.id)
         expected_brand = booking.brand
