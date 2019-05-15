@@ -124,7 +124,7 @@ class BookingAppTest(TestCase):
             response, 'Hi there! I should not be on the page.')
 
     def test_booking_content(self):
-        booking = Booking.objects.get(user_id=self.test_user.id)
+        booking = Booking.objects.get(user_id=self.testuser.id)
         expected_brand = booking.brand
         expected_transmission = booking.transmission
         expected_number_plate = booking.number_plate
