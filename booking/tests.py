@@ -5,7 +5,7 @@ from . import views
 from map.models import Car
 from django.contrib.auth.models import User
 
-class MapAppTest(TestCase):
+class BookingAppTest(TestCase):
     # Test for database models
     # Set up dummy car object
     def setUp(self):
