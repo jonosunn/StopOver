@@ -22,7 +22,7 @@ class UserDashPage(TemplateView):
 
 		# Get user's current booking and booking history
 		booking_history = None
-		curr_booking = None	
+		curr_booking = None
 
 		if user.account.book_status == True:
 			curr_booking = Booking.objects.all().filter(user_id=user.id).order_by("-id")[0]
@@ -65,7 +65,7 @@ class UserDashPage(TemplateView):
 
 			# Determine price subtracting initial $10 booking deposit fee and round to nearest dollar
 			price_in_dollars = int(round((duration * curr_booking.price) - 10))
-			
+
 			# Convert to cents for stripe format
 			price_in_cents = price_in_dollars * 100
 
@@ -84,7 +84,12 @@ class UserDashPage(TemplateView):
 			user.account.book_status = False
 			user.save()
 
-			return render(request, "user/return_success.html")
+			args = {
+				'curr_booking': curr_booking
+
+			}
+
+			return render(request, "user/return_success.html", args)
 
 class RegisterPageView(TemplateView):
     template_name = 'user/register.html'

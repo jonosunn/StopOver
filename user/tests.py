@@ -20,6 +20,7 @@ class UserDataBaseTest(TestCase):
 
 		user = User.objects.get(id=1)
 
+
 	# Test for content within created dummy object
 	def test_user_content(self):
 		user = User.objects.get(id=1)
@@ -159,11 +160,149 @@ class UserDataBaseTest(TestCase):
 			self.assertTrue(False, "New email is less than 254 characters")
 
 
-	# def test_regex(self):
-	# 	test_mobile = Account(mobile="A")
-	# 	with self.assertRaises(ValidationError):
+	def test_register_email(self):
+		user = User.objects.create(password='test123', last_login=timezone.now(), is_superuser=False, username='wrongemail',
+							first_name='Stop', last_name='Over', email='wrongemail', is_staff=False,
+							is_active=False, date_joined=timezone.now())
+		try:
+			user.full_clean()
+		except ValidationError as e:
+			self.assertFalse('Email' in e.message_dict)
+
+
+	def test_register_mobile(self):
+		user = User.objects.create(password='test123', last_login=timezone.now(), is_superuser=False, username='wrongemail',
+							first_name='Stop', last_name='Over', email='wrongemail', is_staff=False,
+							is_active=False, date_joined=timezone.now())
+
+		account = Account.objects.get(user_id=user.id)
+
+		account.mobile = "043211A111"
+		account.car_license_name = "Full Name"
+		account.car_license = "0000000"
+		account.street_name = "Required Street"
+		account.street_number = "10"
+		account.suburb = "Melbourne"
+		account.postcode = "3000"
+		try:
+			account.full_clean()
+		except ValidationError as e:
+			self.assertFalse('Mobile' in e.message_dict)
+
+
+	def test_register_car_license_number(self):
+
+		car_user = User.objects.create(password='test123', last_login=timezone.now(), is_superuser=False, username='wrongemail',
+							first_name='Stop', last_name='Over', email='wrongemail@email.com', is_staff=False,
+							is_active=False, date_joined=timezone.now())
+		account = Account.objects.get(user_id=car_user.id)
+
+		account.mobile = "0432111111"
+		account.car_license_name = "Full Name"
+		account.car_license = "000000A"
+		account.street_name = "Required Street"
+		account.street_number = "10"
+		account.suburb = "Melbourne"
+		account.postcode = "3000"
+
+		try:
+			account.full_clean()
+		except ValidationError as e:
+			self.assertFalse('Car license' in e.message_dict)
+
+
+	def test_register_street_number(self):
+		user = User.objects.create(password='test123', last_login=timezone.now(), is_superuser=False, username='wrongemail',
+							first_name='Stop', last_name='Over', email='wrongemail', is_staff=False,
+							is_active=False, date_joined=timezone.now())
+
+		account = Account.objects.get(user_id=user.id)
+
+		account.mobile = "0432110111"
+		account.car_license_name = "Full Name"
+		account.car_license = "0000000"
+		account.street_name = "Required Street"
+		account.street_number = "ABS"
+		account.suburb = "Melbourne"
+		account.postcode = "3000"
+		try:
+			account.full_clean()
+		except ValidationError as e:
+			self.assertFalse('Street Number' in e.message_dict)
+
+
+	def test_register_street_name(self):
+		user = User.objects.create(password='test123', last_login=timezone.now(), is_superuser=False, username='wrongemail',
+							first_name='Stop', last_name='Over', email='wrongemail', is_staff=False,
+							is_active=False, date_joined=timezone.now())
+
+		account = Account.objects.get(user_id=user.id)
+
+		account.mobile = "0432110111"
+		account.car_license_name = "Full Name"
+		account.car_license = "0000000"
+		account.street_name = "1equired Street"
+		account.street_number = "10"
+		account.suburb = "Melbourne"
+		account.postcode = "3000"
+		try:
+			account.full_clean()
+		except ValidationError as e:
+			self.assertFalse('Street name' in e.message_dict)
 	#
-	# 		if test_mobile.full_clean():
-	# 			test_mobile.save()
+	def test_register_suburb(self):
+		user = User.objects.create(password='test123', last_login=timezone.now(), is_superuser=False, username='wrongemail',
+							first_name='Stop', last_name='Over', email='wrongemail', is_staff=False,
+							is_active=False, date_joined=timezone.now())
+
+		account = Account.objects.get(user_id=user.id)
+
+		account.mobile = "0432110111"
+		account.car_license_name = "Full Name"
+		account.car_license = "0000000"
+		account.street_name = "Required Street"
+		account.street_number = "10"
+		account.suburb = "Me0192bourne"
+		account.postcode = "3000"
+		try:
+			account.full_clean()
+		except ValidationError as e:
+			self.assertFalse('Suburb' in e.message_dict)
 	#
-	# 	self.assertEquals(Account.objects.filter(mobile="A").count(), 0)
+	def test_register_postcode(self):
+		user = User.objects.create(password='test123', last_login=timezone.now(), is_superuser=False, username='wrongemail',
+							first_name='Stop', last_name='Over', email='wrongemail', is_staff=False,
+							is_active=False, date_joined=timezone.now())
+
+		account = Account.objects.get(user_id=user.id)
+
+		account.mobile = "0432110111"
+		account.car_license_name = "Full Name"
+		account.car_license = "0000000"
+		account.street_name = "Required Street"
+		account.street_number = "10"
+		account.suburb = "Melbourne"
+		account.postcode = "AB00"
+		try:
+			account.full_clean()
+		except ValidationError as e:
+			self.assertFalse('Postcode' in e.message_dict)
+
+	def test_register_clean(self):
+		user = User.objects.create(password='test123', last_login=timezone.now(), is_superuser=False, username='wrongemail',
+							first_name='Stop', last_name='Over', email='wrongemail', is_staff=False,
+							is_active=False, date_joined=timezone.now())
+
+		account = Account.objects.get(user_id=user.id)
+
+		account.mobile = "0432110111"
+		account.car_license_name = "Full Name"
+		account.car_license = "0000000"
+		account.street_name = "Required Street"
+		account.street_number = "10"
+		account.suburb = "Melbourne"
+		account.postcode = "3000"
+		try:
+			account.full_clean()
+		except ValidationError as e:
+			self.assertFalse('Mobile' in e.message_dict)
