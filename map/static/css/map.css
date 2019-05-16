@@ -10,6 +10,22 @@ h1
     font-family: 'Roboto Mono', monospace;
 }
 
+footer {
+  border-top: solid;
+  border-color: #CDCDCD;
+  margin-top: 4%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding-top: 2%;
+}
+
+nav {
+  border-bottom: solid;
+  border-color: #CDCDCD;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
 #map
 {
 	width:1500px;
