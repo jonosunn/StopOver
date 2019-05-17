@@ -16,7 +16,9 @@
     </head>
     <body>
       {% include "layout/navbar.html" %}
-      <div class="image-block"></div>
+      <div class="image-block">
+        <img class="mySlides" src="../static/images/banner.jpg" width=100% height=480px>
+      </div>
       <div class="fieldset">
         <div class="about-block">
           <h1>About Stopover</h1>
@@ -36,15 +38,15 @@
         <div class="development-block">
           <table style="width:100%">
             <tr>
-              <td>django image</td>
-              <td>postgresql image</td>
-              <td>heroku image</td>
+              <td><img src="../static/images/thumbnails/django.png" width=70px height=90px></td>
+              <td><img src="../static/images/thumbnails/postgresql.png" width=70px height=110px></td>
+              <td><img src="../static/images/thumbnails/heroku.png" width=70px height=110px></td>
             </tr>
           </table>
           <table style="width:100%">
             <tr>
-              <td>frontend image</td>
-              <td>bootstrap image</td>
+              <td><img src="../static/images/thumbnails/frontend.png" width=70px height=90px></td>
+              <td><img src="../static/images/thumbnails/bootstrap.png" width=70px height=90px></td>
             </tr>
           </table>
         </div>
