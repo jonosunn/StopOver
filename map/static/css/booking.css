@@ -6,6 +6,9 @@ only screen and (max-width: 760px),
   table, thead, tbody, th, td, tr {
 		display: block;
 	}
+  .mySlides {
+    display: none;
+  }
 }
 
 .car-number{
