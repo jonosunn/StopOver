@@ -150,3 +150,9 @@ vertical-align: top;
 .distanceNumber {
 	color: #C25100 !important;
 }
+
+.team-image {
+  border-radius: 50%;
+  border-style: solid;
+  border-color: #CDCDCD;
+}
