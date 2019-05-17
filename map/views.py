@@ -40,3 +40,6 @@ class SimulationPageView(TemplateView):
 		context = super(SimulationPageView, self).get_context_data(*args, **kwargs)
 		context['cars'] = Car.objects.filter(available=True)
 		return context
+
+class HelpPageView(TemplateView):
+	template_name ='other/help.html'
