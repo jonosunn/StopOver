@@ -20,6 +20,10 @@ class UserDataBaseTest(TestCase):
 
 		user = User.objects.get(id=1)
 
+		self.testuser = User.objects.create(username="teststop@email.com")
+        self.testuser.set_password("whatisthepassword")
+        self.testuser.save()
+
 
 	# Test for content within created dummy object
 	def test_user_content(self):
@@ -306,3 +310,9 @@ class UserDataBaseTest(TestCase):
 			account.full_clean()
 		except ValidationError as e:
 			self.assertFalse('Mobile' in e.message_dict)
+
+
+	def user_login_redirect(self):
+		self.client.force_login(self.testuser)
+		response = self.client.get(reverse('user'))
+		self.assertEquals(response.status_code, 302)
