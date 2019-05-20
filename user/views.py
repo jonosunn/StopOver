@@ -9,6 +9,7 @@ from django.urls import reverse
 from user.forms import AccountForm, UserForm, CustomAuthenticationForm
 from django.contrib.auth.views import LoginView
 from booking.models import Booking
+from map.models import Car
 import datetime
 import stripe
 from django.contrib import messages
@@ -83,6 +84,10 @@ class UserDashPage(TemplateView):
 			# Update user's book status in Account model database
 			user.account.book_status = False
 			user.save()
+
+			# Change status of car available to true
+			booked_car = Car.objects.get(number_plate=curr_booking.number_plate)
+			booked_car.available = True
 
 			args = {
 				'curr_booking': curr_booking
