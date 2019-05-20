@@ -33,7 +33,7 @@ class MapAppTest(TestCase):
         self.assertEquals(expected_object_longitude, -37.6799703)
         self.assertEquals(expected_object_latitude, 145.0548504)
         self.assertTrue(expected_object_available, True)
-        self.assertEquals(expected_object_brand, 'Blue')
+        self.assertEquals(expected_object_colour, 'Blue')
         self.assertEquals(expected_object_seat_no, 5)
         self.assertEquals(expected_object_year, 2020)
 
