@@ -88,6 +88,7 @@ class UserDashPage(TemplateView):
 			# Change status of car available to true
 			booked_car = Car.objects.get(number_plate=curr_booking.number_plate)
 			booked_car.available = True
+			booked_car.save()
 
 			args = {
 				'curr_booking': curr_booking
