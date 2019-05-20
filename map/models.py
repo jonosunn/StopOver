@@ -10,6 +10,9 @@ class Car(models.Model):
 	longitude = models.FloatField()
 	latitude = models.FloatField()
 	available = models.BooleanField(default=True)
+	year = models.IntegerField()
+	colour = models.CharField(max_length=20)
+	seat_no = models.IntegerField()
 
 	def get_absolute_url(self):
 		return reverse("booking", kwargs={"number_plate": self.number_plate})
