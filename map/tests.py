@@ -10,7 +10,8 @@ class MapAppTest(TestCase):
     # Set up dummy car object
     def setUp(self):
         Car.objects.create(brand='test_brand', transmission='automatic', number_plate='TEST01',
-            price=100, longitude=-37.6799703, latitude=145.0548504, available=True)
+            price=100, longitude=-37.6799703, latitude=145.0548504, available=True, colour='Blue',
+            seat_no=5, year=2020)
 
     # Test for content within created dummy object
     def test_car_content(self):
@@ -22,6 +23,9 @@ class MapAppTest(TestCase):
         expected_object_longitude = car.longitude
         expected_object_latitude = car.latitude
         expected_object_available = car.available
+        expected_object_colour = car.colour
+        expected_object_seat_no = car.seat_no
+        expected_object_year = car.year
         self.assertEquals(expected_object_brand, 'test_brand')
         self.assertEquals(expected_object_transmission, 'automatic')
         self.assertEquals(expected_object_number_plate, 'TEST01')
@@ -29,6 +33,9 @@ class MapAppTest(TestCase):
         self.assertEquals(expected_object_longitude, -37.6799703)
         self.assertEquals(expected_object_latitude, 145.0548504)
         self.assertTrue(expected_object_available, True)
+        self.assertEquals(expected_object_brand, 'Blue')
+        self.assertEquals(expected_object_seat_no, 5)
+        self.assertEquals(expected_object_year, 2020)
 
     # Test data types of car object
     def test_data_type(self):
