@@ -1,5 +1,6 @@
 <div id=account-settings>
-  <form>
+  <form action={% url 'user' %} method="post">
+    {% csrf_token %}
     <div id="personal-details">
       <h3>Your Personal Information:</h3>
 
@@ -67,6 +68,6 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary userSubmit">Submit</button>
+    <button type="submit" value="Update" class="btn btn-primary userSubmit">Submit</button>
   </form>
 </div>
