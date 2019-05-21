@@ -86,12 +86,34 @@
   height:200px;
 }
 
+.register-form li{
+  display: none;
+}
+
+/* li{
+  font-size: 8px;
+  color: BLUE;
+} */
+.helptext{
+  display: none;
+}
 .login-page{
   display: inline-block;
   padding: 0;
   margin: 0;
   font-family: 'Roboto Mono', monospace !important;
 
+}
+
+.register-page{
+  font-family: 'Roboto Mono', monospace !important;
+  margin: 0 100px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+#label-register{
+  margin-top: 50px;
 }
 
 #form-login{
@@ -119,4 +141,8 @@
 
 #user-login-form{
 
+}
+
+#register-button{
+  width: 100%;
 }
