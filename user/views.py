@@ -40,7 +40,7 @@ class UserDashPage(TemplateView):
 
 	def post(self, request):
 
-		if request.method == 'POST':
+		if request.POST['action'] == 'Return Car':
 
 			# Get current user's booking
 			user = request.user
@@ -96,6 +96,30 @@ class UserDashPage(TemplateView):
 			}
 
 			return render(request, "user/return_success.html", args)
+
+		elif request.POST['action'] == 'Update': 
+			
+			# Get the user
+			curr_user = request.user
+
+			if request.POST['email']:
+				curr_user.email = request.POST['email']
+
+			if request.POST['card-holder-name']:
+				curr_user.account.car_license_name = request.POST['card-holder-name']
+
+			if request.POST['card-number']:
+				curr_user.account.car_license = request.POST['card-number']
+
+			if request.POST['userStreetNo']:
+				curr_user.account.street_number = request.POST['userStreetNo']
+
+			if request.POST['userAddress']:
+				curr_user.account.street_name = request.POST['userAddress']
+
+			curr_user.save()
+			return render(request, 'map/homepage.html')
+
 
 class RegisterPageView(TemplateView):
     template_name = 'user/register.html'

@@ -16,7 +16,7 @@
       <div id="end-button">
       <form action={% url 'user' %} method="post">
         {% csrf_token %}
-        <button type="submit" value="Return Car" class="submit-button">Return Car</button>
+        <button type="submit" name="action" value="Return Car" class="submit-button">Return Car</button>
       </form>
       </div>
     </div>
