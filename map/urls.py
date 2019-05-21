@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import HomePageView, SimulationPageView, AboutPageView
+from .views import HomePageView, SimulationPageView, HelpPageView
 from django.contrib.admin.views.decorators import staff_member_required
 
 urlpatterns = [
