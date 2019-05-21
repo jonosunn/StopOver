@@ -6,5 +6,5 @@ from django.contrib.admin.views.decorators import staff_member_required
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
     path('admin/car/simulation', staff_member_required(SimulationPageView.as_view()), name='simulation'),
-    path('about/', AboutPageView.as_view(), name='about')
+    path('help/', HelpPageView.as_view(), name='help')
 ]

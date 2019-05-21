@@ -41,5 +41,5 @@ class SimulationPageView(TemplateView):
 		context['cars'] = Car.objects.filter(available=True)
 		return context
 
-class AboutPageView(TemplateView):
-	template_name = "other/about.html"
+class HelpPageView(TemplateView):
+	template_name ='other/help.html'
