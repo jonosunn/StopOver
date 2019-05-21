@@ -12,7 +12,8 @@ class BookingAppTest(TestCase):
     # Set up dummy car object
     def setUp(self):
         booked_car = Car.objects.create(brand='test_brand', transmission='automatic', number_plate='TEST01',
-            price=100, longitude=-37.6799703, latitude=145.0548504, available=True)
+            price=100, longitude=-37.6799703, latitude=145.0548504, available=True, colour='Blue', seat_no=5,
+            year=2020)
 
         self.testuser = User.objects.create(username="teststop@email.com")
         self.testuser.set_password("whatisthepassword")
