@@ -150,3 +150,27 @@ vertical-align: top;
 .distanceNumber {
 	color: #C25100 !important;
 }
+
+.team-image {
+  border-radius: 50%;
+  border-style: solid;
+  border-color: #CDCDCD;
+}
+
+.about-block {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+.team-block {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+.development-block {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  text-align: center;
+}
