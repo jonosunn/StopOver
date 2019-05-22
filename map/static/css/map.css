@@ -65,6 +65,11 @@ a
     font-family: 'Roboto Mono', monospace;
 }
 
+.social-media-img{
+  max-width:30px;
+  display: inline-block;
+}
+
 #mainLogo
 {
     font-family: 'Roboto Mono', monospace;
