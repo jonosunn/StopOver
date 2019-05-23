@@ -70,9 +70,13 @@
            <input type="submit" class="btn btn-primary btn-block booking-button process-button" value="Confirm Booking"></input>
          </div>
         </form>
-        <div class="btn-group mr-2" role="group" aria-label="Second group">
-         <input type="submit" class="btn btn-primary btn-block booking-button bg-red cancel-button" value="Cancel Booking"></input>
-       </div>
+        <form method="post" action="/">
+          {% csrf_token %}
+          <div class="btn-group mr-2" role="group" aria-label="Second group">
+           <input type="hidden" name="car" value="{{ car.number_plate }}">
+           <input type="submit" class="btn btn-primary btn-block booking-button bg-red cancel-button" value="Cancel Booking"></input>
+         </div>
+        </form>
      </div>
          <br>
       </div>
