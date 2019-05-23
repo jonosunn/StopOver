@@ -160,3 +160,57 @@ vertical-align: top;
 .distanceNumber {
 	color: #C25100 !important;
 }
+
+.about-body {
+
+  font-family: 'Roboto Mono', monospace;
+
+}
+
+.about-body small{
+  font-size: 10px;
+}
+
+.big-about-font{
+  font-size: 20px;
+  color: #99D3DF;
+
+}
+
+.image-block{
+  margin: 15px 10%;
+}
+
+.team-image {
+  border-radius: 50%;
+  border-style: solid;
+  border-color: #CDCDCD;
+  margin: 10px;
+}
+
+.about-block {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+.team-block {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+.development-block {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+.footer-body{
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+}
+
+.block-one{
+  position:sticky;
+}
