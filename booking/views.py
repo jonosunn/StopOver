@@ -45,8 +45,8 @@ class BookingPage(TemplateView):
 				}
 				return redirect(reverse('home'))
 		else:
-			# User has booked a car already, send an alert
-			print("Book Statement")
+			# User has booked a car already, can't book another car, return to homepage
+			print("User has already booked a car")
 			return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
@@ -80,7 +80,6 @@ class SuccessPage(TemplateView):
 	template_name = 'booking/success.html'
 
 	def get(self, request):
-		print("GET success")
 		# when user enters url instead through booking, redirect to homepage
 		return redirect(reverse('home'))
 
