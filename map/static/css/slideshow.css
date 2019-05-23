@@ -109,6 +109,8 @@ html, body {
 .vertical-part {
   overflow: hidden;
   display: inline-block;
+  font-family: 'Roboto Mono', monospace;
+
 }
 
 .vertical-part b {
