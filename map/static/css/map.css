@@ -51,13 +51,23 @@ nav {
 	font-size: 10px;
 	padding-top: 5px;
 }
-
+.footer-content{
+    font-family: 'Roboto Mono', monospace;
+}
+.footer-list{
+  font-size: 12px;
+}
 #car-price{
 	padding-top: 5px;
 }
 a
 {
     font-family: 'Roboto Mono', monospace;
+}
+
+.social-media-img{
+  max-width:30px;
+  display: inline-block;
 }
 
 #mainLogo
