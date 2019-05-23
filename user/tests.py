@@ -21,8 +21,8 @@ class UserDataBaseTest(TestCase):
 		user = User.objects.get(id=1)
 
 		self.testuser = User.objects.create(username="teststop@email.com")
-        self.testuser.set_password("whatisthepassword")
-        self.testuser.save()
+		self.testuser.set_password("whatisthepassword")
+		self.testuser.save()
 
 
 	# Test for content within created dummy object
