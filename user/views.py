@@ -129,31 +129,19 @@ class RegisterPageView(TemplateView):
 		user_form = UserForm(request.POST)
 
 		if account_form.is_valid() and user_form.is_valid():
-			print("1")
 			# save user details, but don't add to database yet
 			user = user_form.save(commit=False)
 			# save username as email
 			user.username = user.email
-			print("2")
-			# save user to user database
-
-			print("3")
 			# save account detail, but don't add to database
 			account = account_form.save(commit=False)
-			# add user to account'
+			# add account to user
 			user.account = account
-			# save account to account database
+			# save user to user database
 			user.save()
-			print("6")
 			# Redirect to login page
-			username = user_form.cleaned_data.get('username')
-			password = user_form.cleaned_data.get('password1')
-
 			return redirect(reverse('login'))
 		else:
-
-			print(account_form.is_valid())
-			print(user_form.is_valid())
 			# Make new form
 			account_form = AccountForm()
 			user_form = UserForm()
