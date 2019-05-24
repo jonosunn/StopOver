@@ -97,8 +97,8 @@ class UserDashPage(TemplateView):
 
 			return render(request, "user/return_success.html", args)
 
-		elif request.POST['action'] == 'Update': 
-			
+		elif request.POST['action'] == 'Update':
+
 			# Get the user
 			curr_user = request.user
 
@@ -133,14 +133,12 @@ class RegisterPageView(TemplateView):
 			user = user_form.save(commit=False)
 			# save username as email
 			user.username = user.email
-			# save user to user database
-			user.save()
 			# save account detail, but don't add to database
 			account = account_form.save(commit=False)
-			# add user to account
-			account.user = user
-			# save account to account database
-			account.save()
+			# add account to user
+			user.account = account
+			# save user to user database
+			user.save()
 			# Redirect to login page
 			return redirect(reverse('login'))
 		else:
@@ -148,12 +146,12 @@ class RegisterPageView(TemplateView):
 			account_form = AccountForm()
 			user_form = UserForm()
 
-			args = {
-				'account_form' : account_form,
-				'user_form' : user_form
-			}
+		args = {
+			'account_form' : account_form,
+			'user_form' : user_form
+		}
 
-			return render(request, self.template_name, args)
+		return render(request, self.template_name, args)
 
 	def get(self, request):
 		# if user is not login
