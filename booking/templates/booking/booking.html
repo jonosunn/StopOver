@@ -17,44 +17,60 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
     <body onload="carLocation()">
-      {% include "map/navbar.html" %}
-      <div class="bg-block-1">
-        <!-- <div class='session-block text-center' id="countdowndiv1">
+      {% include "layout/navbar.html" %}
+      <div class="confirm-block" id="car-map"></div>
+        <div class='session-block text-center' id="countdowndiv">
           Insert Session Timer Here
-        </div> -->
-        <div id="booking-content" class="fieldset">
-          <table style="width:100%" id="booking-table">
+        </div>
+        <h3 class='text-center header-label first-header'>You are about to book <span class="car-number">{{car.number_plate}}</span></h3>
+        <h4 class='text-center header-label'>Please procceed to confirmation to pay and start driving!</h4>
+        <div class="fieldset">
+          <table style="width:100%" class="booking-table">
             <tr>
-              <td class ="map-block"><img src="../static/images/car-image1.png" width=60% height=75%></td>
+              <td class ="car-block"><img src="../static/images/car-image1.png" height=60%></td>
               <td class ="details-block text-right">
                 <p class="booking-text"><span class="booking-form-title">Number Plate:</span> {{ car.number_plate }}
                 <br>
                 <span class="booking-form-title">Brand:</span> {{ car.brand }}
                 <br>
-                <span class="booking-form-title">Type:</span>
+                <span class="booking-form-title">Colour:</span> {{ car.colour }}
+                <br>
+                <span class="booking-form-title">Type:</span> {{ car.seat_no }} Seater
                 <br>
                 <span class="booking-form-title">Transmission:</span> {{ car.transmission }}
                 <br>
-                <span class="booking-form-title">Year:</span>
+                <span class="booking-form-title">Year:</span> {{ car.year }}
                 <br>
                 <br>
                 <p class="booking-text"><span class="booking-form-title">Price:</span> ${{ car.price }}p/h</p>
                 <br></td>
             </tr>
           </table>
+          <form method="POST" id="carf" action="/">
+            {% csrf_token %}
+            <input type="hidden" name="car" value="{{ car.number_plate }}">
+          </form>
           <form method="POST" action="/confirmation">
              {% csrf_token %}
              <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
-             <input type="submit" class="btn btn-primary btn-block booking-button" value="Process to Confirmation" id="process-button"></input>
-
+             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+             <div class="btn-group mr-2 my-button" role="group" aria-label="First group">
+             <input type="submit" class="btn btn-primary btn-block booking-button process-button" value="Process to Confirmation"></input>
+           </div>
           </form>
+          <form action="/" method="post">
+            {% csrf_token %}
+            <div class="btn-group mr-2" role="group" aria-label="Second group">
+             <input type="hidden" name="car" value="{{ car.number_plate }}">
+             <input type="submit" class="btn btn-primary btn-block booking-button bg-red cancel-button" value="Cancel Booking" ></input>
+           </div>
+          </form>
+       </div>
+           <br>
         </div>
-      </div>
-      <div class="bg-block-2"></div>
       <div class="booking-footer">
       </div>
         <script>
-
             function carLocation() {
               mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
               var bounds = [
@@ -102,43 +118,49 @@
               });
             }
 
-            // function countdown(elementID, minutes, seconds) {
-            //   var element, endTime, hours, mins, msLeft, time;
-            //   var car = "{{ car.number_plate }}"; // set car number_plate to a car variable
-            //   var token = '{{csrf_token}}'; // set csrf token for post request
-            //
-            //   function twoDigits(n) { // when digit is less than 9, add a 0 in front
-            //     return (n <= 9 ? "0" + n : n);
-            //   }
-            //
-            //   function updateTimer() {
-            //     msLeft = endTime - (+new Date);
-            //     console.log(msLeft)
-            //     if (msLeft < 1) { // when millisecond is less than 1
-            //       $.ajax({ // sending car number_plate to views
-            //         headers: { "X-CSRFToken": token },
-            //         url: '/',
-            //         type: "POST",
-            //         data: {car : car}
-            //       })
-            //       alert("Session has timeout"); // display popup
-            //       window.location.replace("/"); // redirect to homepage
-            //     }
-            //     else { // continue updating the timer
-            //       time = new Date(msLeft);
-            //       hours = time.getUTCHours();
-            //       mins = time.getUTCMinutes();
-            //       element.innerHTML = (hours ? hours + ':' + twoDigits(mins) : mins) + ':' + twoDigits(time.getUTCSeconds()); // Display countdown timer
-            //       setTimeout(updateTimer, time.getUTCMilliseconds() + 500);
-            //     }
-            //   }
-            //   element = document.getElementById(elementID);
-            //   endTime = (+new Date) + 1000 * (60 * minutes + seconds) + 500;
-            //   updateTimer();
-            // }
-            //
-            // countdown("countdowndiv1", 0, 10);
+            function countdown(elementID, minutes, seconds) {
+              var element, endTime, hours, mins, msLeft, time;
+              var car = "{{ car.number_plate }}"; // set car number_plate to a car variable
+              var token = '{{csrf_token}}'; // set csrf token for post request
+
+              function twoDigits(n) { // when digit is less than 9, add a 0 in front
+                return (n <= 9 ? "0" + n : n);
+              }
+
+              function updateTimer() {
+                msLeft = endTime - (+new Date);
+                if (msLeft < 1) { // when millisecond is less than 1
+                  $.ajax({ // sending car number_plate to views
+                    headers: { "X-CSRFToken": token },
+                    url: '/',
+                    type: "POST",
+                    data: {car : car}
+                  })
+                  alert("Session has timeout"); // display popup
+                  window.location.replace("/"); // redirect to homepage
+                }
+                else { // continue updating the timer
+                  time = new Date(msLeft);
+                  hours = time.getUTCHours();
+                  mins = time.getUTCMinutes();
+                  element.innerHTML = (hours ? hours + ':' + twoDigits(mins) : mins) + ':' + twoDigits(time.getUTCSeconds()); // Display countdown timer
+                  setTimeout(updateTimer, time.getUTCMilliseconds() + 500);
+                }
+              }
+              element = document.getElementById(elementID);
+              endTime = (+new Date) + 1000 * (60 * minutes + seconds) + 500;
+              updateTimer();
+            }
+
+            countdown("countdowndiv", 10, 0);
+
+            window.onbeforeunload = closingCode;
+            function closingCode(){
+              document.getElementById("carf").submit();
+              return null; //<-- this prevents the dialog confirm box
+            }
 
         </script>
+        {% include "layout/footer.html" %}
     </body>
 </html>

@@ -21,32 +21,29 @@
     </head>
 
     <body onLoad="navigation()">
-      {% include "map/navbar.html" %}
-      <div class="bg-block-1">
-        <div id="booking-content" class="fieldset">
+      {% include "layout/navbar.html" %}
+        <div class="fieldset">
           <div id="success-text">
             <h3>Thanks, for booking with StopOver!</h2>
               <br/>
             <div id="success-photo"><img src="../static/images/success-image.png" height=200px></div>
             <br/>
             <h5>
-              Redirecting to the Home Page in <span id="countdown">10</span> seconds
+              Redirecting to your dashboard in <span id="countdown">5</span> seconds
             </h5>
           </div>
         </div>
       </div>
-      <div class="bg-block-2"></div>
-      <div class="booking-footer"></div>
       <script type="text/javascript">
 
           // Total seconds to wait
-          var seconds = 10;
+          var seconds = 5;
 
           function countdown() {
               seconds = seconds - 1;
               if (seconds < 0) {
                   // Chnage your redirection link here
-                  window.location = "/";
+                  window.location = "{% url 'user' %}";
               } else {
                   // Update remaining seconds
                   document.getElementById("countdown").innerHTML = seconds;
@@ -59,5 +56,6 @@
           countdown();
 
       </script>
+      {% include "layout/footer.html" %}
     </body>
 </html>

@@ -4,8 +4,14 @@
     <head>
         <meta charset="utf-8">
         <title>Success</title>
+     	  <link rel="stylesheet" href="{% static 'css/map.css' %}">
+        <link rel="stylesheet" href="{% static 'css/booking.css' %}">
+        <link rel="stylesheet" href="{% static 'css/payment.css' %}">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
         <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
       	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -15,34 +21,41 @@
     </head>
 
     <body onLoad="navigation()">
-      <div class='steps-block'>
-        <div id="stepper">
-          <div class="fieldset">
-            <h2>Booked car has been successfully returned!</h2>
-            <h3>
-              Redirecting to the Home Page in <span id="countdown">5</span> seconds
-            </h3>
+      {% include "layout/navbar.html" %}
+        <div class="fieldset">
+          <div id="success-text">
+            <h3>You have successfully return the car! Please book again soon</h2>
+              <br/>
+            <div id="success-photo"><img src="../static/images/success-image.png" height=200px></div>
+            <br/>
+            <h5>
+              Redirecting to the homepage in <span id="countdown">5</span> seconds
+            </h5>
           </div>
         </div>
       </div>
       <script type="text/javascript">
-        // Total seconds to wait
-        var seconds = 5;
 
-        function countdown() {
-            seconds = seconds - 1;
-            if (seconds < 0) {
-                // Redirect home
-                window.location = "/";
-            } else {
-                // Update remaining seconds
-                document.getElementById("countdown").innerHTML = seconds;
-                // Count down using javascript
-                window.setTimeout("countdown()", 500);
-            }
-        }
-        // Run countdown function
-        countdown();
+          // Total seconds to wait
+          var seconds = 5;
+
+          function countdown() {
+              seconds = seconds - 1;
+              if (seconds < 0) {
+                  // Chnage your redirection link here
+                  window.location = "{% url 'home' %}";
+              } else {
+                  // Update remaining seconds
+                  document.getElementById("countdown").innerHTML = seconds;
+                  // Count down using javascript
+                  window.setTimeout("countdown()", 1000);
+              }
+          }
+
+          // Run countdown function
+          countdown();
+
       </script>
+      {% include "layout/footer.html" %}
     </body>
 </html>

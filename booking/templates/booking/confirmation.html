@@ -7,7 +7,6 @@
      	  <link rel="stylesheet" href="{% static 'css/map.css' %}">
         <link rel="stylesheet" href="{% static 'css/booking.css' %}">
         <link rel="stylesheet" href="{% static 'css/payment.css' %}">
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
         <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -17,55 +16,72 @@
       	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     </head>
     <body onLoad="navigation()">
-    {% include "map/navbar.html" %}
-    <div class="bg-block-1">
-      <!-- <div class='session-block text-center' id="countdowndiv1">
+    {% include "layout/navbar.html" %}
+    <div class="confirm-block" id="car-map"></div>
+      <div class='session-block text-center' id="countdowndiv">
         Insert Session Timer Here
-      </div> -->
-      <div id="booking-content" class="fieldset">
-        <div class="confirm-block" id="car-map"></div>
-        <div class="details-block confirm-block">
-        <table style="width:100%" id="confirm-table">
+      </div>
+      <h3 class='text-center header-label first-header'>You are about to confirm your booking for <span class="car-number">{{car.number_plate}}</span></h3>
+      <h4 class='text-center header-label'>You have 30 minutes to get to your car.</h4>
+      <h4 class='text-center header-label'>Once you have arrived at your car, confirm your booking to pay and start driving.</h4>
+      <div class="fieldset">
+        <table style="width:100%" class="booking-table">
           <tr>
+            <td class ="car-block"><img src="../static/images/car-image1.png" height=60%></td>
             <td class ="details-block text-right">
               <p class="booking-text"><span class="booking-form-title">Number Plate:</span> {{ car.number_plate }}
               <br>
-              <span class="booking-form-title">Brand: {{ car.brand }}</span>
+              <span class="booking-form-title">Brand:</span> {{ car.brand }}
               <br>
-              <span class="booking-form-title">Type:</span>
+              <span class="booking-form-title">Colour:</span> {{ car.colour }}
+              <br>
+              <span class="booking-form-title">Type:</span> {{ car.seat_no}} Seater
               <br>
               <span class="booking-form-title">Transmission:</span> {{ car.transmission }}
               <br>
-              <span class="booking-form-title">Year:</span>
+              <span class="booking-form-title">Year:</span> {{ car.year }}
               <br>
               <br>
               <p class="booking-text"><span class="booking-form-title">Price:</span> ${{ car.price }}p/h</p>
-              <br>
               <br></td>
           </tr>
         </table>
-        </div>
-        <form action="/success" method="post" id="confirm-form">
-          {% csrf_token %}
-          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                  data-key="pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB"
-                  data-description="Booking Deposit Fee"
-                  data-amount="1000"
-                  data-locale="auto"
-                  data-email="{{ user.email }}">
-          </script>
-          <script>
-              document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
-          </script>
-          <input type="submit"  class="btn btn-primary btn-block booking-button" value="Confirm Booking" id="confirm-button"></input>
+        <form method="POST" action="/confirmation" id="confirm-form">
+           {% csrf_token %}
+           <input type="hidden" name="car" value="{{ car.number_plate }}">
+         </form>
+         <form action="/success" method="post" id="confirm-form">
+           {% csrf_token %}
+           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                   data-key="pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB"
+                   data-description="Booking Deposit Fee"
+                   data-amount="1000"
+                   data-locale="auto"
+                   data-email="{{ user.email }}">
+           </script>
+           <script>
+               document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+           </script>
+           <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
+           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+           <div class="btn-group mr-2 my-button" role="group" aria-label="First group">
+           <input type="submit" class="btn btn-primary btn-block booking-button process-button" value="Confirm Booking"></input>
+         </div>
         </form>
+        <form method="post" action="/">
+          {% csrf_token %}
+          <div class="btn-group mr-2" role="group" aria-label="Second group">
+           <input type="hidden" name="car" value="{{ car.number_plate }}">
+           <input type="submit" class="btn btn-primary btn-block booking-button bg-red cancel-button" value="Cancel Booking"></input>
+         </div>
+        </form>
+     </div>
+         <br>
       </div>
-    </div>
-    <div class="bg-block-2">
-    </div>
+      <div class="booking-footer">
+      </div>
   </body>
     <script>
     function getSpecificCookie(cookieName, valueOnly) {
@@ -299,6 +315,51 @@
      };
      getRoute(coords);
      });
+
+     function countdown(elementID, minutes, seconds) {
+       var element, endTime, hours, mins, msLeft, time;
+       var car = "{{ car.number_plate }}"; // set car number_plate to a car variable
+       var token = '{{csrf_token}}'; // set csrf token for post request
+
+       function twoDigits(n) { // when digit is less than 9, add a 0 in front
+         return (n <= 9 ? "0" + n : n);
+       }
+
+       function updateTimer() {
+         msLeft = endTime - (+new Date);
+         console.log(msLeft)
+         if (msLeft < 1) { // when millisecond is less than 1
+           $.ajax({ // sending car number_plate to views
+             headers: { "X-CSRFToken": token },
+             url: '/',
+             type: "POST",
+             data: {car : car}
+           })
+           alert("Session has timeout"); // display popup
+           window.location.replace("/"); // redirect to homepage
+         }
+         else { // continue updating the timer
+           time = new Date(msLeft);
+           hours = time.getUTCHours();
+           mins = time.getUTCMinutes();
+           element.innerHTML = (hours ? hours + ':' + twoDigits(mins) : mins) + ':' + twoDigits(time.getUTCSeconds()); // Display countdown timer
+           setTimeout(updateTimer, time.getUTCMilliseconds() + 500);
+         }
+       }
+       element = document.getElementById(elementID);
+       endTime = (+new Date) + 1000 * (60 * minutes + seconds) + 500;
+       updateTimer();
+     }
+
+     countdown("countdowndiv", 30, 0);
+
+     window.onbeforeunload = closingCode;
+     function closingCode(){
+       document.getElementById("carf").submit();
+       return "Are you sure? Leaving will return to the home page"; //<-- this prevents the dialog confirm box
+     }
+
   </script>
+  {% include "layout/footer.html" %}
   </body>
 </html>
