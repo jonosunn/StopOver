@@ -187,7 +187,40 @@ vertical-align: top;
   margin: 10px;
 }
 
-.about-block {
+/* .active, .accordion:hover {
+  background-color: #ccc;
+} */
+
+.accordion:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.footer-body{
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+}
+
+.block-one{
+  position:sticky;
+}
+
+.development-block {
   margin-top: 4%;
   margin-bottom: 4%;
   text-align: center;
@@ -199,17 +232,28 @@ vertical-align: top;
   text-align: center;
 }
 
-.development-block {
+.about-block {
   margin-top: 4%;
   margin-bottom: 4%;
   text-align: center;
 }
 
-.footer-body{
+.faq-font{
   font-family: 'Roboto Mono', monospace;
-  font-size: 12px;
 }
 
-.block-one{
-  position:sticky;
+#main-faq-text{
+  color: #99D3DF;
+  text-align:center;
+  margin:25px 0px;
+}
+
+.faq-heading{
+  color: #000 !important;
+}
+
+.btn-link:hover, .btn-link:focus{
+  color: #99D3DF !important;
+  text-decoration: none !important;
+
 }
