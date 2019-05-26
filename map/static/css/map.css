@@ -187,9 +187,9 @@ vertical-align: top;
   margin: 10px;
 }
 
-.active, .accordion:hover {
+/* .active, .accordion:hover {
   background-color: #ccc;
-}
+} */
 
 .accordion:after {
   content: '\002B';
@@ -218,4 +218,42 @@ vertical-align: top;
 
 .block-one{
   position:sticky;
+}
+
+.development-block {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+.team-block {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+.about-block {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+.faq-font{
+  font-family: 'Roboto Mono', monospace;
+}
+
+#main-faq-text{
+  color: #99D3DF;
+  text-align:center;
+  margin:25px 0px;
+}
+
+.faq-heading{
+  color: #000 !important;
+}
+
+.btn-link:hover, .btn-link:focus{
+  color: #99D3DF !important;
+  text-decoration: none !important;
+
 }
