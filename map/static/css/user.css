@@ -19,9 +19,20 @@
   margin-top: 20px;
 }
 
+.register-form li{
+  display: none;
+}
 
+.fields-only{
+  display: inline-block;
+}
 .userSubmit{
   margin-top: 25px;
+}
+
+#register-photo{
+  position: absolute;
+  margin: 25px 100px;
 }
 
 #personal-details{
@@ -53,6 +64,25 @@
 
 #exTab1 .nav-pills > li > a {
   border-radius: 0;
+}
+
+.register-page{
+  font-family: 'Roboto Mono', monospace !important;
+  margin: 0 100px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+#label-register{
+  margin-top: 50px;
+}
+
+#register-button{
+  width: 100%;
+}
+
+.helptext{
+  display:none;
 }
 
 /* change border radius for the tab , apply corners on top*/

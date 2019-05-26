@@ -33,11 +33,13 @@
                 <br>
                 <span class="booking-form-title">Brand:</span> {{ car.brand }}
                 <br>
-                <span class="booking-form-title">Type:</span> Sample Car Type
+                <span class="booking-form-title">Colour:</span> {{ car.colour }}
+                <br>
+                <span class="booking-form-title">Type:</span> {{ car.seat_no }} Seater
                 <br>
                 <span class="booking-form-title">Transmission:</span> {{ car.transmission }}
                 <br>
-                <span class="booking-form-title">Year:</span> 2010
+                <span class="booking-form-title">Year:</span> {{ car.year }}
                 <br>
                 <br>
                 <p class="booking-text"><span class="booking-form-title">Price:</span> ${{ car.price }}p/h</p>
@@ -56,9 +58,13 @@
              <input type="submit" class="btn btn-primary btn-block booking-button process-button" value="Process to Confirmation"></input>
            </div>
           </form>
-          <div class="btn-group mr-2" role="group" aria-label="Second group">
-           <input type="submit" class="btn btn-primary btn-block booking-button bg-red cancel-button" value="Cancel Booking" ></input>
-         </div>
+          <form action="/" method="post">
+            {% csrf_token %}
+            <div class="btn-group mr-2" role="group" aria-label="Second group">
+             <input type="hidden" name="car" value="{{ car.number_plate }}">
+             <input type="submit" class="btn btn-primary btn-block booking-button bg-red cancel-button" value="Cancel Booking" ></input>
+           </div>
+          </form>
        </div>
            <br>
         </div>

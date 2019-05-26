@@ -1,8 +1,3 @@
-
-
-
-
-
 <!DOCTYPE html>
 {% load static %}
 <html>
@@ -20,12 +15,18 @@
     <div class=" register-page text-left" id="form-register">
       <h2 id="label-register">Register:</h2>
       <br/>
+      <div class="fields-only">
       <form method="POST" class="register-form">
         {% csrf_token %}
           {{ user_form.as_p }}
           {{ account_form.as_p }}
-          <input type="submit" class="btn btn-primary btn-block" value="Register"></input>
-      </form>
+      </div>
+      <div class="fields-only" id="register-photo">
+        <img src="../static/images/register-people.png" width=100% height=100%>
+        </div>
+        <input type="submit" class="btn btn-primary btn-block" value="Register"></input>
+    </form>
+
     </div>
     {% include "layout/footer.html" %}
     </body>

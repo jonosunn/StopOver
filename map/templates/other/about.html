@@ -6,6 +6,8 @@
         <title>about</title>
      	  <link rel="stylesheet" href="{% static 'css/map.css' %}">
         <link rel="stylesheet" href="{% static 'css/booking.css' %}">
+        <link rel="stylesheet" href="{% static 'css/slideshow.css' %}">
+
         <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
         <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -16,41 +18,49 @@
     </head>
     <body>
       {% include "layout/navbar.html" %}
-      <div class="image-block">
-        <img class="mySlides" src="../static/images/banner1.png" width=100%>
+      <div class="block-one slideshow-block image-block">
+        {% include "other/slideshow.html" %}
       </div>
-      <div class="fieldset">
+      <div class="block-one fieldset about-body">
         <div class="about-block">
-          <h1>About Stopover</h1>
-          <p> insert test here about the project stopover </p>
+          <span class="big-about-font">ABOUT</span>
+          <p id="about-para">StopOver is a car share app that aims to provide vehicles to those who need it in the click of a button.</p>
         </div>
         <div class="team-block">
-          <h1>Introducing the Team</h1>
+          <span class="big-about-font">THE TEAM</span>
           <table style="width:100%">
             <tr>
               <td>Project Leader
                 <br>
                 <img class="team-image" src="../static/images/thumbnails/django.png" width=70px height=90px>
                 <br>
-                <small>Ana Teo a full stack front end web developer</small>
+                <small>Ana Teo</small>
+                <br/>
+                <small>Full Stack Developer</small>
               </td>
               <td>Team Leader
                 <br>
                 <img class="team-image" src="../static/images/thumbnails/django.png" width=70px height=90px>
                 <br>
-                <small>Jono Sun a full stack front end web developer</small>
+                <small>Jono Sun</small>
+                <br/>
+                <small>Full Stack Developer</small>
               </td>
               <td>Scrum Master
                 <br>
                 <img class="team-image" src="../static/images/thumbnails/django.png" width=70px height=90px>
                 <br>
-                <small>Nicky Le a full stack front end web developer</small>
+                <small>Nicky Le</small>
+                <br/>
+                <small>Full Stack Developer</small>
               </td>
               <td>Business Analyst
                 <br>
                 <img class="team-image" src="../static/images/thumbnails/django.png" width=70px height=90px>
                 <br>
-                <small>Jeffrey Tan a full stack front end web developer</small>
+                <small>Jeffrey Tan</small>
+                <br/>
+                <small>Full Stack Developer</small>
               </td>
             </tr>
           </table>
@@ -76,4 +86,76 @@
       </div>
       {% include "layout/footer.html" %}
     </body>
+    <script>
+      // Master DOManipulator v2 ------------------------------------------------------------
+const items = document.querySelectorAll('.item'),
+  controls = document.querySelectorAll('.control'),
+  headerItems = document.querySelectorAll('.item-header'),
+  descriptionItems = document.querySelectorAll('.item-description'),
+  activeDelay = .76,
+  interval = 5000;
+
+let current = 0;
+
+const slider = {
+  init: () => {
+    controls.forEach(control => control.addEventListener('click', (e) => { slider.clickedControl(e) }));
+    controls[current].classList.add('active');
+    items[current].classList.add('active');
+  },
+  nextSlide: () => { // Increment current slide and add active class
+    slider.reset();
+    if (current === items.length - 1) current = -1; // Check if current slide is last in array
+    current++;
+    controls[current].classList.add('active');
+    items[current].classList.add('active');
+    slider.transitionDelay(headerItems);
+    slider.transitionDelay(descriptionItems);
+  },
+  clickedControl: (e) => { // Add active class to clicked control and corresponding slide
+    slider.reset();
+    clearInterval(intervalF);
+
+    const control = e.target,
+      dataIndex = Number(control.dataset.index);
+
+    control.classList.add('active');
+    items.forEach((item, index) => {
+      if (index === dataIndex) { // Add active class to corresponding slide
+        item.classList.add('active');
+      }
+    })
+    current = dataIndex; // Update current slide
+    slider.transitionDelay(headerItems);
+    slider.transitionDelay(descriptionItems);
+    intervalF = setInterval(slider.nextSlide, interval); // Fire that bad boi back up
+  },
+  reset: () => { // Remove active classes
+    items.forEach(item => item.classList.remove('active'));
+    controls.forEach(control => control.classList.remove('active'));
+  },
+  transitionDelay: (items) => { // Set incrementing css transition-delay for .item-header & .item-description, .vertical-part, b elements
+    let seconds;
+
+    items.forEach(item => {
+      const children = item.childNodes; // .vertical-part(s)
+      let count = 1,
+        delay;
+
+      item.classList.value === 'item-header' ? seconds = .015 : seconds = .007;
+
+      children.forEach(child => { // iterate through .vertical-part(s) and style b element
+        if (child.classList) {
+          item.parentNode.classList.contains('active') ? delay = count * seconds + activeDelay : delay = count * seconds;
+          child.firstElementChild.style.transitionDelay = `${delay}s`; // b element
+          count++;
+        }
+      })
+    })
+  },
+}
+
+let intervalF = setInterval(slider.nextSlide, interval);
+slider.init();
+    </script>
 </html>
