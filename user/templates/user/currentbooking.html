@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 {% load static %}
 {% if booking != None %}
-<div id="current-booking">
-    <div class="left-box">
-      <div id="car-image"><img id="car-photo" src="{% static 'images/car-image1.png' %}"></div>
+    <div id="current-booking">
+        <!-- <div class="left-box">
+            <div class="car-image"><img class="car-photo" src="{% static 'images/'%}{{car.colour}}{% static '.png' %}"></div>
+        </div> -->
+        <div class="right-box text-center">
+          <div id="car-type"><span class="heading-book">Car model:</span><br/>{{ booking.brand }}</div>
+          <div id="car-transmission"><span class="heading-book">Transmission:</span><br/>{{ booking.transmission }}</div>
+          <div id="car-number-plate"><span class="heading-book">Number Plate:</span><br/>{{ booking.number_plate }}</div>
+          <div id="start-date"><span class="heading-book">Start date:</span><br/>{{ booking.start_date }}</div>
+          <div id="start-time"><span class="heading-book">Start time:</span><br/>{{ booking.start_time }}</div>
+          <div id="price"><span class="heading-book">Price p/h:</span><br/>{{ booking.price }}</div>
+          <div id="end-button">
+          <form action={% url 'user' %} method="post">
+            {% csrf_token %}
+            <button type="submit" name="action" value="Return Car" class="submit-button btn btn-primary btn-danger">Return Car</button>
+          </form>
+          </div>
+        </div>
     </div>
-    <div class="right-box col-">
-      <div id="timer">1:00:53</div>
-      <div id="car-type">Car model: {{ booking.brand }}</div>
-      <div id="car-transmission">Transmission: {{ booking.transmission }}</div>
-      <div id="car-number-plate">Number Plate: {{ booking.number_plate }}</div>
-      <div id="start-date">Start date: {{ booking.start_date }}</div>
-      <div id="start-time">Start time: {{ booking.start_time }}</div>
-      <div id="price">Price p/h: ${{ booking.price }}</div>
-      <div id="end-button">
-      <form action={% url 'user' %} method="post">
-        {% csrf_token %}
-        <button type="submit" name="action" value="Return Car" class="submit-button">Return Car</button>
-      </form>
-      </div>
-    </div>
-</div>
 {% else %}
-  <!-- Display no bookings message -->
   <div id="current-booking">No booking to be displayed</div>
 {% endif %}

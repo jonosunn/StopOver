@@ -5,9 +5,60 @@
 
 }
 
+#booking-hist{
+  overflow-x: scroll;
+}
+
 .this-dash{
   margin-top:25px;
   font-family: 'Roboto Mono', monospace;
+  width:80%;
+  margin-left:10%;
+  margin-right: 10%;
+}
+
+@media only screen and (max-width: 750px) {
+  .this-dash .text-tab{
+    display:none;
+  }
+
+  .this-dash .dash-icon{
+    width:50%;
+    height:auto;
+  }
+/*
+  #booking-hist table{
+    width: auto;
+    height:100%;
+  } */
+}
+
+
+.this-dash nav{
+  margin: 0px;
+}
+
+.this-dash .nav-link.active{
+  color: #99D3DF !important;
+}
+
+.this-dash .nav-link{
+  color: #000;
+}
+
+#booking-hist th{
+  color: #b8b7ad;
+
+}
+
+#booking-hist #booking-id-th{
+  color: #b8b7ad;
+
+}
+
+#personal-details h3, #payment-details h3{
+  color: #99D3DF;
+
 }
 
 #current-booking, #account-settings, #booking-hist{
@@ -27,7 +78,7 @@
   display: inline-block;
 }
 .userSubmit{
-  margin-top: 25px;
+  margin: 25px 0px;
 }
 
 #register-photo{
@@ -36,7 +87,7 @@
 }
 
 #personal-details{
-  margin-bottom: 25px;
+  margin: 25px 0px;
 }
 
 #payment-details{
@@ -101,19 +152,25 @@
   width:15%;
 }
 
-.left-box{
-  margin-top: 25px;
-  margin-left: 10px;
+/* .left-box{
+
   display: inline-block;
+  position:absolute !important;
+  left: 25%;
+} */
+
+.heading-book{
+  color: #99D3DF;
 }
 
+
 .right-box{
-  margin-top: 25px;
-  margin-left: 75px;
-  display: inline-block;
+  margin: 25px 0px;
+  /* display: inline-block; */
 }
-#car-photo{
-  height:200px;
+.car-photo{
+  width: 200px;
+  height:auto;
 }
 
 .login-page{
@@ -147,6 +204,6 @@
   margin-left: 70px;
 }
 
-#user-login-form{
-
+.submit-button{
+  margin-top:25px;
 }
