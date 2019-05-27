@@ -26,6 +26,12 @@ nav {
   margin-right: 10%;
 }
 
+
+
+a:active{
+  text-decoration: none !important;
+}
+
 #map
 {
 	width:1500px;
@@ -77,6 +83,8 @@ a
     font-size: 25px;
 }
 
+
+
 .nav-link a:active
 {
   border-radius: 25px;
@@ -95,7 +103,10 @@ a
 .d-inline-block
 {
 	margin: 20px;
+}
 
+.stopover-nav a:active{
+  color: #99D3DF;
 
 }
 
@@ -240,12 +251,17 @@ vertical-align: top;
 
 .faq-font{
   font-family: 'Roboto Mono', monospace;
+  overflow: auto;
 }
 
 #main-faq-text{
   color: #99D3DF;
   text-align:center;
   margin:25px 0px;
+}
+
+.card-header{
+  padding:0px !important
 }
 
 .faq-heading{

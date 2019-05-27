@@ -20,7 +20,6 @@ class UserDashPage(TemplateView):
 	def get(self, request):
 
 		user = request.user
-
 		# Get user's current booking and booking history
 		booking_history = None
 		curr_booking = None
