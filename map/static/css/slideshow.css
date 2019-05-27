@@ -68,17 +68,15 @@ html, body {
 }
 
 @media only screen and (max-width: 600px) {
-  .item-image{
-    display:none;
+  .slideshow-block{
+    display: none;
+    }
   }
 
-  .item-header, .item-description{
-    top: 0px !important;
-  }
 
-  .image-block{
-    height: 25vh !important;
-  }
+.image-block{
+  margin: 15px 10%;
+  overflow: hidden;
 }
 
 .slideshow .control{
