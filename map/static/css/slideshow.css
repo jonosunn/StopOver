@@ -71,8 +71,27 @@ html, body {
   .slideshow-block{
     display: none;
     }
+
+
   }
 
+  @media only screen and (max-width: 1024px){
+
+
+      .image-block{
+        height: 25vh;
+        /* overflow: hidden; */
+      }
+    }
+
+    @media only screen and (max-width: 768px){
+
+
+        .image-block{
+          height: 25vh;
+          /* overflow: hidden; */
+        }
+      }
 
 .image-block{
   margin: 15px 10%;
