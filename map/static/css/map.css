@@ -26,6 +26,9 @@ nav {
   margin-right: 10%;
 }
 
+.navbar-brand{
+  margin: 0px !important;
+}
 
 
 a:active{
