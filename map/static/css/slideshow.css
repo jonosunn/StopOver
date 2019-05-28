@@ -11,6 +11,8 @@ html, body {
   font-family: 'Roboto Mono', monospace;
   -webkit-font-smoothing: antialiased;
   font-size: .88rem;
+  height: 100%;
+  margin: 0;
   /* color: #bdbdd5; */
 }
 
