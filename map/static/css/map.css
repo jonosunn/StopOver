@@ -58,8 +58,9 @@ a:active{
 	padding-top: 5px;
 }
 .footer-content{
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Roboto Mono', monospace !important;
 }
+
 .footer-list{
   font-size: 12px;
 }
@@ -174,6 +175,7 @@ vertical-align: top;
 
 .about-body {
   font-family: 'Roboto Mono', monospace;
+  margin: 0px 10%;
 
 }
 
@@ -187,9 +189,7 @@ vertical-align: top;
 
 }
 
-.image-block{
-  margin: 15px 10%;
-}
+
 
 .team-image {
   border-radius: 50%;
@@ -272,4 +272,8 @@ vertical-align: top;
   color: #99D3DF !important;
   text-decoration: none !important;
 
+}
+
+.faq-body{
+  margin: 0 10%;
 }
