@@ -26,6 +26,11 @@
     width:50%;
     height:auto;
   }
+
+  #register-photo{
+    display:none;
+  }
+
 /*
   #booking-hist table{
     width: auto;
