@@ -1,7 +1,7 @@
 @import url(//fonts.googleapis.com/css?family=Roboto+Mono:400,700i);
 
 .dash-body {
-  padding : 10px ;
+  margin: 0px 10%;
 
 }
 
@@ -22,14 +22,35 @@
     display:none;
   }
 
+
   .this-dash .dash-icon{
     width:50%;
     height:auto;
   }
 
+  #form-login-photo{
+    display:none;
+  }
+
+
+/*
+  #booking-hist table{
+    width: auto;
+    height:100%;
+  } */
+}
+
+@media only screen and (max-width: 300px) {
+
+
   #register-photo{
     display:none;
   }
+
+  .register-page{
+    text-align: center;
+  }
+
 
 /*
   #booking-hist table{
@@ -124,9 +145,8 @@
 
 .register-page{
   font-family: 'Roboto Mono', monospace !important;
-  margin: 0 100px;
-  padding-left: 50px;
-  padding-right: 50px;
+  margin: 0 10%;
+  text-align: left;
 }
 
 #label-register{
@@ -179,34 +199,20 @@
 }
 
 .login-page{
-  display: inline-block;
   padding: 0;
-  margin: 0;
+  margin: 5% 10%;
   font-family: 'Roboto Mono', monospace !important;
 
 }
 
-#form-login{
-  top: 100px;
-  margin-right:50px;
-}
 
 #form-login-photo{
   /* top: 10px; */
 }
 
 #login-button{
-  width:50%;
-  margin-right:0px;
-  right: 10px;
-  position:absolute;
-}
-#login-label{
-  margin-left: 70px;
-}
-
-#note-label{
-  margin-left: 70px;
+  width:100%;
+  margin-top: 10%;
 }
 
 .submit-button{
