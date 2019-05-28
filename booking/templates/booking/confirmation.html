@@ -21,284 +21,258 @@
     {% include "layout/navbar.html" %}
     <div class="confirm-block" id="car-map"></div>
       <div class='session-block text-center' id="countdowndiv">
-        Insert Session Timer Here
       </div>
-      <h3 class='text-center header-label first-header'>You are about to confirm your booking for <span class="car-number">{{car.number_plate}}</span></h3>
-      <h4 class='text-center header-label'>You have 30 minutes to get to your car.</h4>
-      <h4 class='text-center header-label'>Once you have arrived at your car, confirm your booking to pay and start driving.</h4>
-      <div class="fieldset">
-        <table style="width:100%" class="booking-table">
-          <tr>
-            <td class ="car-block"><img src="../static/images/car-image1.png" height=60%></td>
-            <td class ="details-block text-right">
-              <p class="booking-text"><span class="booking-form-title">Number Plate:</span> {{ car.number_plate }}
-              <br>
-              <span class="booking-form-title">Brand:</span> {{ car.brand }}
-              <br>
-              <span class="booking-form-title">Colour:</span> {{ car.colour }}
-              <br>
-              <span class="booking-form-title">Type:</span> {{ car.seat_no}} Seater
-              <br>
-              <span class="booking-form-title">Transmission:</span> {{ car.transmission }}
-              <br>
-              <span class="booking-form-title">Year:</span> {{ car.year }}
-              <br>
-              <br>
-              <p class="booking-text"><span class="booking-form-title">Price:</span> ${{ car.price }}p/h</p>
-              <br></td>
-          </tr>
-        </table>
-        <form method="POST" action="/confirmation" id="confirm-form">
-           {% csrf_token %}
-           <input type="hidden" name="car" value="{{ car.number_plate }}">
-         </form>
-         <form action="/success" method="post" id="confirm-form">
-           {% csrf_token %}
-           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                   data-key="pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB"
-                   data-description="Booking Deposit Fee"
-                   data-amount="1000"
-                   data-locale="auto"
-                   data-email="{{ user.email }}">
-           </script>
-           <script>
-               document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
-           </script>
-           <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
-           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-           <div class="btn-group mr-2 my-button" role="group" aria-label="First group">
-           <input type="submit" class="btn btn-primary btn-block booking-button process-button" value="Confirm Booking"></input>
-         </div>
-        </form>
-        <form method="post" action="/">
-          {% csrf_token %}
-          <div class="btn-group mr-2" role="group" aria-label="Second group">
-           <input type="hidden" name="car" value="{{ car.number_plate }}">
-           <input type="submit" class="btn btn-primary btn-block booking-button bg-red cancel-button" value="Cancel Booking"></input>
-         </div>
-        </form>
-     </div>
-         <br>
+      <div class="below-container">
+        <div class='session-block text-center' id="countdowndiv">
+        </div>
+        <h3 class='text-center header-label first-header'>You are about to confirm your booking for <span class="car-number">{{car.number_plate}}</span></h3>
+        <h4 class='text-center header-label'>You have 30 minutes to get to your car. See the map above for directions.</h4>
+        <h4 class='text-center header-label'>Once you have arrived at your car, confirm your booking to pay and start driving.</h4>
+          <div class ="car-block"><img src="{% static 'images/'%}{{car.colour}}.png" width=100%></div>
+          <div class ="details-block">
+            <p class="booking-text"><span class="booking-form-title">Number Plate:</span> {{ car.number_plate }}
+            <br>
+            <span class="booking-form-title">Brand:</span> {{ car.brand }}
+            <br>
+            <span class="booking-form-title">Colour:</span> {{ car.colour }}
+            <br>
+            <span class="booking-form-title">Type:</span> {{ car.seat_no }} Seater
+            <br>
+            <span class="booking-form-title">Transmission:</span> {{ car.transmission }}
+            <br>
+            <span class="booking-form-title">Year:</span> {{ car.year }}
+            <br>
+            <br>
+            <p class="booking-text"><span class="booking-form-title">Price:</span> ${{ car.price }}p/h</p>
+            <br>
+          </div>
+          <form method="POST" action="/confirmation" id="confirm-form">
+             {% csrf_token %}
+             <input type="hidden" name="car" value="{{ car.number_plate }}">
+           </form>
+           <form action="/success" method="post" id="confirm-form">
+             {% csrf_token %}
+             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                     data-key="pk_test_wE41ugfkdMLZn92C3XlPYN4R00S83jBUDB"
+                     data-description="Booking Deposit Fee"
+                     data-amount="1000"
+                     data-locale="auto"
+                     data-email="{{ user.email }}">
+             </script>
+             <script>
+                 document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+             </script>
+             <input type="hidden" name="number_plate" value="{{ car.number_plate }}" />
+             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+             <div class="btn-group mr-2 my-button" role="group" aria-label="First group">
+             <input type="submit" class="btn btn-primary btn-block booking-button process-button" value="Confirm Booking"></input>
+           </div>
+          </form>
+          <form method="post" action="/">
+            {% csrf_token %}
+            <div class="btn-group mr-2" role="group" aria-label="Second group">
+             <input type="hidden" name="car" value="{{ car.number_plate }}">
+             <input type="submit" class="btn btn-primary btn-block booking-button bg-red cancel-button" value="Cancel Booking"></input>
+           </div>
+          </form>
       </div>
-      <div class="booking-footer">
-      </div>
-  </body>
-    <script>
-    function getSpecificCookie(cookieName, valueOnly) {
-     //Get original cookie string
-    	 var oCookieArray = document.cookie.split(';'),
-    	     fc,
-    	     cnRE = new RegExp(cookieName + '\=');
-    	 //Loop through cookies
-    	 for (var c = 0; c < oCookieArray.length; c++) {
-    	 	   //If found save to variable and end loop
-    	     if (cnRE.test(oCookieArray[c])) {
-    	         fc = oCookieArray[c].trim();
-    	         if (valueOnly) {
-    	             fc = fc.replace(cookieName +'=', '');
-    	         }
-    	         break;
-    	     }
-    	 }
-    	 return fc;
-    }
+    </div>
+      <script>
+        function getSpecificCookie(cookieName, valueOnly) {
+         //Get original cookie string
+           var oCookieArray = document.cookie.split(';'),
+               fc,
+               cnRE = new RegExp(cookieName + '\=');
+           //Loop through cookies
+           for (var c = 0; c < oCookieArray.length; c++) {
+               //If found save to variable and end loop
+               if (cnRE.test(oCookieArray[c])) {
+                   fc = oCookieArray[c].trim();
+                   if (valueOnly) {
+                       fc = fc.replace(cookieName +'=', '');
+                   }
+                   break;
+               }
+           }
+           return fc;
+        }
 
-      const longCookie = getSpecificCookie('longitude', true);
-      const latCookie = getSpecificCookie('latitude', true) ;
+          const longCookie = getSpecificCookie('longitude', true);
+          const latCookie = getSpecificCookie('latitude', true) ;
 
-      mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
-      var bounds = [
-         [144.70345,-37.91802],
-         [145.22873,-37.64668]
-      ];
+          mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
+          var bounds = [
+             [144.70345,-37.91802],
+             [145.22873,-37.64668]
+          ];
 
-        var map = new mapboxgl.Map({
-          container: 'car-map',
-          style: 'mapbox://styles/mapbox/streets-v11',
-          center: [{{ car.longitude }}, {{ car.latitude }}],
-          zoom: 14,
-          bearing: 0,
-          maxBounds: bounds
-      });
+            var map = new mapboxgl.Map({
+              container: 'car-map',
+              style: 'mapbox://styles/mapbox/streets-v11',
+              center: [{{ car.longitude }}, {{ car.latitude }}],
+              zoom: 14,
+              bearing: 0,
+              maxBounds: bounds
+          });
 
-      // loading marker for the users Location
-      var geojson_user = {
-        type: 'FeatureCollection',
-        features: [{
-          type: 'Feature',
-          geometry: {
-            type: 'Point',
-            coordinates: [longCookie, latCookie]
-          },
-          properties: {
-            title: '{{ user.first_name }} {{ user.last_name }}',
-            description: 'Your Current Location'
-          }
-        }]
-      };
+          // loading marker for the users Location
+          var geojson_user = {
+            type: 'FeatureCollection',
+            features: [{
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: [longCookie, latCookie]
+              },
+              properties: {
+                title: '{{ user.first_name }} {{ user.last_name }}',
+                description: 'Your Current Location'
+              }
+            }]
+          };
 
-      // add users marker to map
-      geojson_user.features.forEach(function(marker) {
-        // create a HTML element for each feature
-        var el = document.createElement('div');
-        el.className = 'users-marker';
-        // user marker
-        new mapboxgl.Marker(el)
+          // add users marker to map
+          geojson_user.features.forEach(function(marker) {
+            // create a HTML element for each feature
+            var el = document.createElement('div');
+            el.className = 'users-marker';
+            // user marker
+            new mapboxgl.Marker(el)
+              .setLngLat(marker.geometry.coordinates)
+                .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                  .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+              .addTo(map);
+          });
+
+          // Cars location marker
+          var geojson_cars = {
+            type: 'FeatureCollection',
+            features: [
+              {
+                type: 'Feature',
+                geometry: {
+                  type: 'Point',
+                  coordinates: [{{ car.longitude }}, {{ car.latitude }}]
+                },
+                properties: {
+                  title: '{{ car.number_plate }}',
+                  description: 'Type: {{ car.brand }} Transmission: {{ car.transmission }} Price: ${{ car.price }} per hour'
+                }
+              },
+          ]
+          };
+          // add markers to map
+          geojson_cars.features.forEach(function(marker) {
+          // create a HTML element for each feature
+          var el = document.createElement('div');
+          el.className = 'car-marker';
+          // car markers
+          new mapboxgl.Marker(el)
           .setLngLat(marker.geometry.coordinates)
             .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
               .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
           .addTo(map);
-      });
+          });
 
-      // Cars location marker
-      var geojson_cars = {
-        type: 'FeatureCollection',
-        features: [
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [{{ car.longitude }}, {{ car.latitude }}]
-            },
-            properties: {
-              title: '{{ car.number_plate }}',
-              description: 'Type: {{ car.brand }} Transmission: {{ car.transmission }} Price: ${{ car.price }} per hour'
-            }
-          },
-      ]
-      };
-      // add markers to map
-      geojson_cars.features.forEach(function(marker) {
-      // create a HTML element for each feature
-      var el = document.createElement('div');
-      el.className = 'car-marker';
-      // car markers
-      new mapboxgl.Marker(el)
-      .setLngLat(marker.geometry.coordinates)
-        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-          .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
-      .addTo(map);
-      });
+          var canvas = map.getCanvasContainer();
 
-      var canvas = map.getCanvasContainer();
+           // an arbitrary start will always be the same
+           // only the end or destination will change
+           var start = [longCookie, latCookie];
 
-       // an arbitrary start will always be the same
-       // only the end or destination will change
-       var start = [longCookie, latCookie];
+           // create a function to make a directions request
+           function getRoute(end) {
+             // make directions request using cycling profile
+             var url = 'https://api.mapbox.com/directions/v5/mapbox/walking/' + start[0] + ',' + start[1] + ';' + end[0] + ',' + end[1] + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
 
-       // create a function to make a directions request
-       function getRoute(end) {
-         // make directions request using cycling profile
-         var url = 'https://api.mapbox.com/directions/v5/mapbox/walking/' + start[0] + ',' + start[1] + ';' + end[0] + ',' + end[1] + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
-
-         // make an XHR request https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
-         var req = new XMLHttpRequest();
-         req.responseType = 'json';
-         req.open('GET', url, true);
-         req.onload  = function() {
-           var data = req.response.routes[0];
-           var route = data.geometry.coordinates;
-           var geojson = {
-             "type": "Feature",
-             "properties": {},
-             "geometry": {
-               "type": "LineString",
-               "coordinates": route
-             }
-           };
-           // if the route already exists on the map, we'll reset it using setData
-           if (map.getSource('route')) {
-             map.getSource('route').setData(geojson);
-           }
-           // otherwise, we'll make a new request
-           else {
-             map.addLayer({
-               "id": "route",
-               "type": "line",
-               "source": {
-                 "type": "geojson",
-                 "data": {
-                   "type": "Feature",
-                   "properties": {},
-                   "geometry": {
-                     "type": "LineString",
-                     "coordinates": geojson
-                   }
-                 }
-               },
-               "layout": {
-                 "line-join": "round",
-                 "line-cap": "round"
-               },
-               "paint": {
-                 "line-color": "#3887be",
-                 "line-width": 5,
-                 "line-opacity": 0.75
-               }
-             });
-           };
-
-           // get the sidebar and add the instructions
-           var instructions = document.getElementById('instructions');
-           var steps = data.legs[0].steps;
-
-           var tripInstructions = [];
-           for (var i = 0; i < steps.length; i++) {
-             tripInstructions.push('<br><li>' + steps[i].maneuver.instruction) + '</li>';
-             instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration/60) + ' min 🚴 </span>' + tripInstructions;
-           };
-         };
-         req.send();
-       };
-
-       map.on('load', function(){
-         // make an initial directions request that
-         // starts and ends at the same location
-         getRoute(start);
-
-         // Add destination to the map
-         map.addLayer({
-           "id": "point",
-           "type": "circle",
-           "source": {
-             "type": "geojson",
-             "data": {
-               "type": "FeatureCollection",
-               "features": [{
+             // make an XHR request https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+             var req = new XMLHttpRequest();
+             req.responseType = 'json';
+             req.open('GET', url, true);
+             req.onload  = function() {
+               var data = req.response.routes[0];
+               var route = data.geometry.coordinates;
+               var geojson = {
                  "type": "Feature",
                  "properties": {},
                  "geometry": {
-                   "type": "Point",
-                   "coordinates": start
+                   "type": "LineString",
+                   "coordinates": route
                  }
+               };
+               // if the route already exists on the map, we'll reset it using setData
+               if (map.getSource('route')) {
+                 map.getSource('route').setData(geojson);
                }
-             ]
-           }
-         }
-       });
+               // otherwise, we'll make a new request
+               else {
+                 map.addLayer({
+                   "id": "route",
+                   "type": "line",
+                   "source": {
+                     "type": "geojson",
+                     "data": {
+                       "type": "Feature",
+                       "properties": {},
+                       "geometry": {
+                         "type": "LineString",
+                         "coordinates": geojson
+                       }
+                     }
+                   },
+                   "layout": {
+                     "line-join": "round",
+                     "line-cap": "round"
+                   },
+                   "paint": {
+                     "line-color": "#3887be",
+                     "line-width": 5,
+                     "line-opacity": 0.75
+                   }
+                 });
+               };
 
-       var coords = [{{car.longitude}}, {{car.latitude}}];
-         var end = {
-           "type": "FeatureCollection",
-           "features": [{
-             "type": "Feature",
-             "properties": {},
-             "geometry": {
-               "type": "Point",
-               "coordinates": coords
+               // get the sidebar and add the instructions
+               var instructions = document.getElementById('instructions');
+               var steps = data.legs[0].steps;
+
+               var tripInstructions = [];
+               for (var i = 0; i < steps.length; i++) {
+                 tripInstructions.push('<br><li>' + steps[i].maneuver.instruction) + '</li>';
+                 instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration/60) + ' min 🚴 </span>' + tripInstructions;
+               };
+             };
+             req.send();
+           };
+
+           map.on('load', function(){
+             // make an initial directions request that
+             // starts and ends at the same location
+             getRoute(start);
+
+             // Add destination to the map
+             map.addLayer({
+               "id": "point",
+               "type": "circle",
+               "source": {
+                 "type": "geojson",
+                 "data": {
+                   "type": "FeatureCollection",
+                   "features": [{
+                     "type": "Feature",
+                     "properties": {},
+                     "geometry": {
+                       "type": "Point",
+                       "coordinates": start
+                     }
+                   }
+                 ]
+               }
              }
-           }
-         ]
-       };
-       if (map.getLayer('end')) {
-         map.getSource('end').setData(end);
-       } else {
-         map.addLayer({
-           "id": "end",
-           "type": "circle",
-           "source": {
-             "type": "geojson",
-             "data": {
+           });
+
+           var coords = [{{car.longitude}}, {{car.latitude}}];
+             var end = {
                "type": "FeatureCollection",
                "features": [{
                  "type": "Feature",
@@ -309,57 +283,78 @@
                  }
                }
              ]
+           };
+           if (map.getLayer('end')) {
+             map.getSource('end').setData(end);
+           } else {
+             map.addLayer({
+               "id": "end",
+               "type": "circle",
+               "source": {
+                 "type": "geojson",
+                 "data": {
+                   "type": "FeatureCollection",
+                   "features": [{
+                     "type": "Feature",
+                     "properties": {},
+                     "geometry": {
+                       "type": "Point",
+                       "coordinates": coords
+                     }
+                   }
+                 ]
+               }
+             }
+           });
+         };
+         getRoute(coords);
+         });
+
+         function countdown(elementID, minutes, seconds) {
+           var element, endTime, hours, mins, msLeft, time;
+           var car = "{{ car.number_plate }}"; // set car number_plate to a car variable
+           var token = '{{csrf_token}}'; // set csrf token for post request
+
+           function twoDigits(n) { // when digit is less than 9, add a 0 in front
+             return (n <= 9 ? "0" + n : n);
            }
+
+           function updateTimer() {
+             msLeft = endTime - (+new Date);
+             console.log(msLeft)
+             if (msLeft < 1) { // when millisecond is less than 1
+               $.ajax({ // sending car number_plate to views
+                 headers: { "X-CSRFToken": token },
+                 url: '/',
+                 type: "POST",
+                 data: {car : car}
+               })
+               alert("Session has timeout"); // display popup
+               window.location.replace("/"); // redirect to homepage
+             }
+             else { // continue updating the timer
+               time = new Date(msLeft);
+               hours = time.getUTCHours();
+               mins = time.getUTCMinutes();
+               element.innerHTML = (hours ? hours + ':' + twoDigits(mins) : mins) + ':' + twoDigits(time.getUTCSeconds()); // Display countdown timer
+               setTimeout(updateTimer, time.getUTCMilliseconds() + 500);
+             }
+           }
+           element = document.getElementById(elementID);
+           endTime = (+new Date) + 1000 * (60 * minutes + seconds) + 500;
+           updateTimer();
          }
-       });
-     };
-     getRoute(coords);
-     });
 
-     function countdown(elementID, minutes, seconds) {
-       var element, endTime, hours, mins, msLeft, time;
-       var car = "{{ car.number_plate }}"; // set car number_plate to a car variable
-       var token = '{{csrf_token}}'; // set csrf token for post request
+         countdown("countdowndiv", 30, 0);
 
-       function twoDigits(n) { // when digit is less than 9, add a 0 in front
-         return (n <= 9 ? "0" + n : n);
-       }
-
-       function updateTimer() {
-         msLeft = endTime - (+new Date);
-         console.log(msLeft)
-         if (msLeft < 1) { // when millisecond is less than 1
-           $.ajax({ // sending car number_plate to views
-             headers: { "X-CSRFToken": token },
-             url: '/',
-             type: "POST",
-             data: {car : car}
-           })
-           alert("Session has timeout"); // display popup
-           window.location.replace("/"); // redirect to homepage
+         window.onbeforeunload = closingCode;
+         function closingCode(){
+           document.getElementById("carf").submit();
+           return "Are you sure? Leaving will return to the home page"; //<-- this prevents the dialog confirm box
          }
-         else { // continue updating the timer
-           time = new Date(msLeft);
-           hours = time.getUTCHours();
-           mins = time.getUTCMinutes();
-           element.innerHTML = (hours ? hours + ':' + twoDigits(mins) : mins) + ':' + twoDigits(time.getUTCSeconds()); // Display countdown timer
-           setTimeout(updateTimer, time.getUTCMilliseconds() + 500);
-         }
-       }
-       element = document.getElementById(elementID);
-       endTime = (+new Date) + 1000 * (60 * minutes + seconds) + 500;
-       updateTimer();
-     }
 
-     countdown("countdowndiv", 30, 0);
+      </script>
+      {% include "layout/footer.html" %}
 
-     window.onbeforeunload = closingCode;
-     function closingCode(){
-       document.getElementById("carf").submit();
-       return "Are you sure? Leaving will return to the home page"; //<-- this prevents the dialog confirm box
-     }
-
-  </script>
-  {% include "layout/footer.html" %}
-  </body>
+    </body>
 </html>
