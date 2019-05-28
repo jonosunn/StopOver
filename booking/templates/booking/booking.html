@@ -2,7 +2,7 @@
 {% load static %}
 <html lang="en" dir="ltr">
     <head>
-        <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
         <title>Booking</title>
      	  <link rel="stylesheet" href="{% static 'css/map.css' %}">
         <link rel="stylesheet" href="{% static 'css/booking.css' %}">
@@ -17,33 +17,32 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
     <body onload="carLocation()">
-      {% include "map/navbar.html" %}
+      {% include "layout/navbar.html" %}
       <div class="confirm-block" id="car-map"></div>
+      <div class="below-container">
         <div class='session-block text-center' id="countdowndiv">
-          Insert Session Timer Here
         </div>
         <h3 class='text-center header-label first-header'>You are about to book <span class="car-number">{{car.number_plate}}</span></h3>
         <h4 class='text-center header-label'>Please procceed to confirmation to pay and start driving!</h4>
-        <div class="fieldset">
-          <table style="width:100%" class="booking-table">
-            <tr>
-              <td class ="car-block"><img src="../static/images/car-image1.png" height=60%></td>
-              <td class ="details-block text-right">
-                <p class="booking-text"><span class="booking-form-title">Number Plate:</span> {{ car.number_plate }}
-                <br>
-                <span class="booking-form-title">Brand:</span> {{ car.brand }}
-                <br>
-                <span class="booking-form-title">Type:</span> Sample Car Type
-                <br>
-                <span class="booking-form-title">Transmission:</span> {{ car.transmission }}
-                <br>
-                <span class="booking-form-title">Year:</span> 2010
-                <br>
-                <br>
-                <p class="booking-text"><span class="booking-form-title">Price:</span> ${{ car.price }}p/h</p>
-                <br></td>
-            </tr>
-          </table>
+          <div class ="car-block"><img src="{% static 'images/'%}{{car.colour}}.png" width=100%></div>
+          <div class ="details-block">
+            <p class="booking-text"><span class="booking-form-title">Number Plate:</span> {{ car.number_plate }}
+            <br>
+            <span class="booking-form-title">Brand:</span> {{ car.brand }}
+            <br>
+            <span class="booking-form-title">Colour:</span> {{ car.colour }}
+            <br>
+            <span class="booking-form-title">Type:</span> {{ car.seat_no }} Seater
+            <br>
+            <span class="booking-form-title">Transmission:</span> {{ car.transmission }}
+            <br>
+            <span class="booking-form-title">Year:</span> {{ car.year }}
+            <br>
+            <br>
+            <p class="booking-text"><span class="booking-form-title">Price:</span> ${{ car.price }}p/h</p>
+            <br>
+          </div>
+
           <form method="POST" id="carf" action="/">
             {% csrf_token %}
             <input type="hidden" name="car" value="{{ car.number_plate }}">
@@ -56,14 +55,17 @@
              <input type="submit" class="btn btn-primary btn-block booking-button process-button" value="Process to Confirmation"></input>
            </div>
           </form>
-          <div class="btn-group mr-2" role="group" aria-label="Second group">
-           <input type="submit" class="btn btn-primary btn-block booking-button bg-red cancel-button" value="Cancel Booking" ></input>
-         </div>
-       </div>
+          <form action="/" method="post">
+            {% csrf_token %}
+            <div class="btn-group mr-2" role="group" aria-label="Second group">
+             <input type="hidden" name="car" value="{{ car.number_plate }}">
+             <input type="submit" class="btn btn-primary btn-block booking-button bg-red cancel-button" value="Cancel Booking" ></input>
+           </div>
+          </form>
            <br>
         </div>
-      <div class="booking-footer">
       </div>
+    </div>
         <script>
             function carLocation() {
               mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcG92ZXJhZG1pbiIsImEiOiJjanRtcHY3YXozeW10NGJvM3c2dWlxZ2xvIn0.1WlrGXizCLdOrV5TXPTc0A';
@@ -155,5 +157,8 @@
             }
 
         </script>
+        {% include "layout/footer.html" %}
+
     </body>
+
 </html>

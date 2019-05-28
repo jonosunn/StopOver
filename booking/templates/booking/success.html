@@ -2,7 +2,7 @@
 {% load static %}
 <html lang="en" dir="ltr">
     <head>
-        <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
         <title>Success</title>
      	  <link rel="stylesheet" href="{% static 'css/map.css' %}">
         <link rel="stylesheet" href="{% static 'css/booking.css' %}">
@@ -21,8 +21,8 @@
     </head>
 
     <body onLoad="navigation()">
-      {% include "map/navbar.html" %}
-        <div class="fieldset">
+      {% include "layout/navbar.html" %}
+        <div class="success-body">
           <div id="success-text">
             <h3>Thanks, for booking with StopOver!</h2>
               <br/>
@@ -54,7 +54,8 @@
 
           // Run countdown function
           countdown();
-
       </script>
+      {% include "layout/footer.html" %}
+
     </body>
 </html>

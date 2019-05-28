@@ -4,6 +4,7 @@
 {% load static %}
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/user.css' %}">
     <link rel="stylesheet" href="{% static 'css/map.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -13,22 +14,19 @@
   </head>
 
   <body class="dash-body">
-    {% include "map/navbar.html" %}
-    <div class="login-page col-6 text-right" id="form-login-photo">
-    <img src="../static/images/carshare.png" width=80% height=80%>
-  </div>
-    <div class=" login-page col-4" id="form-login">
+    {% include "layout/navbar.html" %}
+    <div class=" login-page" id="form-login">
       <h2 id="login-label">Login:</h2>
       <small id="note-label">No account? Register <a href="/register">here</a>.</small>
       <br/>
       <br/>
-      <br/>
-      <form class="text-right" method="post">
+      <form  method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" class="btn btn-primary btn-block booking-button" value="Login" id="login-button"></input>
       </form>
     </div>
+    {% include "layout/footer.html" %}
     </body>
     <script>
     function currentBookingVis(){

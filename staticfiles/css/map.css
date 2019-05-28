@@ -10,6 +10,28 @@ h1
     font-family: 'Roboto Mono', monospace;
 }
 
+footer {
+  border-top: solid;
+  border-color: #CDCDCD;
+  margin-top: 4%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding-top: 2%;
+}
+
+nav {
+  border-bottom: solid;
+  border-color: #CDCDCD;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+
+
+a:active{
+  text-decoration: none !important;
+}
+
 #map
 {
 	width:1500px;
@@ -35,7 +57,12 @@ h1
 	font-size: 10px;
 	padding-top: 5px;
 }
-
+.footer-content{
+    font-family: 'Roboto Mono', monospace;
+}
+.footer-list{
+  font-size: 12px;
+}
 #car-price{
 	padding-top: 5px;
 }
@@ -44,12 +71,19 @@ a
     font-family: 'Roboto Mono', monospace;
 }
 
+.social-media-img{
+  max-width:30px;
+  display: inline-block;
+}
+
 #mainLogo
 {
     font-family: 'Roboto Mono', monospace;
     color: #99D3DF;
     font-size: 25px;
 }
+
+
 
 .nav-link a:active
 {
@@ -69,7 +103,10 @@ a
 .d-inline-block
 {
 	margin: 20px;
+}
 
+.stopover-nav a:active{
+  color: #99D3DF;
 
 }
 
@@ -133,4 +170,106 @@ vertical-align: top;
 
 .distanceNumber {
 	color: #C25100 !important;
+}
+
+.about-body {
+  font-family: 'Roboto Mono', monospace;
+
+}
+
+.about-body small{
+  font-size: 10px;
+}
+
+.big-about-font{
+  font-size: 20px;
+  color: #99D3DF;
+
+}
+
+.image-block{
+  margin: 15px 10%;
+}
+
+.team-image {
+  border-radius: 50%;
+  border-style: solid;
+  border-color: #CDCDCD;
+  margin: 10px;
+}
+
+/* .active, .accordion:hover {
+  background-color: #ccc;
+} */
+
+.accordion:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.footer-body{
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+}
+
+.block-one{
+  position:sticky;
+}
+
+.development-block {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+.team-block {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+.about-block {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+.faq-font{
+  font-family: 'Roboto Mono', monospace;
+  overflow: auto;
+}
+
+#main-faq-text{
+  color: #99D3DF;
+  text-align:center;
+  margin:25px 0px;
+}
+
+.card-header{
+  padding:0px !important
+}
+
+.faq-heading{
+  color: #000 !important;
+}
+
+.btn-link:hover, .btn-link:focus{
+  color: #99D3DF !important;
+  text-decoration: none !important;
+
 }

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+        <title>help</title>
+     	  <link rel="stylesheet" href="{% static 'css/map.css' %}">
+        <link rel="stylesheet" href="{% static 'css/booking.css' %}">
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    </head>
+    <body>
+      {% include "layout/navbar.html" %}
+      <div class="faq-body faq-font">
+        <h1 id="main-faq-text">Frequently Asked Questions</h1>
+        <div class="accordion">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link faq-heading" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  How does Stopover work?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                Our <a href="{% url 'home' %}">homepage</a> displays a list of available cars for you to book. These cars can be seen on the map or on the pull-out list just to the side of your screen.
+                Once you've decided on a vehicle, click on "Book" to confirm your booking and enter your payment details according to the prompt. Don't forget to <a href="{% url 'login' %}">sign in</a> or <a href="{% url 'register' %}">register</a>!
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed faq-heading" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Can I immediately drive after signing up?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+              <div class="card-body">
+                Of course! As long as you have a valid licence, you can drive your StopOver car as soon as you confirm and pay for your booking.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed faq-heading" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Can I join with a foreign licence?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div class="card-body">
+                We are currently trying our best to regulate our vehicles according to the Victorian law, but expect some good news in the next few months.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingFour">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed faq-heading" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                  What if a car is low on petrol?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+              <div class="card-body">
+                We at StopOver always make sure that our cars have a full tank of petrol before you can use them. You can use as much of it as you like, but we do ask you to kindly fill up the tank before you end your booking for the convenience of its next user.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingFive">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed faq-heading" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+                  What if I get into an accident?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+              <div class="card-body">
+                We have a third-party insurance for all of our customers from the moment that they start driving their vehicle up to when they end their booking. Just make sure that when you <a href="{% url 'register' %}">sign up</a>,
+                you upload a valid licence. This way, we can easily cross-check your identity and help you cover the fees.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      {% include "layout/footer.html" %}
+    </body>
+</html>

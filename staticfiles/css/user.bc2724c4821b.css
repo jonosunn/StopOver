@@ -1,0 +1,152 @@
+@import url(//fonts.googleapis.com/css?family=Roboto+Mono:400,700i);
+
+.dash-body {
+  padding : 10px ;
+
+}
+
+.this-dash{
+  margin-top:25px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+#current-booking, #account-settings, #booking-hist{
+  margin-top: 45px;
+  padding: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
+}
+#nav-contact{
+  margin-top: 20px;
+}
+
+.register-form li{
+  display: none;
+}
+
+.fields-only{
+  display: inline-block;
+}
+.userSubmit{
+  margin-top: 25px;
+}
+
+#register-photo{
+  position: absolute;
+  margin: 25px 100px;
+}
+
+#personal-details{
+  margin-bottom: 25px;
+}
+
+#payment-details{
+  margin-top: 25px;
+}
+
+.form-group{
+  margin-bottom: 20px;
+}
+#nav-contact-tab{
+  float: right;
+}
+#exTab1 .tab-content {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
+
+#exTab2 h3 {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
+
+
+#exTab1 .nav-pills > li > a {
+  border-radius: 0;
+}
+
+.register-page{
+  font-family: 'Roboto Mono', monospace !important;
+  margin: 0 100px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+#label-register{
+  margin-top: 50px;
+}
+
+#register-button{
+  width: 100%;
+}
+
+.helptext{
+  display:none;
+}
+
+/* change border radius for the tab , apply corners on top*/
+
+#exTab3 .nav-pills > li > a {
+  border-radius: 4px 4px 0 0 ;
+}
+
+#exTab3 .tab-content {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
+
+.dash-icon{
+  width:15%;
+}
+
+.left-box{
+  margin-top: 25px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.right-box{
+  margin-top: 25px;
+  margin-left: 75px;
+  display: inline-block;
+}
+#car-photo{
+  height:200px;
+}
+
+.login-page{
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto Mono', monospace !important;
+
+}
+
+#form-login{
+  top: 100px;
+  margin-right:50px;
+}
+
+#form-login-photo{
+  /* top: 10px; */
+}
+
+#login-button{
+  width:50%;
+  margin-right:0px;
+  right: 10px;
+  position:absolute;
+}
+#login-label{
+  margin-left: 70px;
+}
+
+#note-label{
+  margin-left: 70px;
+}
+
+#user-login-form{
+
+}
