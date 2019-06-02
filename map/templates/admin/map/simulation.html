@@ -4,6 +4,8 @@
   <head>
     <meta charset='utf-8' />
     <title>Simulation</title>
+    <link rel="stylesheet" href="{% static 'css/map.css' %}">
+    <link rel="stylesheet" href="{% static 'css/list.css' %}">
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.css' rel='stylesheet' />
@@ -32,6 +34,38 @@
 
    var long = 144.96803;
    var lat = -37.793485;
+
+   // Cars location marker
+   var geojson_cars = {
+     type: 'FeatureCollection',
+     features: [
+     {% for car in cars %}
+       {
+         type: 'Feature',
+         geometry: {
+           type: 'Point',
+           coordinates: [{{ car.longitude }}, {{ car.latitude }}]
+         },
+         properties: {
+           title: '{{ car.number_plate }}',
+           description: 'Type: {{ car.brand }} Transmission: {{ car.transmission }} Price: ${{ car.price }} per hour'
+         }
+       },
+     {% endfor %}
+   ]
+   };
+   // add markers to map
+   geojson_cars.features.forEach(function(marker) {
+   // create a HTML element for each feature
+   var el = document.createElement('div');
+   el.className = 'car-marker';
+   // car markers
+   new mapboxgl.Marker(el)
+   .setLngLat(marker.geometry.coordinates)
+     .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+       .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+   .addTo(map);
+   });
 
    function pointOnCircle(angle) {
      return {
