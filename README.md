@@ -37,7 +37,9 @@
 ### Local Deployment
 - In command prompt/terminal in your project file, enter your virtual environment (read information above)
 - Run the following command for local deployment:
-- python manage.py runserver
+```
+python manage.py runserver
+```
 - To access the website: http://127.0.0.1:8000
 
 ### Heroku Deployment
@@ -55,3 +57,7 @@ whitenoise.runserver_nostatic
 ```
 into installed apps
 - Create a collectstatic that collects all the static (CSS, JS, IMGS) to be used in deployment
+```
+python manage.py collectstatic
+```
+**More detailed deployment in development guide on how to update your settings.py files**
