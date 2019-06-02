@@ -7,6 +7,14 @@
 **Business Analyst:** Jeffrey Tan  
 **Scrum Master:** Nicky Le  
 
+## GitHub URL
+
+**https://github.com/Envying/StopOver**
+
+## Heroku Application
+
+**https://stopover-rmit.herokuapp.com/**
+
 ## Release Versions
 
 | Release Version | type | Features |
@@ -22,25 +30,27 @@
 
 ## Installation
 
-## GitHub URL
 
-**https://github.com/Envying/StopOver**
+## Deployment
 
-## Heroku Application
+### Local Deployment
+- In command prompt/terminal in your project file, enter your virtual environment (read information above)
+- Run the following command for local deployment:
+- python manage.py runserver
+- To access the website: http://127.0.0.1:8000
 
-**https://stopover-rmit.herokuapp.com/**
-
-## Current known bugs
-
+### Heroku Deployment
+- In requirements.txt add whitenoise module and then run
 ```
-- Arrow for vehicle list malfunctions sometimes visually
-- Update profile function in account settings page does not work
-- Same account can be logged into at the same time on different devices
-- When more than 7 numbers are entered in account settings to update user licences, it crashes the application
-- Distance shows NaN when the page first initially loads due to unable to collect users location before display
-- When clicking back from the browser it does not reset the car availability
-- Simulation goes out of bounds
-- Missing the price in the car list
-- Invalid credential popup has a dot
-- Confirmation and booking page cancel button off centred 
+pip install -r requirements.txt
 ```
+- In settings.py file add:
+```
+whitenoise.middleware.WhiteNoiseMiddleware
+```
+into middleware and add:
+```
+whitenoise.runserver_nostatic
+```
+into installed apps
+- Create a collectstatic that collects all the static (CSS, JS, IMGS) to be used in deployment
