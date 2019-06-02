@@ -2,10 +2,10 @@
 
 ## Team members
 
-**Project Leader: Ana Teo**
-**Team Leader: Jono Sun**
-**Business Analyst: Jeffrey Tan**
-**Scrum Master: Nicky Le**
+**Project Leader: Ana Teo**  
+**Team Leader: Jono Sun**  
+**Business Analyst: Jeffrey Tan**  
+**Scrum Master: Nicky Le**  
 
 ## Release Versions
 
