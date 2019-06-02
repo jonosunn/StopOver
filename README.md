@@ -68,7 +68,7 @@ C:\users\[USERNAME]\appdata\local\programs\python\python36-32\lib\site-packages 
 ```
 brew install python3
 ```
--To verify the installation of python 3.7, run the following code:
+- To verify the installation of python 3.7, run the following code:
 ```
 $ python3 --version
 ```
