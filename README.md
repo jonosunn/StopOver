@@ -2,10 +2,10 @@
 
 ## Team members
 
-**Project Leader: Ana Teo**  
-**Team Leader: Jono Sun**  
-**Business Analyst: Jeffrey Tan**  
-**Scrum Master: Nicky Le**  
+**Project Leader:** Ana Teo  
+**Team Leader:** Jono Sun  
+**Business Analyst:** Jeffrey Tan  
+**Scrum Master:** Nicky Le  
 
 ## Release Versions
 
@@ -24,6 +24,23 @@
 
 ## GitHub URL
 
+**https://github.com/Envying/StopOver**
+
 ## Heroku Application
 
+**https://stopover-rmit.herokuapp.com/**
+
 ## Current known bugs
+
+```
+- Arrow for vehicle list malfunctions sometimes visually
+- Update profile function in account settings page does not work
+- Same account can be logged into at the same time on different devices
+- When more than 7 numbers are entered in account settings to update user licences, it crashes the application
+- Distance shows NaN when the page first initially loads due to unable to collect users location before display
+- When clicking back from the browser it does not reset the car availability
+- Simulation goes out of bounds
+- Missing the price in the car list
+- Invalid credential popup has a dot
+- Confirmation and booking page cancel button off centred 
+```
