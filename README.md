@@ -11,14 +11,7 @@
 
 | Release Version | type | Features |
 | --------------- | -------- | ------- |
-| v1.0 | new feature | The first version of the car share scheme app, Stopover. This is developed within the scope of the group's capstone project course at RMIT University under the supervision of Mr. Homy Ashrafzadeh.
-
-This version includes the following features:
-
-Map
-Current location of user
-Current location of cars available
-Booking function |
+| v1.0 | new feature | The first version of the car share scheme app, Stopover. This is developed within the scope of the group's capstone project course at RMIT University under the supervision of Mr. Homy Ashrafzadeh. This version includes the following features: Map, Current location of user, Current location of cars available , Booking function |
 | v2.0 | new feature | test |
 | v2.1 | bug fixes | test |
 | v2.12 | bug fixes | test |
