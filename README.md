@@ -73,6 +73,58 @@ brew install python3
 $ python3 --version
 ```
 
+### Installing Pip
+We require pip to install the virtual environment and modules that are needed to run the project.
+#### Linux:
+- Open up the Terminal and type the following command:
+```
+$ sudo apt-get install -y python3-pip
+```
+- To verify the installation of pip3, run the following command:
+```
+$ pip3 -V
+```
+
+#### Windows:
+-Pip should have been installed with installing Python, to verify the installation, run the following command:
+```
+pip --version
+```
+
+#### MacOS:
+- Pip should have been installed with Python, to verify the installation, run the following command:
+```
+pip3 --version
+```
+
+### Installing Virtual Environment
+We will be installing Django in a virtual environment that will we setup in this instruction. We want to isolate one project’s dependencies from dependencies of other projects. So that is why we are installing a virtual environment.
+#### Linux:
+- Open up the Terminal and type the following command:
+```
+$ pip3 install virtualenv
+```
+- Once it is installed, to verify the installation, run the following command:
+```
+$ virtualenv --version
+```
+- You should see an output similar to the following:
+```
+16.4.3
+```
+
+#### Windows:
+- Open up the Command Prompt to enter into the PowerShell and run the following command in the stopover directory:
+```
+virtualenv --python "c:\python36\python.exe" env
+```
+
+#### MacOS:
+- Open up the Terminal and type the following command:
+```
+pip3 install --upgrade virtualenv
+```
+
 ## Deployment
 
 ### Local Deployment
