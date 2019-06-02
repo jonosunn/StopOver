@@ -30,7 +30,48 @@
 
 ## Installation
 
-### Test
+### Install Python:
+The project is done in Python 3.7, so it is recommended to install Python 3.7.X.
+
+#### Linux:
+- Open up the Terminal and type the following command:
+```
+$ sudo apt-get update && sudo apt-get -y upgrade
+```
+```
+$ sudo apt install python python-dev python3.7 python3-dev
+```
+- To verify the success installation of Python 3.7, run the following command:
+```
+$ python3 -V
+```
+You should see an output like this:
+```
+python 3.7.X
+```
+
+#### Windows:
+- Download the python 3 installer at https://www.python.org/downloads/release/python-373/. Scroll down to the bottom and select either Windows x86-64 executable installer for 64-bits or Windows x86 executable installer for 32-bits.
+- Run the installer.
+- Make sure to tick “Add Python 3.7 to PATH”. Continue to by clicking “Install Now” or customize your installation by clicking “Customize Installation”
+- Open up the Command Prompt and run the following command:
+```
+pip3 --version
+```
+-The output should look like this:
+```
+C:\users\[USERNAME]\appdata\local\programs\python\python36-32\lib\site-packages (Python 3.6).
+```
+
+#### MacOS:
+- To install Python, we need to use homebrew. Open up the Terminal and type the following command:
+```
+brew install python3
+```
+-To verify the installation of python 3.7, run the following code:
+```
+$ python3 --version
+```
 
 ## Deployment
 
