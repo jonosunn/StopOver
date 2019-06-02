@@ -86,7 +86,7 @@ $ pip3 -V
 ```
 
 #### Windows:
--Pip should have been installed with installing Python, to verify the installation, run the following command:
+- Pip should have been installed with installing Python, to verify the installation, run the following command:
 ```
 pip --version
 ```
