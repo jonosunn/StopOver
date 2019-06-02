@@ -125,6 +125,24 @@ virtualenv --python "c:\python36\python.exe" env
 pip3 install --upgrade virtualenv
 ```
 
+### Download Stopover
+
+- We are going to create a directory called Stopover, or you can choose a name of your choice.
+```
+$ mkdir Stopover
+```
+```
+$ cd Stopover
+```
+- Initialise a git repository with the following command:
+```
+$ git --init
+```
+- To download the project, run the following command in the terminal or command prompt:
+```
+$ git clone https://github.com/Envying/StopOver.git
+```
+
 ## Deployment
 
 ### Local Deployment
