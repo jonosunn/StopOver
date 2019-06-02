@@ -5,8 +5,8 @@
 **Version:** 11  
 
 ## Authorisation Information (Heroku)
-**Email:** stopover.pp@<span></span>gmail.com
-**Password:** Please contact project owner
+**Email:** stopover.pp@<span></span>gmail.com  
+**Password:** Please contact project owner  
 
 ## Database Connection Details
 **Host:** ec2-54-221-243-211.compute-1.amazonaws.com  
