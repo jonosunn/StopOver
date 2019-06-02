@@ -143,6 +143,42 @@ $ git --init
 $ git clone https://github.com/Envying/StopOver.git
 ```
 
+### Installing the requirements
+Requirements.txt contains the necessary modules needed to run this project including Django.
+#### Linux:
+- To run the virtual environment, make sure you are inside the project directory and run the following code:
+```
+$ . /env/bin/activate
+```
+- Now once you are in the virtual environment, to install the requirements, run the following code:
+```
+(env) user: $ pip3 install -r requirements.txt
+```
+- To verify that you have installed the required modules, run the following command:
+```
+(env) user: $ pip3 list
+```
+
+#### Windows:
+- To run the virtual environment, make sure you are inside the project directory and run the following code:
+```
+.\env\Scripts\activate
+```
+- Now once you are in the virtual environment, to install the requirements, run the following code:
+```
+pip install -r requirements.txt
+```
+
+#### MacOS:
+- To run the virtual environment, make sure you are inside the project directory and run the following code:
+```
+source env/bin/activate
+```
+- Now once you are in the virtual environment, to install the requirements, run the following code:
+```
+pip install -r requirements.txt
+```
+
 ## Deployment
 
 ### Local Deployment
